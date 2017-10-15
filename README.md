@@ -23,6 +23,15 @@ Javaアプリケーションのための練習プログラム集
 vagrant up
 vagrant ssh
 ```
+コンポーネントのセットアップ
+```bash
+curl -s "https://get.sdkman.io" | bash
+sdk install java
+sdk install gradle
+gradle init
+gradle buildEnvironment
+
+```
 
 **[⬆ back to top](#構成)**
 
