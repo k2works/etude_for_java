@@ -1,4 +1,4 @@
-# Etude for Express
+# Etude for Java
 ---
 
 # 目的 #
@@ -30,7 +30,6 @@ sdk install java
 sdk install gradle
 gradle init
 gradle buildEnvironment
-
 ```
 
 **[⬆ back to top](#構成)**
