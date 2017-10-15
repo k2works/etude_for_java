@@ -8,6 +8,7 @@ Javaアプリケーションのための練習プログラム集
 | ソフトウェア   | バージョン   | 備考        |
 |:---------------|:-------------|:------------|
 | java           |1.8.0    |             |
+| gradle         |4.2.1    |             |
 
 
 # 構成 #
@@ -17,6 +18,21 @@ Javaアプリケーションのための練習プログラム集
 1. [開発](#開発)
 
 ## 構築
+仮想マシンのセットアップ
+```bash
+vagrant up
+vagrant ssh
+```
+コンポーネントのセットアップ
+```bash
+curl -s "https://get.sdkman.io" | bash
+sdk install java
+sdk install gradle
+gradle init
+gradle buildEnvironment
+
+```
+
 **[⬆ back to top](#構成)**
 
 ## 配置
