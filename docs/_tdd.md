@@ -47,4 +47,8 @@ markdown:
 + [x] ~~equals()~~
 + [ ] hashCode()
 + [ ] nullとの等価性比較
-+ [ ] 他のオブジェクトとの等価性比較  
++ [ ] 他のオブジェクトとの等価性比較
++ [x] ~~5CHF * 2 = 10 CHF~~
++ [ ] DollarとFrancの重複
++ [ ] equalsの一般化
++ [ ] timesの一般化
