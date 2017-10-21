@@ -22,3 +22,6 @@
 hs_err_pid*
 .idea
 etude_for_java.iml
+.gradle
+build
+out
