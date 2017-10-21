@@ -40,15 +40,14 @@ markdown:
 ## コアモデル
 ```puml
 class Dollar {
-  + times()
 }
-class Franc {    
-  + times()
+class Franc {
 }
-abstract Money {
+class Money {
   # amount
   # currency
   times()
+  currency()
   + equals()
   + dollar()
   + franc()
@@ -72,7 +71,7 @@ Money <|-- Franc
 + [x] ~~5CHF * 2 = 10 CHF~~
 + [ ] DollarとFrancの重複
 + [x] ~~equalsの一般化~~
-+ [ ] timesの一般化
++ [x] ~~timesの一般化~~
 + [x] ~~FrancとDollarを比較する~~
 + [x] ~~通貨の概念~~
 + [ ] testFrancMultiplicationを削除する？

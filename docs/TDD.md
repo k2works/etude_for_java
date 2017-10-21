@@ -36,7 +36,7 @@
 ## コアモデル
   
 
-![](../assets/9caaa2be0c7866a76113ca987a26502f0.png?0.8316556619160937)  
+![](../assets/9caaa2be0c7866a76113ca987a26502f0.png?0.15828075395719043)  
   
 ## TODOリスト
   
@@ -53,7 +53,7 @@
 + [x] ~~5CHF * 2 = 10 CHF~~
 + [ ] DollarとFrancの重複
 + [x] ~~equalsの一般化~~
-+ [ ] timesの一般化
++ [x] ~~timesの一般化~~
 + [x] ~~FrancとDollarを比較する~~
 + [x] ~~通貨の概念~~
 + [ ] testFrancMultiplicationを削除する？
