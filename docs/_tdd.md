@@ -1,7 +1,7 @@
 ---
 markdown:
-  image_dir: ./assets
-  path: ./TDD.md
+  image_dir: /docs/assets
+  path: /docs/TDD.md
   ignore_from_front_matter: true
   absolute_image_path: false
 ---
@@ -36,6 +36,23 @@ markdown:
   
 + 通貨の異なる２つの金額を足し、通貨間の為替レートに基づいて換算された金額を得る。
 + 金額（通貨単位あたりの額）に数値（通貨単位数）を掛け、金額を得る。
+
+## コアモデル
+```puml
+class Dollar {
+  + times()
+}
+class Franc {
+  + times()  
+}
+class Money {
+  # amount  
+  + equals()
+
+}
+Money <|-- Dollar
+Money <|-- Franc
+```
   
 ## TODOリスト
   
@@ -50,5 +67,5 @@ markdown:
 + [ ] 他のオブジェクトとの等価性比較
 + [x] ~~5CHF * 2 = 10 CHF~~
 + [ ] DollarとFrancの重複
-+ [ ] equalsの一般化
++ [x] ~~equalsの一般化~~
 + [ ] timesの一般化
