@@ -1,7 +1,7 @@
 ---
 markdown:
-  image_dir: /docs/assets
-  path: /docs/TDD.md
+  image_dir: ./assets
+  path: ./TDD.md
   ignore_from_front_matter: true
   absolute_image_path: false
 ---
@@ -24,9 +24,9 @@ markdown:
   
 |銘柄       |株数  |価格  |合計  |
 |:----     |----:|----:|----:|
-|IBM       |1000|25 USD  |25000|
-|Novartis  |400 |100 CHF |40000|
-|          |    |総計 |65000|
+|IBM       |1000|25 USD  |25000 USD|
+|Novartis  |400 |150 CHF |60000 CHF|
+|          |    |総計 |65000 USD|
   
 加えて、為替レートも規定しなければならない
   
