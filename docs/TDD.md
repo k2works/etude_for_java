@@ -36,7 +36,7 @@
 ## コアモデル
   
 
-![](../assets/9caaa2be0c7866a76113ca987a26502f0.png?0.32814828924739525)  
+![](../assets/9caaa2be0c7866a76113ca987a26502f0.png?0.8316556619160937)  
   
 ## TODOリスト
   
@@ -55,6 +55,6 @@
 + [x] ~~equalsの一般化~~
 + [ ] timesの一般化
 + [x] ~~FrancとDollarを比較する~~
-+ [ ] 通貨の概念
++ [x] ~~通貨の概念~~
 + [ ] testFrancMultiplicationを削除する？
   
