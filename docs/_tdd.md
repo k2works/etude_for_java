@@ -40,23 +40,39 @@ markdown:
 ## コアモデル
 ```puml
 class Money {
-  # amount
-  # currency
-  times()
-  currency()
-  + equals()
-  + dollar()
-  + franc()
+  #amount
+  #currency
+  ~times()
+  ~plus()
+  +reduce()
+  ~currency()
+  +equals()
+  +toString()
+  {static}dollar()
+  {static}franc()
 }
-interface Expression
+interface Expression {
+  reduce()
+}
 class Bank {
-  + reduce()
+  ~reduce()
+}
+class Sum {
+  ~augend
+  ~added
+  +reduce()  
 }
 Expression <|-- Money
-Bank -> Money
+Bank -> Expression
+Expression <|-- Sum
+Sum -> Money
 ```
   
 ## TODOリスト
   
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
 + [ ] \$5 + \$5 = \$10
++ [ ] \$5 + \$5がMoneyを返す
++ [x] ~~Bank.reduce(Money)~~
++ [ ] Moneyを変換して換算を行う
++ [ ] Reduce(Bank, String)
