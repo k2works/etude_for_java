@@ -36,15 +36,15 @@
 ## コアモデル
   
 
-![](assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.4712306879406247)  
+![](assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.9360194758903768)  
   
 ## TODOリスト
   
   
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
-+ [ ] \$5 + \$5 = \$10
++ [x] ~~\$5 + \$5 = \$10~~
 + [ ] \$5 + \$5がMoneyを返す
 + [x] ~~Bank.reduce(Money)~~
-+ [ ] Moneyを変換して換算を行う
-+ [ ] Reduce(Bank, String)
++ [x] ~~Moneyを変換して換算を行う~~
++ [x] ~~Reduce(Bank, String)~~
   

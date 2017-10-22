@@ -55,24 +55,35 @@ interface Expression {
   reduce()
 }
 class Bank {
+  -rates
   ~reduce()
+  ~addRate()
+  ~rate()
 }
 class Sum {
   ~augend
   ~added
   +reduce()  
 }
+class Pair {
+  -from
+  -to
+  +equals()
+  +hashCode()
+}
 Expression <|-- Money
 Bank -> Expression
 Expression <|-- Sum
 Sum -> Money
+Bank o-l HashMap
+Bank --> Pair
 ```
   
 ## TODOリスト
   
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
-+ [ ] \$5 + \$5 = \$10
++ [x] ~~\$5 + \$5 = \$10~~
 + [ ] \$5 + \$5がMoneyを返す
 + [x] ~~Bank.reduce(Money)~~
-+ [ ] Moneyを変換して換算を行う
-+ [ ] Reduce(Bank, String)
++ [x] ~~Moneyを変換して換算を行う~~
++ [x] ~~Reduce(Bank, String)~~
