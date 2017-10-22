@@ -1,3 +1,5 @@
+[![CircleCI token](https://img.shields.io/circleci/project/github/k2works/etude_for_java/master.svg)](https://circleci.com/gh/k2works/etude_for_java/)
+
 # Etude for Java
 ---
 
@@ -35,6 +37,11 @@ gradle buildEnvironment
 **[⬆ back to top](#構成)**
 
 ## 配置
+### CircleCi
+```bash
+mkdir .circleci
+touch .circleci/config.yml
+```
 **[⬆ back to top](#構成)**
 
 ## 運用
