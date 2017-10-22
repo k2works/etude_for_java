@@ -16,6 +16,17 @@ repositories {
     jcenter()
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath ("org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4")
+    }
+}
+
+apply plugin: 'org.junit.platform.gradle.plugin'
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
@@ -25,5 +36,14 @@ dependencies {
     // TestNG is also supported by the Gradle Test task. Just change the
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
-    testCompile 'junit:junit:4.12'
+    testCompile("junit:junit:4.12")
+    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
+
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
+
+    // Enable use of the JUnitPlatform Runner within the IDE
+    testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
+
+
 }
