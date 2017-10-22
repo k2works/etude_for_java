@@ -1,6 +1,6 @@
 package tdd.money;
 
-public class Pair {
+class Pair {
     private String from;
     private String to;
     Pair(String from, String to) {

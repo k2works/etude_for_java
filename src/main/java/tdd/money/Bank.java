@@ -3,7 +3,7 @@ package tdd.money;
 import java.util.Map;
 import java.util.HashMap;
 
-public class Bank {
+class Bank {
     private Map<Pair, Integer> rates = new HashMap<>();
     Money reduce(Expression source, String to) {
         return source.reduce(this, to);
