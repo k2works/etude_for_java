@@ -37,6 +37,17 @@ markdown:
 + 通貨の異なる２つの金額を足し、通貨間の為替レートに基づいて換算された金額を得る。
 + 金額（通貨単位あたりの額）に数値（通貨単位数）を掛け、金額を得る。
 
+## TODOリスト
+
++ [x] ~~\$5 + 10CHF = \$10 (レートが2:1の場合)~~
++ [x] ~~\$5 + \$5 = \$10~~
++ [x] ~~\$5 + \$5がMoneyを返す~~
++ [x] ~~Bank.reduce(Money)~~
++ [x] ~~Moneyを変換して換算を行う~~
++ [x] ~~Reduce(Bank, String)~~
++ [x] ~~Sum.plus~~
++ [x] ~~Expression.times~~
+
 ## コアモデル
 ```puml
 class Money {
@@ -82,14 +93,3 @@ Sum -> Money
 Bank o-l HashMap
 Bank --> Pair
 ```
-
-## TODOリスト
-
-+ [x] ~~\$5 + 10CHF = \$10 (レートが2:1の場合)~~
-+ [x] ~~\$5 + \$5 = \$10~~
-+ [x] ~~\$5 + \$5がMoneyを返す~~
-+ [x] ~~Bank.reduce(Money)~~
-+ [x] ~~Moneyを変換して換算を行う~~
-+ [x] ~~Reduce(Bank, String)~~
-+ [x] ~~Sum.plus~~
-+ [x] ~~Expression.times~~
