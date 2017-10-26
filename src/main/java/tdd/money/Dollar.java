@@ -1,6 +1,6 @@
 package tdd.money;
 
-public class Dollar {
+class Dollar {
     int amount;
     Dollar(int amount){
         this.amount = amount;
