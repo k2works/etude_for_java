@@ -1,7 +1,7 @@
 ---
 markdown:
-  image_dir: ./assets
-  path: ./TDD.md
+  image_dir: ../assets
+  path: ../TDD.md
   ignore_from_front_matter: true
   absolute_image_path: false
 ---
