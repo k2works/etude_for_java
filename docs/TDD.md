@@ -37,7 +37,7 @@
   
   
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
-+ [ ] \$5 * 2 = \$10
++ [ ] **\$5 * 2 = \$10**
   
 ## コアモデル
   
@@ -48,4 +48,22 @@
   
 ## 振り返り
   
+  
+`MoneyTest.java`
+```java
+package tdd.money;
+  
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+  
+public class MoneyTest {
+    @Test
+    public void testMultiplication() {
+        Dollar five = new Dollar(5);
+        five.time(2);
+        assertEquals(10, five.amount);
+    }
+}
+  
+```  
   

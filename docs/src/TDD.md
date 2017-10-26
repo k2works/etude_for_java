@@ -40,10 +40,13 @@ markdown:
 ## TODOリスト
 
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
-+ [ ] \$5 * 2 = \$10
++ [ ] **\$5 * 2 = \$10**
 
 ## コアモデル
 ### クラス図
 ### シーケンス図
 
 ## 振り返り
+
+`MoneyTest.java`
+@import "../../src/test/java/tdd/money/MoneyTest.java"
