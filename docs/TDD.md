@@ -47,6 +47,8 @@
   
 ### クラス図
   
+
+![](../assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.05582522565251935)  
 ### シーケンス図
   
   
@@ -67,6 +69,15 @@ public class MoneyTest {
         five.time(2);
         assertEquals(10, five.amount);
     }
+}
+  
+```  
+  
+`Dollar.java`
+```java
+package tdd.money;
+  
+public class Dollar {
 }
   
 ```  

@@ -48,9 +48,16 @@ markdown:
 
 ## コアモデル
 ### クラス図
+```puml
+class Dollar {  
+}
+```
 ### シーケンス図
 
 ## 振り返り
 
 `MoneyTest.java`
 @import "../../src/test/java/tdd/money/MoneyTest.java"
+
+`Dollar.java`
+@import "../../src/main/java/tdd/money/Dollar.java"
