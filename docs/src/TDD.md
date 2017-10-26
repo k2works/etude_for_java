@@ -39,57 +39,11 @@ markdown:
 
 ## TODOリスト
 
-+ [x] ~~\$5 + 10CHF = \$10 (レートが2:1の場合)~~
-+ [x] ~~\$5 + \$5 = \$10~~
-+ [x] ~~\$5 + \$5がMoneyを返す~~
-+ [x] ~~Bank.reduce(Money)~~
-+ [x] ~~Moneyを変換して換算を行う~~
-+ [x] ~~Reduce(Bank, String)~~
-+ [x] ~~Sum.plus~~
-+ [x] ~~Expression.times~~
++ [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
++ [ ] \$5 * 2 = \$10
 
 ## コアモデル
-```puml
-class Money {
-  #amount
-  #currency
-  +times()
-  +plus()
-  +reduce()
-  ~currency()
-  +equals()
-  +toString()
-  {static}dollar()
-  {static}franc()
-}
-interface Expression {
-  times()
-  plus()
-  reduce()
-}
-class Bank {
-  -rates
-  ~reduce()
-  ~addRate()
-  ~rate()
-}
-class Sum {
-  ~augend
-  ~added
-  +times()  
-  +plus()
-  +reduce()  
-}
-class Pair {
-  -from
-  -to
-  +equals()
-  +hashCode()
-}
-Expression <|-- Money
-Bank -> Expression
-Expression <|-- Sum
-Sum -> Money
-Bank o-l HashMap
-Bank --> Pair
-```
+### クラス図
+### シーケンス図
+
+## 振り返り
