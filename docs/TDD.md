@@ -48,7 +48,7 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.05249960029668754)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7235161972710122)  
 ### シーケンス図
   
   
@@ -78,7 +78,7 @@ public class MoneyTest {
 package tdd.money;
   
 public class Dollar {
-    int amount;
+    int amount = 10;
     Dollar(int amount){
     }
     void times(int multiplier) {
