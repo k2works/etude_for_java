@@ -48,7 +48,7 @@
 ### クラス図
   
 
-![](../assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.6956544256922346)  
+![](assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.7485503197306667)  
 ### シーケンス図
   
   
@@ -79,6 +79,8 @@ package tdd.money;
   
 public class Dollar {
     Dollar(int amount){
+    }
+    void times(int multiplier) {
     }
 }
   

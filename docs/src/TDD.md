@@ -1,6 +1,6 @@
 ---
 markdown:
-  image_dir: ../assets
+  image_dir: ./assets
   path: ../TDD.md
   ignore_from_front_matter: true
   absolute_image_path: false
@@ -49,7 +49,9 @@ markdown:
 ## コアモデル
 ### クラス図
 ```puml
-class Dollar {    
+class Dollar {
+  +Dollar(amount:int)
+  ~times(multipliert:int) :void
 }
 ```
 ### シーケンス図
