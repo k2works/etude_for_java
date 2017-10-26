@@ -49,7 +49,7 @@ markdown:
 ## コアモデル
 ### クラス図
 ```puml
-class Dollar {  
+class Dollar {    
 }
 ```
 ### シーケンス図
