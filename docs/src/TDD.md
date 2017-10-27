@@ -55,6 +55,7 @@ class Dollar {
   ~amount:int
   +Dollar(amount:int) :Dollar
   ~times(multipliert:int) :void
+  +equals(object:Object) :boolean
 }
 ```
 ### シーケンス図

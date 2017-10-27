@@ -50,7 +50,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6029955648547065)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.3574873765855253)  
 ### シーケンス図
   
   
@@ -91,6 +91,9 @@ class Dollar {
     }
     Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
+    }
+    public boolean equals(Object object) {
+        return true;
     }
 }
   
