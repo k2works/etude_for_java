@@ -51,7 +51,7 @@ markdown:
 ```puml
 class Dollar {
   ~amount:int
-  +Dollar(amount:int)
+  +Dollar(amount:int) :Dollar
   ~times(multipliert:int) :void
 }
 ```

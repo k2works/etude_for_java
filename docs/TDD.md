@@ -48,7 +48,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7235161972710122)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6029955648547065)  
 ### シーケンス図
   
   
@@ -83,8 +83,9 @@ class Dollar {
     Dollar(int amount){
         this.amount = amount;
     }
-    void times(int multiplier) {
+    Dollar times(int multiplier) {
         amount *= multiplier;
+        return null;
     }
 }
   
