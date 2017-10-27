@@ -44,6 +44,8 @@ markdown:
 + [ ] amountをprivateにする
 + [x] ~~Dollarの副作用どうする？~~
 + [ ] Moneyの丸め処理をどうする？
++ [ ] **equals()**
++ [ ] hashCode()
 
 
 ## コアモデル
@@ -65,6 +67,3 @@ class Dollar {
 @import "../../src/main/java/tdd/money/Dollar.java"
 
 ## 振り返り
-+ 設計の問題点（今回は副作用）をテストコードに写し取り、その問題点のせいでテストが失敗するのを確認した。
-+ 空実装でさっさとコンパイルを通した。
-+ 正しいと思える実装をすぐに行い、テストを通した。
