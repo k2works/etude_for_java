@@ -41,7 +41,7 @@
 + [ ] amountをprivateにする
 + [x] ~~Dollarの副作用どうする？~~
 + [ ] Moneyの丸め処理をどうする？
-+ [ ] **equals()**
++ [x] ~~equals()~~
 + [ ] hashCode()
   
   
@@ -94,7 +94,8 @@ class Dollar {
         return new Dollar(amount * multiplier);
     }
     public boolean equals(Object object) {
-        return true;
+        Dollar dollar = (Dollar) object;
+        return amount == dollar.amount;
     }
 }
   
