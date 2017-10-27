@@ -4,7 +4,7 @@
 
 ### 第１部　他国通貨
 #### [第１章 仮実装](https://github.com/k2works/etude_for_java/blob/ce1c55b19de96f8e7111bd612d93543e2a87f8e6/docs/TDD.md) 
-#### 第２章 明白な実装
+#### [第２章 明白な実装](https://github.com/k2works/etude_for_java/blob/d04a12f42c5ab839b80cefe608bf555b6a852a16/docs/TDD.md)
 #### 第３章 三角測量 
 #### 第４章 意図を語るテスト
 #### 第５章 原則をあえて破るとき 
