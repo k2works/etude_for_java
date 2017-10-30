@@ -52,6 +52,7 @@ markdown:
 + [ ] DollarとFrancの重複
 + [x] ~~equalsの一般化~~
 + [ ] timesの一般化
++ [ ] **FrancとDollarを比較する**
 
 
 ## コアモデル
@@ -88,6 +89,3 @@ Money <|-- Franc
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
-+ Dollarクラスから親クラスMoneyへ段階的にメソッドを移動した。
-+ ２つ目のクラス（Franc)も同様にサブクラス化した。
-+ ２つのequalsメソッドの差異をなくしてから、サブクラス側の実装を削除した。
