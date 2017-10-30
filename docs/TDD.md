@@ -73,7 +73,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MoneyTest {
     @Test
     public void testMultiplication() {
-        Dollar five = Money.dollar(5);
+        Money five = Money.dollar(5);
         assertEquals(new Dollar(10), five.times(2));
         assertEquals(new Dollar(15), five.times(3));
     }
@@ -135,6 +135,9 @@ class Money {
         Money money = (Money) object;
         return amount == money.amount
                 && getClass().equals(money.getClass());
+    }
+    static Dollar dollar(int amount) {
+        return new Dollar(amount);
     }
 }
   
