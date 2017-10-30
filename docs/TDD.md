@@ -58,7 +58,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.22819085421862084)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.010274319235455076)  
 ### シーケンス図
   
   
@@ -74,7 +74,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MoneyTest {
     @Test
     public void testMultiplication() {
-        Dollar five = new Dollar(5);
+        Dollar five = Money.dollar(5);
         assertEquals(new Dollar(10), five.times(2));
         assertEquals(new Dollar(15), five.times(3));
     }
