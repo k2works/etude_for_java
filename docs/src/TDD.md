@@ -69,6 +69,9 @@ class Franc {
   ~times(multipliert:int) :void
   +equals(object:Object) :boolean
 }
+class Money {
+
+}
 ```
 ### シーケンス図
 
@@ -81,5 +84,8 @@ class Franc {
 
 `Franc.java`
 @import "../../src/main/java/tdd/money/Franc.java"
+
+`Money.java`
+@import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り

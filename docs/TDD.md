@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5893855525586962)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5734140931551843)  
 ### シーケンス図
   
   
@@ -127,6 +127,15 @@ class Franc {
         Franc franc = (Franc) object;
         return amount == franc.amount;
     }
+}
+  
+```  
+  
+`Money.java`
+```java
+package tdd.money;
+  
+class Money {
 }
   
 ```  
