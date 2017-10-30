@@ -50,7 +50,7 @@ markdown:
 + [ ] 他のオブジェクトとの等価性比較
 + [x] ~~5CHF + 2 = 10CHF~~
 + [ ] DollarとFrancの重複
-+ [ ] **equalsの一般化**
++ [x] ~~equalsの一般化~~
 + [ ] timesの一般化
 
 
@@ -88,3 +88,6 @@ Money <|-- Franc
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
++ Dollarクラスから親クラスMoneyへ段階的にメソッドを移動した。
++ ２つ目のクラス（Franc)も同様にサブクラス化した。
++ ２つのequalsメソッドの差異をなくしてから、サブクラス側の実装を削除した。
