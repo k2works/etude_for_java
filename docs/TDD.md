@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.08881628040083167)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.738439829777128)  
 ### シーケンス図
   
   
@@ -96,7 +96,6 @@ public class MoneyTest {
 package tdd.money;
   
 class Dollar extends Money {
-    private int amount;
     Dollar(int amount){
         this.amount = amount;
     }
@@ -136,6 +135,7 @@ class Franc {
 package tdd.money;
   
 class Money {
+    protected int amount;
 }
   
 ```  

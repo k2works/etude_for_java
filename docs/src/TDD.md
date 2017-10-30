@@ -58,7 +58,6 @@ markdown:
 ### クラス図
 ```puml
 class Dollar {
-  -amount:int
   +Dollar(amount:int) :Dollar
   ~times(multipliert:int) :void
   +equals(object:Object) :boolean
@@ -70,7 +69,7 @@ class Franc {
   +equals(object:Object) :boolean
 }
 class Money {
-
+  #amount:int
 }
 Money <|-- Dollar
 ```
