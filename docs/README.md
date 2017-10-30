@@ -9,7 +9,7 @@
 #### [第４章 意図を語るテスト](https://github.com/k2works/etude_for_java/blob/943bf39f60950970b84a2a0cd1b6e7631dd2532e/docs/TDD.md)
 #### [第５章 原則をあえて破るとき](https://github.com/k2works/etude_for_java/blob/717ec97896b2ab1d6b70854ffa1b552a9ef81346/docs/TDD.md) 
 #### [第６章 テスト不足に気づいたら](https://github.com/k2works/etude_for_java/blob/86a58f0ec6ee89ab557e7bd160e1f6188df564d8/docs/TDD.md) 
-#### 第７章 疑念をテストに翻訳する 
+#### [第７章 疑念をテストに翻訳する](https://github.com/k2works/etude_for_java/blob/810f0f31fdc55eac86e09e04fe097693076806bd/docs/TDD.md) 
 #### 第８章 実装を隠す
 #### 第９章 歩幅の調整
 #### 第１０章 テストに聞いてみる
