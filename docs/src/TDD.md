@@ -48,7 +48,7 @@ markdown:
 + [ ] hashCode()
 + [ ] nullとの等価性比較
 + [ ] 他のオブジェクトとの等価性比較
-+ [ ] 5CHF + 2 = 10CHF
++ [ ] **5CHF + 2 = 10CHF**
 
 
 ## コアモデル
@@ -57,6 +57,12 @@ markdown:
 class Dollar {
   -amount:int
   +Dollar(amount:int) :Dollar
+  ~times(multipliert:int) :void
+  +equals(object:Object) :boolean
+}
+class Franc {
+  -amount:int
+  +Franc(amount:int) :Dollar
   ~times(multipliert:int) :void
   +equals(object:Object) :boolean
 }
@@ -69,5 +75,8 @@ class Dollar {
 
 `Dollar.java`
 @import "../../src/main/java/tdd/money/Dollar.java"
+
+`Franc.java`
+@import "../../src/main/java/tdd/money/Franc.java"
 
 ## 振り返り

@@ -45,7 +45,7 @@
 + [ ] hashCode()
 + [ ] nullとの等価性比較
 + [ ] 他のオブジェクトとの等価性比較
-+ [ ] 5CHF + 2 = 10CHF
++ [ ] **5CHF + 2 = 10CHF**
   
   
 ## コアモデル
@@ -53,7 +53,7 @@
 ### クラス図
   
 
-![](../../assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5893855525586962)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5893855525586962)  
 ### シーケンス図
   
   
@@ -103,6 +103,26 @@ class Dollar {
     public boolean equals(Object object) {
         Dollar dollar = (Dollar) object;
         return amount == dollar.amount;
+    }
+}
+  
+```  
+  
+`Franc.java`
+```java
+package tdd.money;
+  
+class Franc {
+    private int amount;
+    Franc(int amount) {
+        this.amount = amount;
+    }
+    Franc times(int multiplier) {
+        return new Franc(amount * multiplier);
+    }
+    public boolean equals(Object object) {
+        Franc franc = (Franc) object;
+        return amount == franc.amount;
     }
 }
   
