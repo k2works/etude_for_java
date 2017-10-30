@@ -72,6 +72,7 @@ class Money {
   +equals(object:Object) :boolean  
 }
 Money <|-- Dollar
+Money <|-- Franc
 ```
 ### シーケンス図
 

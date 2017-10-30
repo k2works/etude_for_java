@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.25444186787938095)    
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5642373806920191)  
 ### シーケンス図
   
   
@@ -112,8 +112,7 @@ class Dollar extends Money {
 ```java
 package tdd.money;
   
-class Franc {
-    private int amount;
+class Franc extends Money {
     Franc(int amount) {
         this.amount = amount;
     }
@@ -121,8 +120,8 @@ class Franc {
         return new Franc(amount * multiplier);
     }
     public boolean equals(Object object) {
-        Franc franc = (Franc) object;
-        return amount == franc.amount;
+        Money money = (Money) object;
+        return amount == money.amount;
     }
 }
   
