@@ -72,6 +72,7 @@ class Franc {
 class Money {
 
 }
+Money <|-- Dollar
 ```
 ### シーケンス図
 

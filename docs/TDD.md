@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5734140931551843)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.08881628040083167)  
 ### シーケンス図
   
   
@@ -95,7 +95,7 @@ public class MoneyTest {
 ```java
 package tdd.money;
   
-class Dollar {
+class Dollar extends Money {
     private int amount;
     Dollar(int amount){
         this.amount = amount;
