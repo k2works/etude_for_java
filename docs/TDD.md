@@ -58,7 +58,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7075124332669436)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.847827515977341)  
 ### シーケンス図
   
   
@@ -75,16 +75,16 @@ public class MoneyTest {
     @Test
     public void testMultiplication() {
         Money five = Money.dollar(5);
-        assertEquals(new Dollar(10), five.times(2));
-        assertEquals(new Dollar(15), five.times(3));
+        assertEquals(Money.dollar(10), five.times(2));
+        assertEquals(Money.dollar(15), five.times(3));
     }
     @Test
     public void testEquality() {
-        assertTrue(new Dollar(5).equals(new Dollar(5)));
-        assertFalse(new Dollar(5).equals(new Dollar(6)));
+        assertTrue(Money.dollar(5).equals(Money.dollar(5)));
+        assertFalse(Money.dollar(5).equals(Money.dollar(6)));
         assertTrue(new Franc(5).equals(new Franc(5)));
         assertFalse(new Franc(5).equals(new Franc(6)));
-        assertFalse(new Franc(5).equals(new Dollar(5)));
+        assertFalse(new Franc(5).equals(Money.dollar(5)));
     }
     @Test
     public void testFrancMultiplication() {
@@ -138,7 +138,7 @@ abstract class Money {
         return amount == money.amount
                 && getClass().equals(money.getClass());
     }
-    static Dollar dollar(int amount) {
+    static Money dollar(int amount) {
         return new Dollar(amount);
     }
 }
