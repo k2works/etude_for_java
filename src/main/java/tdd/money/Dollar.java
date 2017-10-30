@@ -8,7 +8,7 @@ class Dollar extends Money {
         return new Dollar(amount * multiplier);
     }
     public boolean equals(Object object) {
-        Dollar dollar = (Dollar) object;
-        return amount == dollar.amount;
+        Money money = (Money) object;
+        return amount == money.amount;
     }
 }
