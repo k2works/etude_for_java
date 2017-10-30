@@ -72,6 +72,7 @@ abstract Money {
   +equals(object:Object) :boolean  
   {abstract} times(multiplier:int)
   {static} dollar(amount:int) :Money
+  {static} franc(amount:int) :Money  
 }
 Money <|-- Dollar
 Money <|-- Franc
