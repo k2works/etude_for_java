@@ -53,7 +53,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6735668731196542)  
+![](../../assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5893855525586962)  
 ### シーケンス図
   
   
@@ -77,6 +77,12 @@ public class MoneyTest {
     public void testEquality() {
         assertTrue(new Dollar(5).equals(new Dollar(5)));
         assertFalse(new Dollar(5).equals(new Dollar(6)));
+    }
+    @Test
+    public void testFrancMultiplication() {
+        Franc five = new Franc(5);
+        assertEquals(new Franc(10), five.times(2));
+        assertEquals(new Franc(15), five.times(3));
     }
 }
   
