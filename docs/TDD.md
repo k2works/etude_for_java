@@ -58,7 +58,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.9867349581758436)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.22819085421862084)  
 ### シーケンス図
   
   
@@ -104,7 +104,7 @@ class Dollar extends Money {
     Dollar(int amount){
         this.amount = amount;
     }
-    Dollar times(int multiplier) {
+    Money times(int multiplier) {
         return new Dollar(amount * multiplier);
     }
 }
