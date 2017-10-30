@@ -70,6 +70,7 @@ class Franc {
 }
 class Money {
   #amount:int
+  +equals(object:Object) :boolean  
 }
 Money <|-- Dollar
 ```

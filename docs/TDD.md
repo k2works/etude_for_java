@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.9708926807869418)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7262419912838223)    
 ### シーケンス図
   
   
@@ -136,6 +136,10 @@ package tdd.money;
   
 class Money {
     protected int amount;
+    public boolean equals(Object object) {
+        Money money = (Money) object;
+        return amount == money.amount;
+    }
 }
   
 ```  
