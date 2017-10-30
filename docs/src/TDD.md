@@ -61,16 +61,17 @@ markdown:
 ```puml
 class Dollar {
   +Dollar(amount:int) :Dollar
-  ~times(multipliert:int) :Money
+  ~times(multiplier:int) :Money
 }
 class Franc {
   +Franc(amount:int) :Dollar
-  ~times(multipliert:int) :Money
+  ~times(multiplier:int) :Money
 }
-class Money {
+abstract Money {
   #amount:int
   +equals(object:Object) :boolean  
-  {static} dollar(amount:int) :Dollar
+  {abstract} times(multiplier:int)
+  {static} dollar(amount:int) :Money
 }
 Money <|-- Dollar
 Money <|-- Franc

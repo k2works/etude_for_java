@@ -57,7 +57,8 @@
   
 ### クラス図
   
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.9631651505839263)    
+
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7075124332669436)  
 ### シーケンス図
   
   
@@ -129,8 +130,9 @@ class Franc extends Money {
 ```java
 package tdd.money;
   
-class Money {
+abstract class Money {
     protected int amount;
+    abstract Money times(int multiplier);
     public boolean equals(Object object) {
         Money money = (Money) object;
         return amount == money.amount
