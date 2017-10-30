@@ -60,7 +60,6 @@ markdown:
 class Dollar {
   +Dollar(amount:int) :Dollar
   ~times(multipliert:int) :void
-  +equals(object:Object) :boolean
 }
 class Franc {
   -amount:int

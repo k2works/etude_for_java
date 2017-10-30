@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7262419912838223)    
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.25444186787938095)    
 ### シーケンス図
   
   
@@ -101,10 +101,6 @@ class Dollar extends Money {
     }
     Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
-    }
-    public boolean equals(Object object) {
-        Money money = (Money) object;
-        return amount == money.amount;
     }
 }
   
