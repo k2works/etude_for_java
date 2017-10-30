@@ -46,7 +46,7 @@
 + [ ] nullとの等価性比較
 + [ ] 他のオブジェクトとの等価性比較
 + [x] ~~5CHF + 2 = 10CHF~~
-+ [ ] DollarとFrancの重複
++ [ ] **DollarとFrancの重複**
 + [x] ~~equalsの一般化~~
 + [ ] timesの一般化
 + [x] ~~FrancとDollarを比較する~~
@@ -119,7 +119,7 @@ class Franc extends Money {
     Franc(int amount) {
         this.amount = amount;
     }
-    Franc times(int multiplier) {
+    Money times(int multiplier) {
         return new Franc(amount * multiplier);
     }
 }
@@ -143,7 +143,4 @@ class Money {
   
 ## 振り返り
   
-+ 頭の中にある悩みをテストとして表現した。
-+ 完璧ではないものの、まずまずのやり方（getClass）でテストを通した。
-+ さらなる設計は、本当に必要になるときまで先延ばしにすることにした。
   
