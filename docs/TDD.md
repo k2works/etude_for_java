@@ -57,7 +57,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.14787314655462458)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5649317165814689)  
 ### シーケンス図
   
   
@@ -133,7 +133,8 @@ class Money {
     protected int amount;
     public boolean equals(Object object) {
         Money money = (Money) object;
-        return amount == money.amount;
+        return amount == money.amount
+                && getClass().equals(money.getClass());
     }
 }
   
