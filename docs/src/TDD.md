@@ -62,10 +62,8 @@ class Dollar {
   ~times(multipliert:int) :void
 }
 class Franc {
-  -amount:int
   +Franc(amount:int) :Dollar
   ~times(multipliert:int) :void
-  +equals(object:Object) :boolean
 }
 class Money {
   #amount:int

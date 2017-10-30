@@ -56,7 +56,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5642373806920191)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5047399146341098)  
 ### シーケンス図
   
   
@@ -118,10 +118,6 @@ class Franc extends Money {
     }
     Franc times(int multiplier) {
         return new Franc(amount * multiplier);
-    }
-    public boolean equals(Object object) {
-        Money money = (Money) object;
-        return amount == money.amount;
     }
 }
   
