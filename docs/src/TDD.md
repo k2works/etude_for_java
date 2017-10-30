@@ -41,7 +41,7 @@ markdown:
 
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
 + [x] ~~\$5 * 2 = \$10~~
-+ [ ] amountをprivateにする
++ [ ] **amountをprivateにする**
 + [x] ~~Dollarの副作用どうする？~~
 + [ ] Moneyの丸め処理をどうする？
 + [x] ~~equals()~~
@@ -70,8 +70,3 @@ class Dollar {
 @import "../../src/main/java/tdd/money/Dollar.java"
 
 ## 振り返り
-+ Value Objectパターンを満たす条件がわかった。
-+ その条件を満たすテストを書いた。
-+ シンプルな実装を行った。
-+ すぐにリファクタリングを行うのではなく、もう一つテストを書いた。
-+ ２つのテストを同時に通すリファクタリングを行った。
