@@ -38,7 +38,7 @@
   
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
 + [x] ~~\$5 * 2 = \$10~~
-+ [ ] **amountをprivateにする**
++ [x] ~~amountをprivateにする~~
 + [x] ~~Dollarの副作用どうする？~~
 + [ ] Moneyの丸め処理をどうする？
 + [x] ~~equals()~~
@@ -86,7 +86,7 @@ public class MoneyTest {
 package tdd.money;
   
 class Dollar {
-    int amount;
+    private int amount;
     Dollar(int amount){
         this.amount = amount;
     }
@@ -103,4 +103,8 @@ class Dollar {
   
 ## 振り返り
   
++ 作成したばかりの機能を使って、テストを改善した。
++ そもそも正しい検証できていないテストが２つあったら、もはやお手上げだと気づいた。
++ そのようなリスクを受け入れて先に進んだ。
++ テスト対象オブジェクトの新しい機能を使い、テストコードとプロダクトコードの間の結合度を下げた。
   
