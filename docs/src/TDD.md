@@ -71,6 +71,7 @@ class Franc {
 abstract Money {
   #amount:int
   #currency  
+  +Money(amount:int,currency:String) :Money
   +equals(object:Object) :boolean  
   {abstract} times(multiplier:int)
   ~currency() :String
