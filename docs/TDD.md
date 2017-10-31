@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.2683097046960463)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5737059091589747)  
 ### シーケンス図
   
   
@@ -95,8 +95,8 @@ public class MoneyTest {
     }
     @Test
     public void testCurrency() {
-        assertFalse("USD", Money.dollar(1).currency);
-        assertEquals("CHF", Money.franc(1).currency);
+        assertEquals("USD", Money.dollar(1).currency());
+        assertEquals("CHF", Money.franc(1).currency());
     }
 }
   
@@ -109,6 +109,9 @@ package tdd.money;
 class Dollar extends Money {
     Dollar(int amount){
         this.amount = amount;
+    }
+    String currency() {
+        return "USD";
     }
     Money times(int multiplier) {
         return new Dollar(amount * multiplier);
