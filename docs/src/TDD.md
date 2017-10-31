@@ -53,7 +53,7 @@ markdown:
 + [x] ~~equalsの一般化~~
 + [ ] timesの一般化
 + [x] ~~FrancとDollarを比較する~~
-+ [ ] 通貨の概念
++ [ ] **通貨の概念**
 + [ ] testFrancMultiplicationを削除する？
 
 
@@ -94,7 +94,3 @@ Money <|-- Franc
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
-+ 重複を削除できる状態に一歩近づけるために、DollarとFrancにある２つのtimesメソッドのシグネチャを合わせた。
-+ せめてメソッド宣言だけは親クラスに移動した。
-+ Factory Methodパターンを導入して、テストコードから２つのサブクラスの存在を隠した。
-+ サブクラスを隠した結果、いくつかのテストが冗長なものになったことに気づいたが、いまはそのままにしておいた。
