@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7318847060839446)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7875140922648753)  
 ### シーケンス図
   
   
@@ -128,7 +128,7 @@ class Franc extends Money {
         this.currency = "CHF";
     }
     Money times(int multiplier) {
-        return new Franc(amount * multiplier);
+        return new Franc(amount * multiplier, null);
     }
 }
   
@@ -154,7 +154,7 @@ abstract class Money {
         return new Dollar(amount);
     }
     static Money franc(int amount) {
-        return new Franc(amount);
+        return new Franc(amount, null);
     }
 }
   
