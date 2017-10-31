@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.12641737842693068)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.12225651595269071)    
 ### シーケンス図
   
   
@@ -107,11 +107,13 @@ public class MoneyTest {
 package tdd.money;
   
 class Dollar extends Money {
+    private String currency;
     Dollar(int amount){
         this.amount = amount;
+        currency = "USD";
     }
     String currency() {
-        return "USD";
+        return currency;
     }
     Money times(int multiplier) {
         return new Dollar(amount * multiplier);
