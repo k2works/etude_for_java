@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.031153277091004794)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.4557429902888377)  
 ### シーケンス図
   
   
@@ -123,9 +123,9 @@ class Dollar extends Money {
 package tdd.money;
   
 class Franc extends Money {
-    Franc(int amount) {
+    Franc(int amount, String currency) {
         this.amount = amount;
-        currency = "CHF";
+        this.currency = "CHF";
     }
     Money times(int multiplier) {
         return new Franc(amount * multiplier);
