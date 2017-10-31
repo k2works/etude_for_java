@@ -53,7 +53,7 @@ markdown:
 + [x] ~~equalsの一般化~~
 + [ ] timesの一般化
 + [x] ~~FrancとDollarを比較する~~
-+ [ ] **通貨の概念**
++ [x] ~~通貨の概念~~
 + [ ] testFrancMultiplicationを削除する？
 
 
@@ -97,3 +97,8 @@ Money <|-- Franc
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
++ 大きめの設計変更にのめり込みそうになったので、その前に手前にある小さな変更に着手した。
++ 差異を呼び出し側（Factory Method側）に移動することによって、２つのサブクラスのコンストラクタを近づけていった。
++ リファクタリングの途中で少し寄り道して、timesメソッドの中でFactory Methodを使うように変更した。
++ Francに行ったリファクタリングをDollarにも同様に、今度は大きい歩幅で一気に適用した。
++ 完全に同じ内容になった２つのコンストラクタを親クラスに引き上げた。
