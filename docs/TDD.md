@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7875140922648753)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7570935971335919)  
 ### シーケンス図
   
   
@@ -154,7 +154,7 @@ abstract class Money {
         return new Dollar(amount);
     }
     static Money franc(int amount) {
-        return new Franc(amount, null);
+        return new Franc(amount, "CHF");
     }
 }
   
