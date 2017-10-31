@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5393399037053497)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7849417318655214)  
 ### シーケンス図
   
   
@@ -108,8 +108,7 @@ package tdd.money;
   
 class Dollar extends Money {
     Dollar(int amount, String currency){
-        this.amount = amount;
-        this.currency = currency;
+        super(amount, currency);
     }
     Money times(int multiplier) {
         return Money.dollar(amount * multiplier);
