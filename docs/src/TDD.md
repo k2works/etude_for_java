@@ -61,7 +61,7 @@ markdown:
 ### クラス図
 ```puml
 class Dollar {
-  +Dollar(amount:int) :Dollar
+  +Dollar(amount:int, currency:String) :Dollar
   ~times(multiplier:int) :Money
 }
 class Franc {
