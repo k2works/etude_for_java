@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.0967033158893118)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6994212418203227)  
 ### シーケンス図
   
   
@@ -151,7 +151,7 @@ abstract class Money {
                 && getClass().equals(money.getClass());
     }
     static Money dollar(int amount) {
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
     }
     static Money franc(int amount) {
         return new Franc(amount, "CHF");

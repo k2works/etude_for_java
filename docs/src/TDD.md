@@ -75,7 +75,7 @@ abstract Money {
   {abstract} times(multiplier:int)
   ~currency() :String
   {static} dollar(amount:int) :Money
-  {static} franc(amount:int, currency:String) :Money  
+  {static} franc(amount:int) :Money  
 }
 Money <|-- Dollar
 Money <|-- Franc
