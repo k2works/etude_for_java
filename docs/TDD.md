@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.8652429278209399)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.8840908064220112)  
 ### シーケンス図
   
   
@@ -139,6 +139,7 @@ package tdd.money;
 abstract class Money {
     protected int amount;
     abstract Money times(int multiplier);
+    abstract String currency();
     public boolean equals(Object object) {
         Money money = (Money) object;
         return amount == money.amount
