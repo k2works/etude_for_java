@@ -46,7 +46,7 @@
 + [ ] nullとの等価性比較
 + [ ] 他のオブジェクトとの等価性比較
 + [x] ~~5CHF + 2 = 10CHF~~
-+ [ ] **DollarとFrancの重複**
++ [ ] DollarとFrancの重複
 + [x] ~~equalsの一般化~~
 + [ ] timesの一般化
 + [x] ~~FrancとDollarを比較する~~
@@ -92,6 +92,11 @@ public class MoneyTest {
         Money five = Money.franc(5);
         assertEquals(Money.franc(10), five.times(2));
         assertEquals(Money.franc(15), five.times(3));
+    }
+    @Test
+    public void testCurrency() {
+        assertFalse("USD", Money.dollar(1).currency);
+        assertEquals("CHF", Money.franc(1).currency);
     }
 }
   
