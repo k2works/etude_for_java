@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.21225647317268437)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5800931213760381)  
 ### シーケンス図
   
   
@@ -128,9 +128,6 @@ package tdd.money;
 class Franc extends Money {
     Franc(int amount, String currency) {
         super(amount, currency);
-    }
-    Money times(int multiplier) {
-        return new Money(amount * multiplier, currency);
     }
 }
   

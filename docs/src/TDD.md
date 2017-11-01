@@ -66,7 +66,6 @@ class Dollar {
 }
 class Franc {
   +Franc(amount:int, currency:String) :Money
-  ~times(multiplier:int) :Money
 }
 class Money {
   #amount:int
