@@ -62,7 +62,6 @@ markdown:
 ```puml
 class Dollar {
   +Dollar(amount:int, currency:String) :Money
-  ~times(multiplier:int) :Money
 }
 class Franc {
   +Franc(amount:int, currency:String) :Money
