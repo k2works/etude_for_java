@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](../assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.5966807160020748)  
+![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.5966807160020748)  
 ### シーケンス図
   
   
@@ -126,7 +126,7 @@ class Franc extends Money {
         super(amount, currency);
     }
     Money times(int multiplier) {
-        return Money.franc(amount * multiplier);
+        return new Franc(amount * multiplier, "CHF");
     }
 }
   
