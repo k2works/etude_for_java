@@ -1,13 +1,15 @@
 package tdd.money;
 
-abstract class Money {
+class Money {
     protected int amount;
     protected String currency;
     Money(int amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
-    abstract Money times(int multiplier);
+    Money times(int multiplier) {
+        return null;
+    }
     String currency() {
         return currency;
     }

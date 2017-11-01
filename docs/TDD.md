@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.5966807160020748)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.09082671094555828)  
 ### シーケンス図
   
   
@@ -136,14 +136,16 @@ class Franc extends Money {
 ```java
 package tdd.money;
   
-abstract class Money {
+class Money {
     protected int amount;
     protected String currency;
     Money(int amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
-    abstract Money times(int multiplier);
+    Money times(int multiplier) {
+        return null;
+    }
     String currency() {
         return currency;
     }
