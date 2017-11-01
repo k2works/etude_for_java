@@ -73,6 +73,7 @@ class Money {
   #currency  
   +Money(amount:int,currency:String) :Money
   +equals(object:Object) :boolean  
+  +toString() :String
   times(multiplier:int) :Money
   ~currency() :String
   {static} dollar(amount:int) :Money
