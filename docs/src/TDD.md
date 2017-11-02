@@ -49,12 +49,12 @@ markdown:
 + [ ] nullとの等価性比較
 + [ ] 他のオブジェクトとの等価性比較
 + [x] ~~5CHF + 2 = 10CHF~~
-+ [ ] **DollarとFrancの重複**
++ [x] ~~DollarとFrancの重複~~
 + [x] ~~equalsの一般化~~
 + [x] ~~timesの一般化~~
 + [x] ~~FrancとDollarを比較する~~
 + [x] ~~通貨の概念~~
-+ [ ] testFrancMultiplicationを削除する？
++ [x] ~~testFrancMultiplicationを削除する？~~
 
 
 ## コアモデル
@@ -82,3 +82,5 @@ class Money {
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
++ サブクラスの仕事を減らし続け、とうとう消すところまでたどり着いた。
++ サブクラス削除前の構造では意味があるものの、削除後は冗長になってしまうテストたちを消した。
