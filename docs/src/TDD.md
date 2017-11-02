@@ -60,9 +60,6 @@ markdown:
 ## コアモデル
 ### クラス図
 ```puml
-class Franc {
-  +Franc(amount:int, currency:String) :Money
-}
 class Money {
   #amount:int
   #currency  
@@ -74,16 +71,12 @@ class Money {
   {static} dollar(amount:int) :Money
   {static} franc(amount:int) :Money  
 }
-Money <|-- Franc
 ```
 ### シーケンス図
 
 ## コード
 `MoneyTest.java`
 @import "../../src/test/java/tdd/money/MoneyTest.java"
-
-`Franc.java`
-@import "../../src/main/java/tdd/money/Franc.java"
 
 `Money.java`
 @import "../../src/main/java/tdd/money/Money.java"
