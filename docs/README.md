@@ -13,7 +13,7 @@
 #### [第８章 実装を隠す](https://github.com/k2works/etude_for_java/blob/54b8e222fb7fbc91d739ec94ad73b597dfd7fd7c/docs/TDD.md)
 #### [第９章 歩幅の調整](https://github.com/k2works/etude_for_java/blob/ebff999b3a3218a53ba4057902c07c9c66547b23/docs/TDD.md)
 #### [第１０章 テストに聞いてみる](https://github.com/k2works/etude_for_java/blob/099e2ee37774861a62d66925525b81a05ebfd08d/docs/TDD.md)
-#### 第１１章 不要になったら消す
+#### [第１１章 不要になったら消す](https://github.com/k2works/etude_for_java/blob/3c5df56c635f08a547718c6b651766f67daac69e/docs/TDD.md)
 #### 第１２章 設計とメタファー
 #### 第１３章 実装を導くテスト
 #### 第１４章 学習用テストと回帰テスト
