@@ -49,7 +49,7 @@ markdown:
 + [ ] nullとの等価性比較
 + [ ] 他のオブジェクトとの等価性比較
 + [x] ~~5CHF + 2 = 10CHF~~
-+ [ ] DollarとFrancの重複
++ [ ] **DollarとFrancの重複**
 + [x] ~~equalsの一般化~~
 + [x] ~~timesの一般化~~
 + [x] ~~FrancとDollarを比較する~~
@@ -96,6 +96,3 @@ Money <|-- Franc
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
-+ サブクラスたちのtimesメソッド実装の差異をなくすために、ますはメソッド呼び出しをインライン化し、次にベタ書きの値を変数に置き換えた。
-+ デバッグ用途のみに使うtoStringメソッドを、テストを書かずに実装した。
-+ Francの代わりにMoneyを返す変更を試み、動くか動かないかはテストに聞いてみた。
