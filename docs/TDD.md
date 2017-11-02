@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.010558376700382066)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7245817125694969)  
 ### シーケンス図
   
   
@@ -83,8 +83,6 @@ public class MoneyTest {
     public void testEquality() {
         assertTrue(Money.dollar(5).equals(Money.dollar(5)));
         assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-        assertTrue(Money.franc(5).equals(Money.franc(5)));
-        assertFalse(Money.franc(5).equals(Money.franc(6)));
         assertFalse(Money.franc(5).equals(Money.dollar(5)));
     }
     @Test
