@@ -59,7 +59,7 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.5918671451844837)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.010558376700382066)  
 ### シーケンス図
   
   
@@ -101,18 +101,6 @@ public class MoneyTest {
     @Test
     public void testDifferentClassEquality() {
         assertTrue(new Money(10, "CHF").equals(new Franc(10, "CHF")));
-    }
-}
-  
-```  
-  
-`Dollar.java`
-```java
-package tdd.money;
-  
-class Dollar extends Money {
-    Dollar(int amount, String currency){
-        super(amount, currency);
     }
 }
   
