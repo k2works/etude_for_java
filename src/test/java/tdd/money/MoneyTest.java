@@ -23,6 +23,7 @@ public class MoneyTest {
     }
     @Test
     public void testSimpleAddition() {
+        Expression sum = five.plus(five);
         Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
         assertEquals(Money.dollar(10), reduced);
