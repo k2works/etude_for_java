@@ -44,7 +44,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.40717550063274954)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6169600033363112)  
 ### シーケンス図
   
   
@@ -91,7 +91,7 @@ public class MoneyTest {
 ```java
 package tdd.money;
   
-class Money {
+class Money implements Expression {
     protected int amount;
     protected String currency;
     Money(int amount, String currency) {

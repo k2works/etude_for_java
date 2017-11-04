@@ -58,6 +58,7 @@ class Money {
   {static} franc(amount:int) :Money  
 }
 interface Expression
+Expression <|.. Money
 ```
 ### シーケンス図
 
