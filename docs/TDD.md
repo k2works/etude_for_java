@@ -44,7 +44,7 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.5976556210982309)  
+![](../../assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6650686339756324)  
 ### シーケンス図
   
   
@@ -77,6 +77,7 @@ public class MoneyTest {
     }
     @Test
     public void testSimpleAddition() {
+        Money five = Money.dollar(5);
         Expression sum = five.plus(five);
         Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
