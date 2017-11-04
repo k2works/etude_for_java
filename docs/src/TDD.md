@@ -56,6 +56,7 @@ class Money {
   {static} dollar(amount:int) :Money
   {static} franc(amount:int) :Money  
 }
+interface Expression
 ```
 ### シーケンス図
 
@@ -65,5 +66,9 @@ class Money {
 
 `Money.java`
 @import "../../src/main/java/tdd/money/Money.java"
+
+`Expression.java`
+@import "../../src/main/java/tdd/money/Expression.java"
+
 
 ## 振り返り
