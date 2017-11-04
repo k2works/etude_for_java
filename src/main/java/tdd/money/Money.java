@@ -27,4 +27,8 @@ class Money {
     static Money franc(int amount) {
         return new Money(amount, "CHF");
     }
+
+    public Money plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
+    }
 }
