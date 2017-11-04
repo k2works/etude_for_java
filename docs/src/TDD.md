@@ -40,22 +40,7 @@ markdown:
 ## TODOリスト
 
 + [ ] \$5 + 10CHF = \$10 (レートが2:1の場合)
-+ [x] ~~\$5 * 2 = \$10~~
-+ [x] ~~amountをprivateにする~~
-+ [x] ~~Dollarの副作用どうする？~~
-+ [ ] Moneyの丸め処理をどうする？
-+ [x] ~~equals()~~
-+ [ ] hashCode()
-+ [ ] nullとの等価性比較
-+ [ ] 他のオブジェクトとの等価性比較
-+ [x] ~~5CHF + 2 = 10CHF~~
-+ [x] ~~DollarとFrancの重複~~
-+ [x] ~~equalsの一般化~~
-+ [x] ~~timesの一般化~~
-+ [x] ~~FrancとDollarを比較する~~
-+ [x] ~~通貨の概念~~
-+ [x] ~~testFrancMultiplicationを削除する？~~
-
++ [ ] **\$5 + \$5 = \$10**
 
 ## コアモデル
 ### クラス図
@@ -82,5 +67,3 @@ class Money {
 @import "../../src/main/java/tdd/money/Money.java"
 
 ## 振り返り
-+ サブクラスの仕事を減らし続け、とうとう消すところまでたどり着いた。
-+ サブクラス削除前の構造では意味があるものの、削除後は冗長になってしまうテストたちを消した。
