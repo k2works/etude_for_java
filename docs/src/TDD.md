@@ -59,10 +59,19 @@ class Money {
 }
 interface Expression
 class Bank {
+  ~reduce(source: Money, to: String) :Money
 }
 Expression <|.. Money
+Bank -> Money
 ```
 ### シーケンス図
+```puml
+Bank -> Money :reduce()
+activate Money
+  Money -> Money :dollar()
+  Bank <-- Money
+deactivate Money
+```
 
 ## コード
 `MoneyTest.java`
@@ -79,3 +88,9 @@ Expression <|.. Money
 
 
 ## 振り返り
++ 大きいテスト（\$5 + 10CHF）を分割して、進み具合がわかる小さいテスト（\$5 + \$5）を作成した。
++ これから行う計算のためのメタファーについて深く考えた。
++ 前章で書いたテストを、新しいメタファーを使って書き直した。
++ テストがコンパイルできるところまで早足で進んだ。
++ テストを通した。
++ 本当の実装を導くためのリファクタリングを楽しみにしつつ、少し不安も感じている。
