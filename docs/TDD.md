@@ -44,7 +44,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6169600033363112)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.3626972283541068)  
 ### シーケンス図
   
   
@@ -131,6 +131,15 @@ class Money implements Expression {
 package tdd.money;
   
 interface Expression {
+}
+  
+```  
+  
+`Bank.java`
+```java
+package tdd.money;
+  
+class Bank {
 }
   
 ```  
