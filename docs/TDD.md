@@ -44,7 +44,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.05453871592794313)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.40717550063274954)  
 ### シーケンス図
   
   
@@ -119,7 +119,7 @@ class Money {
         return new Money(amount, "CHF");
     }
   
-    public Money plus(Money addend) {
+    Expression plus(Money addend) {
         return new Money(amount + addend.amount, currency);
     }
 }

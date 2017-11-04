@@ -53,6 +53,7 @@ class Money {
   +toString() :String
   times(multiplier:int) :Money
   ~currency() :String
+  ~plus(addend: Money) :Expression
   {static} dollar(amount:int) :Money
   {static} franc(amount:int) :Money  
 }
