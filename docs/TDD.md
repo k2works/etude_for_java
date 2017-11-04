@@ -44,7 +44,7 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.3626972283541068)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5088771079251695)  
 ### シーケンス図
   
   
@@ -140,6 +140,9 @@ interface Expression {
 package tdd.money;
   
 class Bank {
+    Money reduce(Expression source, String to) {
+        return null;
+    }
 }
   
 ```  
