@@ -102,6 +102,12 @@ public class MoneyTest {
         Money result = bank.reduce(sum, "USD");
         assertEquals(Money.dollar(7), result);
     }
+    @Test
+    public void testReduceMoney() {
+        Bank bank = new Bank();
+        Money result = bank.reduce(Money.dollar(1), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
 }
   
 ```  
@@ -160,9 +166,10 @@ package tdd.money;
   
 class Bank {
     Money reduce(Expression source, String to) {
+        if (source instanceof Money)
+            return (Money) source;
         Sum sum = (Sum) source;
-        int amount = sum.augend.amount + sum.addend.amount;
-        return new Money(amount, to);
+        return sum.reduce(to);
     }
 }
   
@@ -178,6 +185,11 @@ class Sum implements Expression {
     Sum(Money augend, Money addend) {
         this.augend = augend;
         this.addend = addend;
+    }
+  
+    Money reduce(String to) {
+        int amount = augend.amount + addend.amount;
+        return new Money(amount, to);
     }
 }
   
