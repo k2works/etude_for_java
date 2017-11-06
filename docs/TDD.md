@@ -45,11 +45,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.46232860821001553)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.23045214350950838)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7285379083979575)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.9527420418207901)  
   
 ## コード
   
@@ -131,7 +131,7 @@ class Money implements Expression {
     }
   
     Expression plus(Money addend) {
-        return new Money(amount + addend.amount, currency);
+        return new Sum(this, addend);
     }
 }
   
