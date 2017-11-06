@@ -45,11 +45,11 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.31828912222160155)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.46232860821001553)  
 ### シーケンス図
   
 
-![](../../assets/0285dfa24ee25b18e00bb369b57da6821.png?0.42378070302612936)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7285379083979575)  
   
 ## コード
   
@@ -89,7 +89,7 @@ public class MoneyTest {
     @Test
     public void testPlusReturnsSum() {
         Money five = Money.dollar(5);
-        Expression result = five.plus(5);
+        Expression result = five.plus(five);
         Sum sum = (Sum) result;
         assertEquals(five, sum.augend);
         assertEquals(five, sum.addend);
@@ -154,6 +154,17 @@ class Bank {
     Money reduce(Expression source, String to) {
         return Money.dollar(10);
     }
+}
+  
+```  
+  
+`Sum.java`
+```java
+package tdd.money;
+  
+class Sum {
+    Money augend;
+    Money addend;
 }
   
 ```  

@@ -62,6 +62,10 @@ interface Expression
 class Bank {
   ~reduce(source: Money, to: String) :Money
 }
+class Sum {
+  ~augend
+  ~addend
+}
 Expression <|.. Money
 Bank -> Money
 ```
@@ -86,6 +90,9 @@ deactivate Money
 
 `Bank.java`
 @import "../../src/main/java/tdd/money/Bank.java"
+
+`Sum.java`
+@import "../../src/main/java/tdd/money/Sum.java"
 
 
 ## 振り返り
