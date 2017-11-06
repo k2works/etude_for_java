@@ -69,20 +69,17 @@ class Sum {
 }
 Expression <|.. Money
 Expression <|.. Sum
-Money -> Sum
-Bank --> Money
+Money <-> Sum
 Bank --> Sum
 ```
 ### シーケンス図
 ```puml
 Bank -> Sum :reduce()
 activate Sum  
+  Sum -> Money :reduce()  
+  Sum <-- Money
   Bank <-- Sum  
 deactivate Sum
-Bank -> Money :reduce()
-activate Money
-  Bank <-- Money
-deactivate Money
 ```
 
 ## コード
