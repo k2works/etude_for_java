@@ -45,11 +45,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.23045214350950838)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.4077089104474374)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.9527420418207901)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7656317268778063)  
   
 ## コード
   
@@ -165,6 +165,8 @@ package tdd.money;
 class Sum {
     Money augend;
     Money addend;
+    Sum(Money augend, Money addend) {
+    }
 }
   
 ```  

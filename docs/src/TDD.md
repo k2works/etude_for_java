@@ -65,6 +65,7 @@ class Bank {
 class Sum {
   ~augend
   ~addend
+  Sum(augend :Money, addend :Money)
 }
 Expression <|.. Money
 Bank -> Money
