@@ -46,11 +46,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5454877792149628)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5085113292610199)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7927458129990075)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.6129557863429447)  
   
 ## コード
   
@@ -126,6 +126,12 @@ class Money implements Expression {
     Money times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
+    Expression plus(Money addend) {
+        return new Sum(this, addend);
+    }
+    Money reduce(String to) {
+        return this;
+    }
     String currency() {
         return currency;
     }
@@ -142,10 +148,6 @@ class Money implements Expression {
     }
     static Money franc(int amount) {
         return new Money(amount, "CHF");
-    }
-  
-    Expression plus(Money addend) {
-        return new Sum(this, addend);
     }
 }
   
@@ -167,7 +169,7 @@ package tdd.money;
 class Bank {
     Money reduce(Expression source, String to) {
         if (source instanceof Money)
-            return (Money) source;
+            return ((Money) source).reduce(to);
         Sum sum = (Sum) source;
         return sum.reduce(to);
     }

@@ -53,9 +53,10 @@ class Money {
   +Money(amount:int,currency:String) :Money
   +equals(object:Object) :boolean  
   +toString() :String
-  times(multiplier:int) :Money
-  ~currency() :String
+  ~times(multiplier:int) :Money
   ~plus(this, addend: Money) :Expression
+  ~reduce(to :String)      
+  ~currency() :String
   {static} dollar(amount:int) :Money
   {static} franc(amount:int) :Money  
 }
@@ -67,11 +68,13 @@ class Sum {
   ~augend
   ~addend
   Sum(augend :Money, addend :Money)
+  ~reduce(to :String)
 }
 Expression <|.. Money
 Expression <|.. Sum
 Money <-> Sum
 Bank --> Sum
+Bank --> Money
 ```
 ### シーケンス図
 ```puml
@@ -81,6 +84,11 @@ activate Sum
   Sum <-- Money
   Bank <-- Sum  
 deactivate Sum
+Bank -> Money :reduce()  
+activate Money
+  Money -> Money :redue()
+  Money --> Bank
+deactivate Money
 ```
 
 ## コード
