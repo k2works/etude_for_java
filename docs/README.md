@@ -15,7 +15,7 @@
 #### [第１０章 テストに聞いてみる](https://github.com/k2works/etude_for_java/blob/099e2ee37774861a62d66925525b81a05ebfd08d/docs/TDD.md)
 #### [第１１章 不要になったら消す](https://github.com/k2works/etude_for_java/blob/3c5df56c635f08a547718c6b651766f67daac69e/docs/TDD.md)
 #### [第１２章 設計とメタファー](https://github.com/k2works/etude_for_java/blob/66ef322811a66a1e483376f780bf5ea1791078cb/docs/TDD.md)
-#### 第１３章 実装を導くテスト
+#### [第１３章 実装を導くテスト](https://github.com/k2works/etude_for_java/blob/69e7ceb7e73b7d990f78b5e8a86dc08838b69491/docs/TDD.md)
 #### 第１４章 学習用テストと回帰テスト
 #### 第１５章 テスト任せとコンパイラ任せ
 #### 第１６章 将来の読み手を考えたテスト         
