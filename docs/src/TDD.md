@@ -47,6 +47,9 @@ markdown:
 ## コアモデル
 ### クラス図
 ```puml
+interface Expression {
+  reduce(to :String)
+}
 class Money {
   #amount:int
   #currency  
@@ -55,12 +58,11 @@ class Money {
   +toString() :String
   ~times(multiplier:int) :Money
   ~plus(this, addend: Money) :Expression
-  ~reduce(to :String)      
+  +reduce(to :String)      
   ~currency() :String
   {static} dollar(amount:int) :Money
   {static} franc(amount:int) :Money  
 }
-interface Expression
 class Bank {
   ~reduce(source: Money, to: String) :Money
 }
@@ -68,7 +70,7 @@ class Sum {
   ~augend
   ~addend
   Sum(augend :Money, addend :Money)
-  ~reduce(to :String)
+  +reduce(to :String)
 }
 Expression <|.. Money
 Expression <|.. Sum
