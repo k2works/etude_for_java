@@ -45,11 +45,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5656340345015531)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5630687636295266)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.11461432958551221)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.4538497689814309)  
   
 ## コード
   
@@ -159,7 +159,9 @@ package tdd.money;
   
 class Bank {
     Money reduce(Expression source, String to) {
-        return Money.dollar(10);
+        Sum sum = (Sum) source;
+        int amount = sum.augend.amount + sum.addend.amount;
+        return new Money(amount, to);
     }
 }
   
