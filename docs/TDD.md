@@ -45,11 +45,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.4077089104474374)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.5656340345015531)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7656317268778063)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.11461432958551221)  
   
 ## コード
   
@@ -162,7 +162,7 @@ class Bank {
 ```java
 package tdd.money;
   
-class Sum {
+class Sum implements Expression {
     Money augend;
     Money addend;
     Sum(Money augend, Money addend) {

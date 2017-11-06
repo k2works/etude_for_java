@@ -68,6 +68,8 @@ class Sum {
   Sum(augend :Money, addend :Money)
 }
 Expression <|.. Money
+Expression <|.. Sum
+Money -> Sum
 Bank -> Money
 ```
 ### シーケンス図
