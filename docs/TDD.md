@@ -49,7 +49,7 @@
 ### シーケンス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac01.png?0.06857026477228012)  
+![](../../assets/0285dfa24ee25b18e00bb369b57da6821.png?0.42378070302612936)  
   
 ## コード
   
@@ -85,6 +85,14 @@ public class MoneyTest {
         Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
         assertEquals(Money.dollar(10), reduced);
+    }
+    @Test
+    public void testPlusReturnsSum() {
+        Money five = Money.dollar(5);
+        Expression result = five.plus(5);
+        Sum sum = (Sum) result;
+        assertEquals(five, sum.augend);
+        assertEquals(five, sum.addend);
     }
 }
   
