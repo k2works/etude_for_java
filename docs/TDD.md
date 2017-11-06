@@ -129,7 +129,7 @@ class Money implements Expression {
     Expression plus(Money addend) {
         return new Sum(this, addend);
     }
-    Money reduce(String to) {
+    public Money reduce(String to) {
         return this;
     }
     String currency() {
@@ -158,6 +158,7 @@ class Money implements Expression {
 package tdd.money;
   
 interface Expression {
+    Money reduce(String to);
 }
   
 ```  
@@ -168,10 +169,7 @@ package tdd.money;
   
 class Bank {
     Money reduce(Expression source, String to) {
-        if (source instanceof Money)
-            return ((Money) source).reduce(to);
-        Sum sum = (Sum) source;
-        return sum.reduce(to);
+        return source.reduce(to);
     }
 }
   
@@ -189,7 +187,7 @@ class Sum implements Expression {
         this.addend = addend;
     }
   
-    Money reduce(String to) {
+    public Money reduce(String to) {
         int amount = augend.amount + addend.amount;
         return new Money(amount, to);
     }
