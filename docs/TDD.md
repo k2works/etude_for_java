@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.47725330202838956)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7975864481969615)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7343312768174466)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.4627938446949631)  
   
 ## コード
   
@@ -197,9 +197,16 @@ package tdd.money;
 class Pair {
     private String from;
     private String to;
-    Pair(String from, Strng to) {
+    Pair(String from, String to) {
         this.from = from;
         this.to = to;
+    }
+    public boolean equals(Object object) {
+        Pair pair = (Pair) object;
+        return from.equals(pair.from) && to.equals(pair.to);
+    }
+    public int hashCode() {
+        return 0;
     }
 }
   

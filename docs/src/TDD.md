@@ -80,6 +80,8 @@ class Pair {
   -from
   -to
   Pair(from:String, to:String)
+  +equals(object:Object) :boolean
+  +hashCode() :int
 }
 Expression <|.. Money
 Expression <|.. Sum
