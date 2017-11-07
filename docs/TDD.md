@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.29855483026209173)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.4949923077540228)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.21862128042078055)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.2942223601513718)  
   
 ## コード
   
@@ -193,6 +193,7 @@ class Bank {
         rates.put(new Pair(from, to), rate);
     }
     int rate(String from, String to) {
+        if (from.equals(to)) return 1;
         return rates.get(new Pair(from, to));
     }
 }
