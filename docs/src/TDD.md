@@ -68,6 +68,7 @@ class Money {
 class Bank {
   ~reduce(source:Money, to:String) :Money
   ~addRate(from:String, to:String, rate:int )
+  ~rate(from:String, to:String)
 }
 class Sum {
   ~augend
