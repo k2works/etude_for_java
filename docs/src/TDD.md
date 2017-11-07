@@ -66,7 +66,8 @@ class Money {
   {static} franc(amount:int) :Money  
 }
 class Bank {
-  ~reduce(source: Money, to: String) :Money
+  ~reduce(source:Money, to:String) :Money
+  ~addRate(from:String, to:String, rate:int )
 }
 class Sum {
   ~augend
