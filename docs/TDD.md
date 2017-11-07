@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.2669775956128191)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6197110705635029)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.368992106655994)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.18338363805757885)  
   
 ## コード
   
@@ -116,6 +116,10 @@ public class MoneyTest {
         bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(Money.franc(2), "USD");
         assertEquals(Money.dollar(1), result);
+    }
+    @Test
+    public void testArrayEquals() {
+        assertEquals(new Object[] {"abc"}, new Object[] {"abc"});
     }
 }
   
