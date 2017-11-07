@@ -1,6 +1,10 @@
 package tdd.money;
 
+import java.util.Map;
+import java.util.HashMap;
+
 class Bank {
+    private Map<Pair, Integer> rates = new HashMap<>();
     Money reduce(Expression source, String to) {
         return source.reduce(this, to);
     }

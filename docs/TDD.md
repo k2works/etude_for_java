@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7975864481969615)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.37265110533681955)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.4627938446949631)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.774618003434949)  
   
 ## コード
   
@@ -177,7 +177,11 @@ interface Expression {
 ```java
 package tdd.money;
   
+import java.util.Map;
+import java.util.HashMap;
+  
 class Bank {
+    private Map<Pair, Integer> rates = new HashMap<>();
     Money reduce(Expression source, String to) {
         return source.reduce(this, to);
     }

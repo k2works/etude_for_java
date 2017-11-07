@@ -66,6 +66,7 @@ class Money {
   {static} franc(amount:int) :Money  
 }
 class Bank {
+  -rats
   ~reduce(source:Money, to:String) :Money
   ~addRate(from:String, to:String, rate:int )
   ~rate(from:String, to:String)
@@ -83,11 +84,12 @@ class Pair {
   +equals(object:Object) :boolean
   +hashCode() :int
 }
-Expression <|.. Money
-Expression <|.. Sum
+Expression <|... Money
+Expression <|... Sum
 Money <-> Sum
 Bank --> Sum
 Bank --> Money
+Bank o- Pair
 ```
 ### シーケンス図
 ```puml
