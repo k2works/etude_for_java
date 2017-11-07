@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.05216455028946587)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.2669775956128191)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.6189289308782167)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.368992106655994)  
   
 ## コード
   
@@ -139,7 +139,7 @@ class Money implements Expression {
         return new Sum(this, addend);
     }
     public Money reduce(Bank bank, String to) {
-        int rate = (currency.equals("CHF") && to.equals("USD")) ? 2 : 1;
+        int rate = bank.rate(currency, to);
         return new Money(amount / rate, to);
     }
     String currency() {

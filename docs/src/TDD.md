@@ -93,6 +93,8 @@ deactivate Sum
 Bank -> Money :reduce()  
 activate Money
   Money -> Money :redue()
+  Money -> Bank
+  Bank -> Bank :rate()
   Money --> Bank
 deactivate Money
 ```
