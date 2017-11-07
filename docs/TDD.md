@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6197110705635029)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.47725330202838956)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.18338363805757885)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7343312768174466)  
   
 ## コード
   
@@ -116,10 +116,6 @@ public class MoneyTest {
         bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(Money.franc(2), "USD");
         assertEquals(Money.dollar(1), result);
-    }
-    @Test
-    public void testArrayEquals() {
-        assertEquals(new Object[] {"abc"}, new Object[] {"abc"});
     }
 }
   
@@ -194,25 +190,21 @@ class Bank {
   
 ```  
   
-`Sum.java`
+`Pair.java`
 ```java
 package tdd.money;
   
-class Sum implements Expression {
-    Money augend;
-    Money addend;
-    Sum(Money augend, Money addend) {
-        this.augend = augend;
-        this.addend = addend;
-    }
-  
-    public Money reduce(Bank bank, String to) {
-        int amount = augend.amount + addend.amount;
-        return new Money(amount, to);
+class Pair {
+    private String from;
+    private String to;
+    Pair(String from, Strng to) {
+        this.from = from;
+        this.to = to;
     }
 }
   
 ```  
+  
   
   
 ## 振り返り

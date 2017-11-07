@@ -76,6 +76,11 @@ class Sum {
   Sum(augend:Money, addend:Money)
   +reduce(bank:Bank,to:String)
 }
+class Pair {
+  -from
+  -to
+  Pair(from:String, to:String)
+}
 Expression <|.. Money
 Expression <|.. Sum
 Money <-> Sum
@@ -112,8 +117,9 @@ deactivate Money
 `Bank.java`
 @import "../../src/main/java/tdd/money/Bank.java"
 
-`Sum.java`
-@import "../../src/main/java/tdd/money/Sum.java"
+`Pair.java`
+@import "../../src/main/java/tdd/money/Pair.java"
+
 
 
 ## 振り返り
