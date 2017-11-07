@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.06688028482648578)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.08804182086212009)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.4052048037897229)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.9031900304665372)  
   
 ## コード
   
@@ -138,7 +138,7 @@ class Money implements Expression {
     Expression plus(Money addend) {
         return new Sum(this, addend);
     }
-    public Money reduce(String to) {
+    public Money reduce(Bank bank, String to) {
         int rate = (currency.equals("CHF") && to.equals("USD")) ? 2 : 1;
         return new Money(amount / rate, to);
     }
@@ -168,7 +168,7 @@ class Money implements Expression {
 package tdd.money;
   
 interface Expression {
-    Money reduce(String to);
+    Money reduce(Bank bank, String to);
 }
   
 ```  
@@ -200,7 +200,7 @@ class Sum implements Expression {
         this.addend = addend;
     }
   
-    public Money reduce(String to) {
+    public Money reduce(Bank bank, String to) {
         int amount = augend.amount + addend.amount;
         return new Money(amount, to);
     }
