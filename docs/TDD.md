@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.37265110533681955)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6193476472370958)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.774618003434949)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.8310454923014203)  
   
 ## コード
   
@@ -185,7 +185,8 @@ class Bank {
     Money reduce(Expression source, String to) {
         return source.reduce(this, to);
     }
-    void addRate(String chf, String usd, int i) {
+    void addRate(String from, String to, int rate) {
+        rates.put(new Pair(from, to), rate);
     }
     int rate(String from, String to) {
         return (from.equals("CHF") && to.equals("USD")) ? 2 : 1;
