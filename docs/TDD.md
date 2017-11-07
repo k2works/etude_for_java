@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.7524648770314513)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.06688028482648578)  
 ### シーケンス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac01.png?0.9205597749067824)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.4052048037897229)  
   
 ## コード
   
@@ -114,7 +114,7 @@ public class MoneyTest {
     public void testReduceMoneyDifferentCurrency() {
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
-        Mone result = bank.reduce(Money.franc(2), "USD");
+        Money result = bank.reduce(Money.franc(2), "USD");
         assertEquals(Money.dollar(1), result);
     }
 }
@@ -139,7 +139,8 @@ class Money implements Expression {
         return new Sum(this, addend);
     }
     public Money reduce(String to) {
-        return this;
+        int rate = (currency.equals("CHF") && to.equals("USD")) ? 2 : 1;
+        return new Money(amount / rate, to);
     }
     String currency() {
         return currency;
@@ -179,6 +180,9 @@ package tdd.money;
 class Bank {
     Money reduce(Expression source, String to) {
         return source.reduce(to);
+    }
+  
+    void addRate(String chf, String usd, int i) {
     }
 }
   
