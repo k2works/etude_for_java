@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.36734386351297643)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.4550919701969509)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.04143539091320414)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.8367977994946676)  
   
 ## コード
   
@@ -123,7 +123,7 @@ public class MoneyTest {
     }
     @Test
     public void testMixedAddition() {
-        Money fiveBucks = Money.dollar(5);
+        Expression fiveBucks = Money.dollar(5);
         Expression tenFrancs = Money.franc(10);
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
@@ -148,7 +148,7 @@ class Money implements Expression {
     Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
-    Expression plus(Expression addend) {
+    public Expression plus(Expression addend) {
         return new Sum(this, addend);
     }
     public Money reduce(Bank bank, String to) {
@@ -187,7 +187,9 @@ class Sum implements Expression {
         this.augend = augend;
         this.addend = addend;
     }
-  
+    public Expression plus(Expression added) {
+        return null;
+    }
     public Money reduce(Bank bank, String to) {
         int amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
         return new Money(amount, to);
@@ -201,6 +203,7 @@ class Sum implements Expression {
 package tdd.money;
   
 interface Expression {
+    Expression plus(Expression added);
     Money reduce(Bank bank, String to);
 }
   
