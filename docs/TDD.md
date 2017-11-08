@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac00.png?0.23873150352830708)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.40602408646780663)  
 ### シーケンス図
   
 
-![](./assets/7c580b1af72c869ebe79e0b497e0cac01.png?0.18256818979400413)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7180581005435092)  
   
 ## コード
   
@@ -183,7 +183,7 @@ package tdd.money;
 class Sum implements Expression {
     Expression augend;
     Expression addend;
-    Sum(Money augend, Money addend) {
+    Sum(Expression augend, Expression addend) {
         this.augend = augend;
         this.addend = addend;
     }

@@ -74,8 +74,8 @@ class Bank {
 class Sum {
   ~augend
   ~addend
-  Sum(augend:Money, addend:Money)
-  +reduce(bank:Bank,to:String)
+  Sum(augend:Expression, addend:Expression)
+  +reduce(bank:Expression,to:String)
 }
 class Pair {
   -from
@@ -84,28 +84,28 @@ class Pair {
   +equals(object:Object) :boolean
   +hashCode() :int
 }
-Expression <|... Money
-Expression <|... Sum
+Expression ..|> Money
+Expression ..|> Sum
 Money <-> Sum
-Bank --> Sum
-Bank --> Money
-Bank o- Pair
+Sum <--- Bank
+Money <--- Bank
+Bank o-l Pair
 ```
 ### シーケンス図
 ```puml
+client <-- Bank :new()
+Bank -> Pair :addRate()
+client <-- Money1 :dollar()
+client <-- Money2 :franc()
+Money1 -> Money2 :plus()
+Money2 -> Sum
+client <-- Sum
 Bank -> Sum :reduce()
-activate Sum  
-  Sum -> Money :reduce()  
-  Sum <-- Money
-  Bank <-- Sum  
-deactivate Sum
-Bank -> Money :reduce()  
-activate Money
-  Money -> Money :redue()
-  Money -> Bank
-  Bank -> Bank :rate()
-  Money --> Bank
-deactivate Money
+Sum -> Money3 :reduce()
+Money1 -> Pair :reduce()
+Money2 -> Pair :reduce()
+Sum <-- Money3 :new()
+client <-- Sum
 ```
 
 ## コード
