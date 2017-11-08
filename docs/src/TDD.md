@@ -58,7 +58,7 @@ class Money {
   +Money(amount:int,currency:String) :Money
   +equals(object:Object) :boolean  
   +toString() :String
-  ~times(multiplier:int) :Money
+  ~times(multiplier:int) :Expression
   ~plus(addend: Expression) :Expression
   +reduce(bank:Bank, to :String)      
   ~currency() :String
