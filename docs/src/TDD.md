@@ -115,6 +115,9 @@ deactivate Money
 `Money.java`
 @import "../../src/main/java/tdd/money/Money.java"
 
+`Sum.java`
+@import "../../src/main/java/tdd/money/Sum.java"
+
 `Expression.java`
 @import "../../src/main/java/tdd/money/Expression.java"
 
