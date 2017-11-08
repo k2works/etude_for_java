@@ -48,11 +48,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.40602408646780663)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.6488247276941335)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7180581005435092)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.6432668363689356)  
   
 ## コード
   
@@ -148,7 +148,7 @@ class Money implements Expression {
     Money times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
-    Expression plus(Money addend) {
+    Expression plus(Expression addend) {
         return new Sum(this, addend);
     }
     public Money reduce(Bank bank, String to) {
