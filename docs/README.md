@@ -21,7 +21,7 @@
 #### [第１６章 将来の読み手を考えたテスト](https://github.com/k2works/etude_for_java/blob/b2aad5e471085e2f4fb55bd4c57c5bdd88b0bbf1/docs/TDD.md)
 
 ## [リファクタリング](./refactoring.md)
-### スタート地点
+### [スタート地点](https://github.com/k2works/etude_for_java/blob/3c1c07eb52c472a55d1adce1ea254966208b27c3/docs/refactoring.md)
 ### リファクタリングの第一歩
 ### statementメソッドの分割、再配置
 ### 料金計算の条件分をポリモーフィズムに置き換える
