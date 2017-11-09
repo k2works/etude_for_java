@@ -43,7 +43,7 @@
 + [x] ~~Moneyを変換して換算を行う~~
 + [x] ~~Reduce(Bank, String)~~
 + [x] ~~Sum.plus~~
-+ [ ] **Expression.times**
++ [x] ~~Expression.times~~
   
 ## コアモデル
   
@@ -167,7 +167,7 @@ class Money implements Expression {
         this.amount = amount;
         this.currency = currency;
     }
-    Expression times(int multiplier) {
+    public Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
     public Expression plus(Expression addend) {
@@ -209,7 +209,7 @@ class Sum implements Expression {
         this.augend = augend;
         this.addend = addend;
     }
-    Expression times(int multiplier) {
+    public Expression times(int multiplier) {
         return new Sum(augend.times(multiplier), addend.times(multiplier));
     }
     public Expression plus(Expression added) {
@@ -228,6 +228,7 @@ class Sum implements Expression {
 package tdd.money;
   
 interface Expression {
+    Expression times(int multiplier);
     Expression plus(Expression added);
     Money reduce(Bank bank, String to);
 }
