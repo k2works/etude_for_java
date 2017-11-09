@@ -135,12 +135,22 @@ public class MoneyTest {
     @Test
     public void testSumPlusMoney() {
         Expression fiveBucks = Money.dollar(5);
-        Expression tenFranc = Money.franc(10);
+        Expression tenFrancs = Money.franc(10);
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
-        Expression sum = new Sum(fiveBucks, tenFranc).plus(fiveBucks);
+        Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
         Money result = bank.reduce(sum, "USD");
         assertEquals(Money.dollar(15), result);
+    }
+    @Test
+    public void testSumTimes() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
+        Money result = bank.reduce(sum ,"USD");
+        assertEquals(Money.dollar(20), result);
     }
 }
   
@@ -200,7 +210,7 @@ class Sum implements Expression {
         this.addend = addend;
     }
     public Expression plus(Expression added) {
-        return null;
+        return new Sum(this, addend);
     }
     public Money reduce(Bank bank, String to) {
         int amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
