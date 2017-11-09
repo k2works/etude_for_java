@@ -50,11 +50,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.7065110010585012)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.2943630291895072)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7016510122427086)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7283026519450744)  
   
 ## コード
   
@@ -208,6 +208,9 @@ class Sum implements Expression {
     Sum(Expression augend, Expression addend) {
         this.augend = augend;
         this.addend = addend;
+    }
+    Expression times(int multiplier) {
+        return new Sum(augend.times(multiplier), addend.times(multiplier));
     }
     public Expression plus(Expression added) {
         return new Sum(this, addend);

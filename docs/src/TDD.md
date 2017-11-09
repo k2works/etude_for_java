@@ -78,8 +78,9 @@ class Sum {
   ~augend
   ~addend
   Sum(augend:Expression, addend:Expression)
-  +plus(addend: Expression) :Expression  
-  +reduce(bank:Expression,to:String)
+  ~times(multiplier:int) :Expression
+  +plus(addend:Expression) :Expression  
+  +reduce(bank:Expression,to:String) :Money
 }
 class Pair {
   -from
