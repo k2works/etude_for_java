@@ -52,7 +52,8 @@ markdown:
 ### クラス図
 ```puml
 interface Expression {
-  plus(addend: Expression)
+  times(multiplier:int)
+  plus(addend:Expression)
   reduce(bank:Bank, to:String)
 }
 class Money {
@@ -61,7 +62,7 @@ class Money {
   +Money(amount:int,currency:String) :Money
   +equals(object:Object) :boolean  
   +toString() :String
-  ~times(multiplier:int) :Expression
+  +times(multiplier:int) :Expression
   +plus(addend: Expression) :Expression
   +reduce(bank:Bank, to :String)      
   ~currency() :String
@@ -78,7 +79,7 @@ class Sum {
   ~augend
   ~addend
   Sum(augend:Expression, addend:Expression)
-  ~times(multiplier:int) :Expression
+  +times(multiplier:int) :Expression
   +plus(addend:Expression) :Expression  
   +reduce(bank:Expression,to:String) :Money
 }

@@ -7,7 +7,7 @@ class Sum implements Expression {
         this.augend = augend;
         this.addend = addend;
     }
-    Expression times(int multiplier) {
+    public Expression times(int multiplier) {
         return new Sum(augend.times(multiplier), addend.times(multiplier));
     }
     public Expression plus(Expression added) {
