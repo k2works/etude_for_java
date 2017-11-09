@@ -1,12 +1,9 @@
 package tdd.money;
 
-
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-class MoneyTest {
+public class MoneyTest {
     @Test
     public void testMultiplication() {
         Money five = Money.dollar(5);
@@ -45,7 +42,7 @@ class MoneyTest {
         Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
         Bank bank = new Bank();
         Money result = bank.reduce(sum, "USD");
-        assertEquals(Money.dollar(7),result);
+        assertEquals(Money.dollar(7), result);
     }
     @Test
     public void testReduceMoney() {
@@ -69,7 +66,7 @@ class MoneyTest {
         Expression fiveBucks = Money.dollar(5);
         Expression tenFrancs = Money.franc(10);
         Bank bank = new Bank();
-        bank.addRate("CHF","USD",2);
+        bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
         assertEquals(Money.dollar(10), result);
     }
@@ -88,9 +85,9 @@ class MoneyTest {
         Expression fiveBucks = Money.dollar(5);
         Expression tenFrancs = Money.franc(10);
         Bank bank = new Bank();
-        bank.addRate("CHF","USD", 2);
+        bank.addRate("CHF", "USD", 2);
         Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
-        Money result = bank.reduce(sum, "USD");
+        Money result = bank.reduce(sum ,"USD");
         assertEquals(Money.dollar(20), result);
     }
 }
