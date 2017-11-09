@@ -45,7 +45,7 @@ markdown:
 + [x] ~~Bank.reduce(Money)~~
 + [x] ~~Moneyを変換して換算を行う~~
 + [x] ~~Reduce(Bank, String)~~
-+ [ ] Sum.plus
++ [ ] **Sum.plus**
 + [ ] Expression.times
 
 ## コアモデル
@@ -132,6 +132,3 @@ client <-- Sum
 @import "../../src/main/java/tdd/money/Pair.java"
 
 ## 振り返り
-+ こうなったら良いというテストを書き、次にまず一歩で動かせるところまでそのテストを少し後退させた。
-+ 一般化（より抽象度の高い型で宣言する）作業を、末端から開始して頂点（テストケース）まで到達させた。
-+ 変更の際にコンパイラに従い（fiveBucks変数のExpression型への変更）、変更の連鎖を１つずつ仕留めた（Expressionインターフェースへのplusメソッドの追加等）。
