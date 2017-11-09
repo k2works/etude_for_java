@@ -97,19 +97,21 @@ Bank o-l Pair
 ```
 ### シーケンス図
 ```puml
-client <-- Bank :new()
-Bank -> Pair :addRate()
 client <-- Money1 :dollar()
 client <-- Money2 :franc()
-Money1 -> Money2 :plus()
-Money2 -> Sum
-client <-- Sum
-Bank -> Sum :reduce()
-Sum -> Money3 :reduce()
+client <--> Sum :new()
+Sum -> Sum2 :plus()
+client <-- Sum2 :new()
+client <-- Bank :new()
+Bank -> Pair :addRate()
+Bank -> Sum2 :reduce()
+Sum2 -> Sum :reduce()
+Sum -> Money1 :reduce()
 Money1 -> Pair :reduce()
+Sum -> Money2 :reduce()
 Money2 -> Pair :reduce()
-Sum <-- Money3 :new()
-client <-- Sum
+Sum2 <-- Money3 :new()
+client <-- Sum2
 ```
 
 ## コード
