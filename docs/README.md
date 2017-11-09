@@ -18,4 +18,4 @@
 #### [第１３章 実装を導くテスト](https://github.com/k2works/etude_for_java/blob/69e7ceb7e73b7d990f78b5e8a86dc08838b69491/docs/TDD.md)
 #### [第１４章 学習用テストと回帰テスト](https://github.com/k2works/etude_for_java/blob/1dd698b8a5c79bc84b173190b88f6fd176c75261/docs/TDD.md)
 #### [第１５章 テスト任せとコンパイラ任せ](https://github.com/k2works/etude_for_java/blob/a6c1010c85137923594ed554007d65c5adb879f6/docs/TDD.md)
-#### 第１６章 将来の読み手を考えたテスト         
+#### [第１６章 将来の読み手を考えたテスト](https://github.com/k2works/etude_for_java/blob/b2aad5e471085e2f4fb55bd4c57c5bdd88b0bbf1/docs/TDD.md)         
