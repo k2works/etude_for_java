@@ -7,11 +7,7 @@ markdown:
 ---
 
 # テスト駆動開発
-
-
-## 基本仕様
-
-
+## 要求
 既存レポート
 
 |銘柄|株数|価格|合計|
@@ -34,21 +30,11 @@ markdown:
 |:----|:----|:----|
 |CHF|USD|1.5|
 
+## 仕様
 + 通貨の異なる２つの金額を足し、通貨間の為替レートに基づいて換算された金額を得る。
 + 金額（通貨単位あたりの額）に数値（通貨単位数）を掛け、金額を得る。
 
-## TODOリスト
-
-+ [x] ~~\$5 + 10CHF = \$10 (レートが2:1の場合)~~
-+ [x] ~~\$5 + \$5 = \$10~~
-+ [x] ~~\$5 + \$5がMoneyを返す~~
-+ [x] ~~Bank.reduce(Money)~~
-+ [x] ~~Moneyを変換して換算を行う~~
-+ [x] ~~Reduce(Bank, String)~~
-+ [x] ~~Sum.plus~~
-+ [x] ~~Expression.times~~
-
-## コアモデル
+## 設計
 ### クラス図
 ```puml
 interface Expression {
@@ -116,27 +102,21 @@ Sum2 <-- Money3 :new()
 client <-- Sum2
 ```
 
-## コード
-`MoneyTest.java`
+## 実装
+### `MoneyTest.java`
 @import "../../src/test/java/tdd/money/MoneyTest.java"
 
-`Money.java`
+### `Money.java`
 @import "../../src/main/java/tdd/money/Money.java"
 
-`Sum.java`
+### `Sum.java`
 @import "../../src/main/java/tdd/money/Sum.java"
 
-`Expression.java`
+### `Expression.java`
 @import "../../src/main/java/tdd/money/Expression.java"
 
-`Bank.java`
+### `Bank.java`
 @import "../../src/main/java/tdd/money/Bank.java"
 
-`Pair.java`
+### `Pair.java`
 @import "../../src/main/java/tdd/money/Pair.java"
-
-## 振り返り
-+ 将来読む人のことを考えながらテストを書いた。
-+ これまでのプログラミングスタイルとTDDとの比較を自分自身で行うことが大事だと伝えた。
-+ 再び連鎖的に波及する定義変更を行い、コンパイラに導かれながら修正を行った。
-+ 最後に簡単な実験を行い、うまく機能しないとわかったので破棄して引き返した。

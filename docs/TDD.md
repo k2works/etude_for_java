@@ -2,11 +2,7 @@
   
 # テスト駆動開発
   
-  
-  
-## 基本仕様
-  
-  
+## 要求
   
 既存レポート
   
@@ -30,22 +26,12 @@
 |:----|:----|:----|
 |CHF|USD|1.5|
   
+## 仕様
+  
 + 通貨の異なる２つの金額を足し、通貨間の為替レートに基づいて換算された金額を得る。
 + 金額（通貨単位あたりの額）に数値（通貨単位数）を掛け、金額を得る。
   
-## TODOリスト
-  
-  
-+ [x] ~~\$5 + 10CHF = \$10 (レートが2:1の場合)~~
-+ [x] ~~\$5 + \$5 = \$10~~
-+ [x] ~~\$5 + \$5がMoneyを返す~~
-+ [x] ~~Bank.reduce(Money)~~
-+ [x] ~~Moneyを変換して換算を行う~~
-+ [x] ~~Reduce(Bank, String)~~
-+ [x] ~~Sum.plus~~
-+ [x] ~~Expression.times~~
-  
-## コアモデル
+## 設計
   
 ### クラス図
   
@@ -56,9 +42,10 @@
 
 ![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7885379152294558)  
   
-## コード
+## 実装
   
-`MoneyTest.java`
+### `MoneyTest.java`
+  
 ```java
 package tdd.money;
   
@@ -156,7 +143,8 @@ public class MoneyTest {
   
 ```  
   
-`Money.java`
+### `Money.java`
+  
 ```java
 package tdd.money;
   
@@ -198,7 +186,8 @@ class Money implements Expression {
   
 ```  
   
-`Sum.java`
+### `Sum.java`
+  
 ```java
 package tdd.money;
   
@@ -223,7 +212,8 @@ class Sum implements Expression {
   
 ```  
   
-`Expression.java`
+### `Expression.java`
+  
 ```java
 package tdd.money;
   
@@ -235,7 +225,8 @@ interface Expression {
   
 ```  
   
-`Bank.java`
+### `Bank.java`
+  
 ```java
 package tdd.money;
   
@@ -258,7 +249,8 @@ class Bank {
   
 ```  
   
-`Pair.java`
+### `Pair.java`
+  
 ```java
 package tdd.money;
   
@@ -279,11 +271,4 @@ class Pair {
 }
   
 ```  
-  
-## 振り返り
-  
-+ 将来読む人のことを考えながらテストを書いた。
-+ これまでのプログラミングスタイルとTDDとの比較を自分自身で行うことが大事だと伝えた。
-+ 再び連鎖的に波及する定義変更を行い、コンパイラに導かれながら修正を行った。
-+ 最後に簡単な実験を行い、うまく機能しないとわかったので破棄して引き返した。
   
