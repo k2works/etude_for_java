@@ -38,7 +38,7 @@
   
 + [x] ~~\$5 + 10CHF = \$10 (レートが2:1の場合)~~
 + [x] ~~\$5 + \$5 = \$10~~
-+ [ ] \$5 + \$5がMoneyを返す
++ [x] ~~\$5 + \$5がMoneyを返す~~
 + [x] ~~Bank.reduce(Money)~~
 + [x] ~~Moneyを変換して換算を行う~~
 + [x] ~~Reduce(Bank, String)~~
@@ -50,11 +50,11 @@
 ### クラス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.94913199038777)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6820.png?0.8176548785589586)  
 ### シーケンス図
   
 
-![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.5479620237192508)  
+![](./assets/0285dfa24ee25b18e00bb369b57da6821.png?0.7885379152294558)  
   
 ## コード
   
@@ -151,11 +151,6 @@ public class MoneyTest {
         Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
         Money result = bank.reduce(sum ,"USD");
         assertEquals(Money.dollar(20), result);
-    }
-    @Test
-    public void testPlusSameCurrencyReturnsMoney() {
-        Expression sum = Money.dollar(1).plus(Money.dollar(1));
-        assertTrue(sum instanceof Money);
     }
 }
   
@@ -287,4 +282,8 @@ class Pair {
   
 ## 振り返り
   
++ 将来読む人のことを考えながらテストを書いた。
++ これまでのプログラミングスタイルとTDDとの比較を自分自身で行うことが大事だと伝えた。
++ 再び連鎖的に波及する定義変更を行い、コンパイラに導かれながら修正を行った。
++ 最後に簡単な実験を行い、うまく機能しないとわかったので破棄して引き返した。
   
