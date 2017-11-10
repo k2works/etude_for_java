@@ -1,6 +1,6 @@
 ---
 markdown:
-  image_dir: ./assets
+  image_dir: ../assets
   path: ../refactoring.md
   ignore_from_front_matter: true
   absolute_image_path: false
@@ -31,6 +31,11 @@ rectangle VedioRental {
 + レンタルポイントも印刷される。新作かどうかによってポイント計算の仕方が異なる。
 
 ## 設計
+### TODO
++ [ ] 一般向けビデオのレンタルテスト作成
++ [ ] 子供向けビデオのレンタルテスト作成
++ [ ] 新作ビデオのレンタルテスト作成
+
 ### クラス図
 ```puml
 class Movie {
