@@ -32,9 +32,9 @@ rectangle VedioRental {
 
 ## 設計
 ### TODO
-+ [ ] 一般向けビデオのレンタルテスト作成
-+ [ ] 子供向けビデオのレンタルテスト作成
-+ [ ] 新作ビデオのレンタルテスト作成
++ [x] ~~一般向けビデオのレンタルテスト作成~~
++ [x] ~~子供向けビデオのレンタルテスト作成~~
++ [x] ~~新作ビデオのレンタルテスト作成~~
 
 ### クラス図
 ```puml
@@ -67,6 +67,8 @@ statement(計算書生成)メソッドのシーケンス図
 @enduml
 ```
 ## 実装
+### `CustomerTest.java`
+@import "../../src/test/java/refactoring/videorental/CustomerTest.java"
 ### `Movie.java`
 @import "../../src/main/java/refactoring/videorental/Movie.java"
 ### `Rental.java`
