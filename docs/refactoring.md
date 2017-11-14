@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.6385095965895238)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.35933415510442623)  
   
 ## 仕様
   
@@ -26,17 +26,18 @@
 + [x] ~~新作ビデオのレンタルテスト作成~~
 + [ ] **statementメソッドの分割、再配置**
 + [x] ~~amountForメソッドの移動~~
++ [x] ~~レンタルポイント計算部分の抽出~~
   
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.49006925740644536)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.23294740843104766)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.03053620541712121)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.706523076967948)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -169,6 +170,13 @@ class Rental {
         }
         return result;
     }
+  
+    int getFrequentRenterPoints() {
+        if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
+            return 2;
+        else
+            return 1;
+    }
 }
   
 ```  
@@ -203,12 +211,7 @@ class Customer {
         while(rentals.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-  
-            //レンタルポイントを加算
-            frequentRenterPoints ++;
-            //新作を二日以上借りた場合はボーナスポイント
-            if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-                    each.getDaysRented() > 1) frequentRenterPoints ++;
+            frequentRenterPoints += each.getFrequentRenterPoints();
   
             //この貸し出しに関する数値の表示
             result += "\t" + each.getMovie().getTitle() + "\t" +

@@ -37,6 +37,7 @@ rectangle VedioRental {
 + [x] ~~新作ビデオのレンタルテスト作成~~
 + [ ] **statementメソッドの分割、再配置**
 + [x] ~~amountForメソッドの移動~~
++ [x] ~~レンタルポイント計算部分の抽出~~
 
 ### クラス図
 ```puml
@@ -46,6 +47,7 @@ class Movie {
 class Rental {
   daysRented:int
   getCharge()
+  getFrequentRenterPoints()
 }
 class Customer {
   statement()
@@ -62,9 +64,14 @@ statement(計算書生成)メソッドのシーケンス図
    activate aCustomer
        aCustomer -> aCustomer :*[for all rental]
        activate aCustomer
-           aCustomer -> aRental :getMovie
-           aCustomer -> aMovie :getPriceCode
-           aCustomer -> aRental :getDaysRented
+           aCustomer -> aRental :getCharge
+           activate aRental
+               aRental -> aMovie :getPriceCode   
+           deactivate aRental           
+           aCustomer -> aRental :getFrequentRenterPoints
+           activate aRental
+               aRental -> aMovie :getPriceCode   
+           deactivate aRental                      
        deactivate aCustomer
    deactivate aCustomer
 @enduml
