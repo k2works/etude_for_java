@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/f657651786015ad6423a3b38afc56ad70.png?0.20124907986267182)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.6385095965895238)  
   
 ## 仕様
   
@@ -25,17 +25,18 @@
 + [x] ~~子供向けビデオのレンタルテスト作成~~
 + [x] ~~新作ビデオのレンタルテスト作成~~
 + [ ] **statementメソッドの分割、再配置**
++ [ ] amountForメソッドの移動
   
 ### クラス図
   
 
-![](./assets/f657651786015ad6423a3b38afc56ad71.png?0.6402748079566709)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.49006925740644536)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/f657651786015ad6423a3b38afc56ad72.png?0.33480173205593045)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.03053620541712121)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -203,7 +204,7 @@ class Customer {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
   
-            thisAmount = amountFor(each);
+            thisAmount = each.getCharge();
   
             //レンタルポイントを加算
             frequentRenterPoints ++;
@@ -220,10 +221,6 @@ class Customer {
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return result;
-    }
-  
-    private double amountFor(Rental aRental) {
-        return aRental.getCharge();
     }
 }
   

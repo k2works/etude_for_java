@@ -36,6 +36,7 @@ rectangle VedioRental {
 + [x] ~~子供向けビデオのレンタルテスト作成~~
 + [x] ~~新作ビデオのレンタルテスト作成~~
 + [ ] **statementメソッドの分割、再配置**
++ [ ] amountForメソッドの移動
 
 ### クラス図
 ```puml
@@ -44,12 +45,13 @@ class Movie {
 }
 class Rental {
   daysRented:int
+  getCharge()
 }
 class Customer {
   statement()
 }
-Movie "1"<-"*" Rental
-Rental "*"<-"1" Customer
+Movie "1"<- Rental
+Rental "*"<- Customer
 ```
 
 ### シーケンス図
