@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](../assets/f657651786015ad6423a3b38afc56ad70.png?0.20124907986267182)  
+![](./assets/f657651786015ad6423a3b38afc56ad70.png?0.20124907986267182)  
   
 ## 仕様
   
@@ -29,13 +29,13 @@
 ### クラス図
   
 
-![](../assets/f657651786015ad6423a3b38afc56ad71.png?0.6402748079566709)  
+![](./assets/f657651786015ad6423a3b38afc56ad71.png?0.6402748079566709)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](../assets/f657651786015ad6423a3b38afc56ad72.png?0.33480173205593045)  
+![](./assets/f657651786015ad6423a3b38afc56ad72.png?0.33480173205593045)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -204,8 +204,8 @@ class Customer {
         return result;
     }
   
-    private int amountFor(Rental each) {
-        int thisAmount = 0;
+    private double amountFor(Rental each) {
+        double thisAmount = 0;
         switch (each.getMovie().getPriceCode()) {
             case Movie.REGULAR:
                 thisAmount += 2;
