@@ -27,8 +27,6 @@ class Customer {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
 
-            thisAmount = each.getCharge();
-
             //レンタルポイントを加算
             frequentRenterPoints ++;
             //新作を二日以上借りた場合はボーナスポイント
@@ -37,8 +35,8 @@ class Customer {
 
             //この貸し出しに関する数値の表示
             result += "\t" + each.getMovie().getTitle() + "\t" +
-                    String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+                    String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
         //フッタ部分の追加
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";

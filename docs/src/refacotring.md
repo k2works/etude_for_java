@@ -36,7 +36,7 @@ rectangle VedioRental {
 + [x] ~~子供向けビデオのレンタルテスト作成~~
 + [x] ~~新作ビデオのレンタルテスト作成~~
 + [ ] **statementメソッドの分割、再配置**
-+ [ ] amountForメソッドの移動
++ [x] ~~amountForメソッドの移動~~
 
 ### クラス図
 ```puml
