@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/f657651786015ad6423a3b38afc56ad70.png?0.8078136832148044)  
+![](../assets/f657651786015ad6423a3b38afc56ad70.png?0.20124907986267182)  
   
 ## 仕様
   
@@ -24,17 +24,18 @@
 + [x] ~~一般向けビデオのレンタルテスト作成~~
 + [x] ~~子供向けビデオのレンタルテスト作成~~
 + [x] ~~新作ビデオのレンタルテスト作成~~
++ [ ] **statementメソッドの分割、再配置**
   
 ### クラス図
   
 
-![](./assets/f657651786015ad6423a3b38afc56ad71.png?0.41685961834612795)  
+![](../assets/f657651786015ad6423a3b38afc56ad71.png?0.6402748079566709)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/f657651786015ad6423a3b38afc56ad72.png?0.7494876522918512)  
+![](../assets/f657651786015ad6423a3b38afc56ad72.png?0.33480173205593045)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -184,21 +185,7 @@ class Customer {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
   
-            //一行ごとに金額を計算
-            switch (each.getMovie().getPriceCode()) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    if (each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    break;
-            }
+            thisAmount = amountFor(each);
   
             //レンタルポイントを加算
             frequentRenterPoints ++;
@@ -215,6 +202,25 @@ class Customer {
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return result;
+    }
+  
+    private int amountFor(Rental each) {
+        int thisAmount = 0;
+        switch (each.getMovie().getPriceCode()) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (each.getDaysRented() > 2)
+                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += each.getDaysRented() * 3;
+                break;
+            case Movie.CHILDRENS:
+                if (each.getDaysRented() > 3)
+                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                break;
+        }
+        return thisAmount;
     }
 }
   
