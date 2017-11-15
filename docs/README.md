@@ -23,6 +23,6 @@
 ## [リファクタリング](./refactoring.md)
 ### [スタート地点](https://github.com/k2works/etude_for_java/blob/3c1c07eb52c472a55d1adce1ea254966208b27c3/docs/refactoring.md)
 ### [リファクタリングの第一歩](https://github.com/k2works/etude_for_java/blob/bc0395e882f819542581e1d0c57953755bb1f5b9/docs/refactoring.md)
-### statementメソッドの分割、再配置
+### [statementメソッドの分割、再配置](https://github.com/k2works/etude_for_java/blob/f5f32260c1cdd1c6d489514580ffa04bdc2bd435/docs/refactoring.md)
 ### 料金計算の条件分をポリモーフィズムに置き換える
 ### まとめ         
