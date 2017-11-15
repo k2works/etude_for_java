@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.35933415510442623)  
+![](../assets/f657651786015ad6423a3b38afc56ad70.png?0.4931152495702147)  
   
 ## 仕様
   
@@ -27,17 +27,18 @@
 + [ ] **statementメソッドの分割、再配置**
 + [x] ~~amountForメソッドの移動~~
 + [x] ~~レンタルポイント計算部分の抽出~~
++ [ ] 一時変数の削除
   
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.23294740843104766)  
+![](./assets/f657651786015ad6423a3b38afc56ad71.png?0.27798011627503283)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.706523076967948)  
+![](./assets/f657651786015ad6423a3b38afc56ad72.png?0.0072440045284345445)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -219,8 +220,18 @@ class Customer {
             totalAmount += each.getCharge();
         }
         //フッタ部分の追加
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
+        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        return result;
+    }
+  
+    private double getTotalCharge() {
+        double result = 0;
+        Enumeration rentals = _rentals.elements();
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+            result += each.getCharge();
+        }
         return result;
     }
 }

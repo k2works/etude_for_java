@@ -38,6 +38,7 @@ rectangle VedioRental {
 + [ ] **statementメソッドの分割、再配置**
 + [x] ~~amountForメソッドの移動~~
 + [x] ~~レンタルポイント計算部分の抽出~~
++ [ ] 一時変数の削除
 
 ### クラス図
 ```puml
