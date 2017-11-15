@@ -38,7 +38,7 @@ rectangle VedioRental {
 + [ ] **statementメソッドの分割、再配置**
 + [x] ~~amountForメソッドの移動~~
 + [x] ~~レンタルポイント計算部分の抽出~~
-+ [ ] 一時変数の削除
++ [x] ~~一時変数の削除~~
 
 ### クラス図
 ```puml
@@ -52,6 +52,8 @@ class Rental {
 }
 class Customer {
   statement()
+  getTotalCharge()
+  getTotalFrequentRenterPoints()
 }
 Movie "1"<- Rental
 Rental "*"<- Customer
@@ -63,13 +65,16 @@ statement(計算書生成)メソッドのシーケンス図
 @startuml
 -> aCustomer: statement
    activate aCustomer
-       aCustomer -> aCustomer :*[for all rental]
+       aCustomer -> aCustomer :getTotalCharge
        activate aCustomer
-           aCustomer -> aRental :getCharge
+           aCustomer -> aRental :*[for all rental]getCharge
            activate aRental
                aRental -> aMovie :getPriceCode   
-           deactivate aRental           
-           aCustomer -> aRental :getFrequentRenterPoints
+           deactivate aRental                 
+       deactivate aCustomer                             
+       aCustomer -> aCustomer :getTotalFrequentRenterPoints
+       activate aCustomer       
+           aCustomer -> aRental :*[for all rental]getFrequentRenterPoints
            activate aRental
                aRental -> aMovie :getPriceCode   
            deactivate aRental                      
