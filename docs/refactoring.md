@@ -24,7 +24,7 @@
 + [x] ~~一般向けビデオのレンタルテスト作成~~
 + [x] ~~子供向けビデオのレンタルテスト作成~~
 + [x] ~~新作ビデオのレンタルテスト作成~~
-+ [ ] **statementメソッドの分割、再配置**
++ [x] ~~statementメソッドの分割、再配置~~
 + [x] ~~amountForメソッドの移動~~
 + [x] ~~レンタルポイント計算部分の抽出~~
 + [x] ~~一時変数の削除~~
@@ -61,6 +61,12 @@ public class CustomerTest {
                 "\tAttack of the Killer Tomatoes!\t9.5\n" +
                 "Amount owed is 9.5\n" +
                 "You earned 1 frequent renter points",result);
+  
+        result = customer.htmlStatement();
+        assertEquals("<H1>Rental Record for <EM>Mike</EM></H1><P>\n" +
+                "Attack of the Killer Tomatoes!: 9.5<BR>\n" +
+                "<P>Amount owed <EM> 9.5</EM><P>\n" +
+                "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
     public void rentalChildrensMovieForTwoWeeks() {
@@ -73,6 +79,12 @@ public class CustomerTest {
                 "\tPUELLA MAGI MADOKA MAGICA\t16.5\n" +
                 "Amount owed is 16.5\n" +
                 "You earned 1 frequent renter points",result);
+  
+        result = customer.htmlStatement();
+        assertEquals("<H1>Rental Record for <EM>John</EM></H1><P>\n" +
+                "PUELLA MAGI MADOKA MAGICA: 16.5<BR>\n" +
+                "<P>Amount owed <EM> 16.5</EM><P>\n" +
+                "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
     public void rentalNewReleaseMovieForADay() {
@@ -85,6 +97,12 @@ public class CustomerTest {
                 "\tThe Return of the Living Dead\t3.0\n" +
                 "Amount owed is 3.0\n" +
                 "You earned 1 frequent renter points",result);
+  
+        result = customer.htmlStatement();
+        assertEquals("<H1>Rental Record for <EM>Nancy</EM></H1><P>\n" +
+                "The Return of the Living Dead: 3.0<BR>\n" +
+                "<P>Amount owed <EM> 3.0</EM><P>\n" +
+                "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
     public void rentalNewReleaseMovieTwoDays() {
@@ -97,6 +115,12 @@ public class CustomerTest {
                 "\tThe Return of the Living Dead Part II\t6.0\n" +
                 "Amount owed is 6.0\n" +
                 "You earned 2 frequent renter points",result);
+  
+        result = customer.htmlStatement();
+        assertEquals("<H1>Rental Record for <EM>Nancy</EM></H1><P>\n" +
+                "The Return of the Living Dead Part II: 6.0<BR>\n" +
+                "<P>Amount owed <EM> 6.0</EM><P>\n" +
+                "On this rental you earned <EM>2</EM> frequent renter points<P>",result);
     }
 }
   
@@ -205,22 +229,34 @@ class Customer {
         return _name;
     }
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         Enumeration rentals = _rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while(rentals.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
   
             //この貸し出しに関する数値の表示
             result += "\t" + each.getMovie().getTitle() + "\t" +
                     String.valueOf(each.getCharge()) + "\n";
-            totalAmount += each.getCharge();
         }
         //フッタ部分の追加
         result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
         result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
+        return result;
+    }
+  
+    public String htmlStatement() {
+        Enumeration rentals = _rentals.elements();
+        String result = "<H1>Rental Record for <EM>" + getName() + "</EM></H1><P>\n";
+        while(rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+  
+            //この貸し出しに関する数値の表示
+            result += each.getMovie().getTitle() + ": " +
+                    String.valueOf(each.getCharge()) + "<BR>\n";
+        }
+        //フッタ部分の追加
+        result += "<P>Amount owed <EM> " + String.valueOf(getTotalCharge()) + "</EM><P>\n";
+        result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) + "</EM> frequent renter points<P>";
         return result;
     }
   
