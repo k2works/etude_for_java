@@ -18,4 +18,11 @@
 #### [第１３章 実装を導くテスト](https://github.com/k2works/etude_for_java/blob/69e7ceb7e73b7d990f78b5e8a86dc08838b69491/docs/TDD.md)
 #### [第１４章 学習用テストと回帰テスト](https://github.com/k2works/etude_for_java/blob/1dd698b8a5c79bc84b173190b88f6fd176c75261/docs/TDD.md)
 #### [第１５章 テスト任せとコンパイラ任せ](https://github.com/k2works/etude_for_java/blob/a6c1010c85137923594ed554007d65c5adb879f6/docs/TDD.md)
-#### [第１６章 将来の読み手を考えたテスト](https://github.com/k2works/etude_for_java/blob/b2aad5e471085e2f4fb55bd4c57c5bdd88b0bbf1/docs/TDD.md)         
+#### [第１６章 将来の読み手を考えたテスト](https://github.com/k2works/etude_for_java/blob/b2aad5e471085e2f4fb55bd4c57c5bdd88b0bbf1/docs/TDD.md)
+
+## [リファクタリング](./refactoring.md)
+### [スタート地点](https://github.com/k2works/etude_for_java/blob/3c1c07eb52c472a55d1adce1ea254966208b27c3/docs/refactoring.md)
+### [リファクタリングの第一歩](https://github.com/k2works/etude_for_java/blob/bc0395e882f819542581e1d0c57953755bb1f5b9/docs/refactoring.md)
+### [statementメソッドの分割、再配置](https://github.com/k2works/etude_for_java/blob/f5f32260c1cdd1c6d489514580ffa04bdc2bd435/docs/refactoring.md)
+### [料金計算の条件分をポリモーフィズムに置き換える](https://github.com/k2works/etude_for_java/blob/10be512fb759d9f7771b3325ad4bf85ff884952b/docs/refactoring.md)
+### まとめ         
