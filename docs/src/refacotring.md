@@ -40,12 +40,26 @@ rectangle VedioRental {
 + [x] ~~レンタルポイント計算部分の抽出~~
 + [x] ~~一時変数の削除~~
 + [ ] **料金計算の条件文をポリモーフィズムに置き換える**
++ [ ] 最後は継承で
 
 ### クラス図
 ```puml
+class NewReleasePrice {
+    getCHarge()
+}
+class ChildrensPrice {
+    getCharge()
+}
+class RegularPrice {
+    getCharge()
+}
+class Price {
+    getCharge()
+}
 class Movie {
   priceCode:int
   getFrequentRenterPoints(days: int)
+  getCharge()
 }
 class Rental {
   daysRented:int
@@ -58,6 +72,10 @@ class Customer {
   getTotalCharge()
   getTotalFrequentRenterPoints()
 }
+Price <|-- NewReleasePrice
+Price <|-- ChildrensPrice
+Price <|-- RegularPrice
+Price "1"<- Movie
 Movie "1"<- Rental
 Rental "*"<- Customer
 ```
