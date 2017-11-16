@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.1568449159465366)  
+![](./assets/f657651786015ad6423a3b38afc56ad70.png?0.6403220686075677)  
   
 ## 仕様
   
@@ -28,17 +28,18 @@
 + [x] ~~amountForメソッドの移動~~
 + [x] ~~レンタルポイント計算部分の抽出~~
 + [x] ~~一時変数の削除~~
++ [ ] **料金計算の条件文をポリモーフィズムに置き換える**
   
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.5500204299001394)  
+![](./assets/f657651786015ad6423a3b38afc56ad71.png?0.001670304800365896)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.31345980361974335)  
+![](./assets/f657651786015ad6423a3b38afc56ad72.png?0.062381855052437984)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -155,6 +156,24 @@ public class Movie {
     public String getTitle() {
         return _title;
     }
+    double getCharge(int daysRented) {
+        double result = 0;
+        switch (getPriceCode()) {
+            case Movie.REGULAR:
+                result += 2;
+                if (daysRented > 2)
+                    result += (daysRented - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                result += daysRented * 3;
+                break;
+            case Movie.CHILDRENS:
+                if (daysRented > 3)
+                    result += (daysRented - 3) * 1.5;
+                break;
+        }
+        return result;
+    }
 }
   
 ```  
@@ -178,22 +197,7 @@ class Rental {
         return _movie;
     }
     double getCharge() {
-        double result = 0;
-        switch (getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                result += 2;
-                if (getDaysRented() > 2)
-                    result += (getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                result += getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                if (getDaysRented() > 3)
-                    result += (getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return result;
+        return _movie.getCharge(_daysRented);
     }
   
     int getFrequentRenterPoints() {
