@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.5387237644096068)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.22037473537159236)  
   
 ## 仕様
   
@@ -34,13 +34,13 @@
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.06497009894446548)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.18799934620285863)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.013477142974715806)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.053987287870753464)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -170,22 +170,7 @@ public class Movie {
         return _title;
     }
     double getCharge(int daysRented) {
-        double result = 0;
-        switch (getPriceCode()) {
-            case Movie.REGULAR:
-                result += 2;
-                if (daysRented > 2)
-                    result += (daysRented - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                result += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                if (daysRented > 3)
-                    result += (daysRented - 3) * 1.5;
-                break;
-        }
-        return result;
+        return _price.getCharge(daysRented);
     }
     int getFrequentRenterPoints(int daysRented) {
         if((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
@@ -203,6 +188,25 @@ package refactoring.videorental;
   
 abstract class Price {
     abstract int getPriceCode();
+  
+    double getCharge(int daysRented) {
+        double result = 0;
+        switch (getPriceCode()) {
+            case Movie.REGULAR:
+                result += 2;
+                if (daysRented > 2)
+                    result += (daysRented - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                result += daysRented * 3;
+                break;
+            case Movie.CHILDRENS:
+                if (daysRented > 3)
+                    result += (daysRented - 3) * 1.5;
+                break;
+        }
+        return result;
+    }
 }
   
 ```  
