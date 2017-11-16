@@ -1,5 +1,7 @@
 # Javaアプリケーションのための練習プログラム集
 
+## [FizzBuzz](./fizzbuzz.md)
+
 ## [テスト駆動開発](./TDD.md)
 
 ### 第１部　他国通貨
@@ -21,6 +23,7 @@
 #### [第１６章 将来の読み手を考えたテスト](https://github.com/k2works/etude_for_java/blob/b2aad5e471085e2f4fb55bd4c57c5bdd88b0bbf1/docs/TDD.md)
 
 ## [リファクタリング](./refactoring.md)
+
 ### [スタート地点](https://github.com/k2works/etude_for_java/blob/3c1c07eb52c472a55d1adce1ea254966208b27c3/docs/refactoring.md)
 ### [リファクタリングの第一歩](https://github.com/k2works/etude_for_java/blob/bc0395e882f819542581e1d0c57953755bb1f5b9/docs/refactoring.md)
 ### [statementメソッドの分割、再配置](https://github.com/k2works/etude_for_java/blob/f5f32260c1cdd1c6d489514580ffa04bdc2bd435/docs/refactoring.md)
