@@ -39,27 +39,29 @@ rectangle VedioRental {
 + [x] ~~amountForメソッドの移動~~
 + [x] ~~レンタルポイント計算部分の抽出~~
 + [x] ~~一時変数の削除~~
-+ [ ] **料金計算の条件文をポリモーフィズムに置き換える**
++ [x] ~~料金計算の条件文をポリモーフィズムに置き換える~~
 + [x] ~~最後は継承で~~~
 
 ### クラス図
 ```puml
 class NewReleasePrice {
-    getCHarge()
+  getCharge(days:int)
+  getFrequentRenterPoints(days:int)
 }
 class ChildrensPrice {
-    getCharge()
+  getCharge(days:int)
 }
 class RegularPrice {
-    getCharge()
+  getCharge(days:int)
 }
 class Price {
-    getCharge()
+  getCharge(days:int)
+  getFrequentRenterPoints(days:int)
 }
 class Movie {
-  priceCode:int
-  getFrequentRenterPoints(days: int)
-  getCharge()
+  title:String
+  getCharge(days:int)
+  getFrequentRenterPoints(days:int)
 }
 class Rental {
   daysRented:int
@@ -67,6 +69,7 @@ class Rental {
   getFrequentRenterPoints()
 }
 class Customer {
+  name:String
   statement()
   htmlStatement()
   getTotalCharge()
@@ -90,15 +93,17 @@ statement(計算書生成)メソッドのシーケンス図
        activate aCustomer
            aCustomer -> aRental :*[for all rental]getCharge
            activate aRental
-               aRental -> aMovie :getPriceCode   
-           deactivate aRental                 
-       deactivate aCustomer                             
+               aRental -> aMovie :getCharge(days)
+               aMovie -> aPrice :getCharge(days)
+           deactivate aRental
+       deactivate aCustomer
        aCustomer -> aCustomer :getTotalFrequentRenterPoints
        activate aCustomer       
            aCustomer -> aRental :*[for all rental]getFrequentRenterPoints
            activate aRental
-               aRental -> aMovie :getPriceCode   
-           deactivate aRental                      
+               aRental -> aMovie :getFrequentRenterPoints(days)
+               aMovie -> aPrice :getFrequentRenterPoints(days)
+           deactivate aRental
        deactivate aCustomer
    deactivate aCustomer
 @enduml
