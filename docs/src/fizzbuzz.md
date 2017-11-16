@@ -14,9 +14,24 @@ markdown:
 
 ## 設計
 ### TODO
-+ [ ] クラスを定義する
++ [x] ~~クラスを定義する~~
 + [ ] ３で割り切れる場合のテストを作成する
 + [ ] ５で割り切れる場合のテストを作成する
 + [ ] 両者で割り切れる場合のテストを作成する
 
+### クラス図
+```puml
+@startuml
+class FizzBuzz {
+  +execute(number:int) :int
+}
+@enduml
+```
+
 ## 実装
+
+### `FizzBuzzTest.java`
+@import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
+### `FizzBuzz.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzz.java"
+
