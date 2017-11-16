@@ -1,6 +1,7 @@
 # Javaアプリケーションのための練習プログラム集
 
 ## [FizzBuzz](./fizzbuzz.md)
+### [イテレーション１](https://github.com/k2works/etude_for_java/blob/0b7c21277202a78c0455123c89eacc0b7770223a/docs/fizzbuzz.md)
 
 ## [テスト駆動開発](./TDD.md)
 
