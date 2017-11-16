@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/f657651786015ad6423a3b38afc56ad70.png?0.6403220686075677)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.150517371289004)  
   
 ## 仕様
   
@@ -33,13 +33,13 @@
 ### クラス図
   
 
-![](./assets/f657651786015ad6423a3b38afc56ad71.png?0.001670304800365896)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.7360377440020147)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/f657651786015ad6423a3b38afc56ad72.png?0.062381855052437984)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.7445531555517422)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -174,6 +174,12 @@ public class Movie {
         }
         return result;
     }
+    int getFrequentRenterPoints(int daysRented) {
+        if((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
+            return 2;
+        else
+            return 1;
+    }
 }
   
 ```  
@@ -199,12 +205,8 @@ class Rental {
     double getCharge() {
         return _movie.getCharge(_daysRented);
     }
-  
     int getFrequentRenterPoints() {
-        if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
-            return 2;
-        else
-            return 1;
+        return _movie.getFrequentRenterPoints(_daysRented);
     }
 }
   

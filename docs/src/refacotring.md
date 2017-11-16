@@ -45,6 +45,7 @@ rectangle VedioRental {
 ```puml
 class Movie {
   priceCode:int
+  getFrequentRenterPoints(days: int)
 }
 class Rental {
   daysRented:int
@@ -53,6 +54,7 @@ class Rental {
 }
 class Customer {
   statement()
+  htmlStatement()
   getTotalCharge()
   getTotalFrequentRenterPoints()
 }
