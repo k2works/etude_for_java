@@ -9,4 +9,9 @@ public class FizzBuzzTest {
         String result = FizzBuzz.execute(3);
         assertEquals("Fizz",result);
     }
+    @Test
+    public void notPrintFizz() {
+        String result = FizzBuzz.execute(4);
+        assertNotEquals("Fizz",result);
+    }
 }

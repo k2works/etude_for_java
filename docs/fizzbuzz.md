@@ -13,7 +13,7 @@
 ### TODO
   
 + [x] ~~クラスを定義する~~
-+ [ ] **３で割り切れる場合のテストを作成する**
++ [x] ~~３で割り切れる場合のテストを作成する~~
 + [ ] ５で割り切れる場合のテストを作成する
 + [ ] 両者で割り切れる場合のテストを作成する
   
@@ -39,6 +39,11 @@ public class FizzBuzzTest {
         String result = FizzBuzz.execute(3);
         assertEquals("Fizz",result);
     }
+    @Test
+    public void notPrintFizz() {
+        String result = FizzBuzz.execute(4);
+        assertNotEquals("Fizz",result);
+    }
 }
   
 ```  
@@ -50,7 +55,11 @@ package tdd.fizzbuzz;
 public class FizzBuzz {
   
     public static String execute(int number) {
-        return "Fizz";
+        if (number % 3 == 0) {
+            return "Fizz";
+        } else {
+            return null;
+        }
     }
 }
   
