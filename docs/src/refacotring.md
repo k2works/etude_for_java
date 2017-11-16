@@ -108,6 +108,14 @@ statement(計算書生成)メソッドのシーケンス図
 @import "../../src/test/java/refactoring/videorental/CustomerTest.java"
 ### `Movie.java`
 @import "../../src/main/java/refactoring/videorental/Movie.java"
+### `Price.java`
+@import "../../src/main/java/refactoring/videorental/Price.java"
+### `ChildrensPrice.java`
+@import "../../src/main/java/refactoring/videorental/ChildrensPrice.java"
+### `NewReleasePrice.java`
+@import "../../src/main/java/refactoring/videorental/NewReleasePrice.java"
+### `RegularPrice.java`
+@import "../../src/main/java/refactoring/videorental/RegularPrice.java"
 ### `Rental.java`
 @import "../../src/main/java/refactoring/videorental/Rental.java"
 ### `Customer.java`

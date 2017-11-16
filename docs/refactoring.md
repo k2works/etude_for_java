@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.6597151982257257)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.5420667636096723)  
   
 ## 仕様
   
@@ -34,13 +34,13 @@
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.2894069497730798)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.512540222937584)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.2800037267900466)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.8627742342279157)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -180,6 +180,52 @@ public class Movie {
             return 2;
         else
             return 1;
+    }
+}
+  
+```  
+### `Price.java`
+  
+```java
+package refactoring.videorental;
+  
+abstract class Price {
+    abstract int getPriceCode();
+}
+  
+```  
+### `ChildrensPrice.java`
+  
+```java
+package refactoring.videorental;
+  
+class ChildrensPrice extends Price {
+    int getPriceCode() {
+        return Movie.CHILDRENS;
+    }
+}
+  
+```  
+### `NewReleasePrice.java`
+  
+```java
+package refactoring.videorental;
+  
+class NewReleasePrice extends Price {
+    int getPriceCode() {
+        return Movie.NEW_RELEASE;
+    }
+}
+  
+```  
+### `RegularPrice.java`
+  
+```java
+package refactoring.videorental;
+  
+class RegularPrice extends Price {
+    int getPriceCode() {
+        return Movie.REGULAR;
     }
 }
   
