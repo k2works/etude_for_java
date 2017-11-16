@@ -13,7 +13,7 @@
 ### TODO
   
 + [x] ~~クラスを定義する~~
-+ [ ] ３で割り切れる場合のテストを作成する
++ [ ] **３で割り切れる場合のテストを作成する**
 + [ ] ５で割り切れる場合のテストを作成する
 + [ ] 両者で割り切れる場合のテストを作成する
   
@@ -34,6 +34,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
   
 public class FizzBuzzTest {
+    @Test
+    public void printFizz() {
+        String result = FizzBuzz.execute(3);
+        assertEquals("Fizz",result);
+    }
 }
   
 ```  
@@ -43,6 +48,10 @@ public class FizzBuzzTest {
 package tdd.fizzbuzz;
   
 public class FizzBuzz {
+  
+    public static String execute(int number) {
+        return "Fizz";
+    }
 }
   
 ```  
