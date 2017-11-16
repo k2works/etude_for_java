@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerTest {
     @Test
-    public void rentalRegularMovieForAWeek() {
+    public void rentalRegularMovieForAWeek() throws IllegalAccessException {
         Movie movie = new Movie("Attack of the Killer Tomatoes!", Movie.REGULAR);
         Rental rental = new Rental(movie,7);
         Customer customer = new Customer("Mike");
@@ -23,7 +23,7 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
-    public void rentalChildrensMovieForTwoWeeks() {
+    public void rentalChildrensMovieForTwoWeeks() throws IllegalAccessException {
         Movie movie = new Movie("PUELLA MAGI MADOKA MAGICA", Movie.CHILDRENS);
         Rental rental = new Rental(movie,14);
         Customer customer = new Customer("John");
@@ -41,7 +41,7 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
-    public void rentalNewReleaseMovieForADay() {
+    public void rentalNewReleaseMovieForADay() throws IllegalAccessException {
         Movie movie = new Movie("The Return of the Living Dead", Movie.NEW_RELEASE);
         Rental rental = new Rental(movie,1);
         Customer customer = new Customer("Nancy");
@@ -59,7 +59,7 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
-    public void rentalNewReleaseMovieTwoDays() {
+    public void rentalNewReleaseMovieTwoDays() throws IllegalAccessException {
         Movie movie = new Movie("The Return of the Living Dead Part II", Movie.NEW_RELEASE);
         Rental rental = new Rental(movie,2);
         Customer customer = new Customer("Nancy");

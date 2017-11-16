@@ -7,7 +7,7 @@
   
 顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.5420667636096723)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.5387237644096068)  
   
 ## 仕様
   
@@ -34,13 +34,13 @@
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.512540222937584)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.06497009894446548)  
   
 ### シーケンス図
   
 statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.8627742342279157)  
+![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.013477142974715806)  
 ## 実装
   
 ### `CustomerTest.java`
@@ -53,7 +53,7 @@ import static org.junit.jupiter.api.Assertions.*;
   
 public class CustomerTest {
     @Test
-    public void rentalRegularMovieForAWeek() {
+    public void rentalRegularMovieForAWeek() throws IllegalAccessException {
         Movie movie = new Movie("Attack of the Killer Tomatoes!", Movie.REGULAR);
         Rental rental = new Rental(movie,7);
         Customer customer = new Customer("Mike");
@@ -71,7 +71,7 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
-    public void rentalChildrensMovieForTwoWeeks() {
+    public void rentalChildrensMovieForTwoWeeks() throws IllegalAccessException {
         Movie movie = new Movie("PUELLA MAGI MADOKA MAGICA", Movie.CHILDRENS);
         Rental rental = new Rental(movie,14);
         Customer customer = new Customer("John");
@@ -89,7 +89,7 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
-    public void rentalNewReleaseMovieForADay() {
+    public void rentalNewReleaseMovieForADay() throws IllegalAccessException {
         Movie movie = new Movie("The Return of the Living Dead", Movie.NEW_RELEASE);
         Rental rental = new Rental(movie,1);
         Customer customer = new Customer("Nancy");
@@ -107,7 +107,7 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
-    public void rentalNewReleaseMovieTwoDays() {
+    public void rentalNewReleaseMovieTwoDays() throws IllegalAccessException {
         Movie movie = new Movie("The Return of the Living Dead Part II", Movie.NEW_RELEASE);
         Rental rental = new Rental(movie,2);
         Customer customer = new Customer("Nancy");
@@ -139,19 +139,31 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
   
     private String _title;
-    private int _priceCode;
+    private Price _price;
   
-    public Movie(String title, int priceCode) {
+    public Movie(String title, int priceCode) throws IllegalAccessException {
         _title = title;
-        _priceCode = priceCode;
+        setPriceCode(priceCode);
     }
   
     public int getPriceCode() {
-        return _priceCode;
+        return _price.getPriceCode();
     }
   
-    public void setPriceCode(int arg) {
-        _priceCode = arg;
+    public void setPriceCode(int arg) throws IllegalAccessException {
+        switch (arg) {
+            case REGULAR:
+                _price = new RegularPrice();
+                break;
+            case CHILDRENS:
+                _price = new ChildrensPrice();
+                break;
+            case NEW_RELEASE:
+                _price = new NewReleasePrice();
+                break;
+            default:
+                throw new IllegalAccessException("不正な料金コード");
+        }
     }
   
     public String getTitle() {
