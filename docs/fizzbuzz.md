@@ -14,7 +14,7 @@
   
 + [x] ~~クラスを定義する~~
 + [x] ~~３で割り切れる場合のテストを作成する~~
-+ [ ] ５で割り切れる場合のテストを作成する
++ [ ] **５で割り切れる場合のテストを作成する**
 + [ ] 両者で割り切れる場合のテストを作成する
   
 ### クラス図
@@ -43,6 +43,11 @@ public class FizzBuzzTest {
     public void notPrintFizz() {
         String result = FizzBuzz.execute(4);
         assertNotEquals("Fizz",result);
+    }
+    @Test
+    public void printBuzz() {
+        String result = FizzBuzz.execute(5);
+        assertEquals("Buzz",result);
     }
 }
   
