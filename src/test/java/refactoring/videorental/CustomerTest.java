@@ -30,14 +30,14 @@ public class CustomerTest {
         customer.addRental(rental);
         String result = customer.statement();
         assertEquals("Rental Record for John\n" +
-                "\tPUELLA MAGI MADOKA MAGICA\t16.5\n" +
-                "Amount owed is 16.5\n" +
+                "\tPUELLA MAGI MADOKA MAGICA\t18.0\n" +
+                "Amount owed is 18.0\n" +
                 "You earned 1 frequent renter points",result);
 
         result = customer.htmlStatement();
         assertEquals("<H1>Rental Record for <EM>John</EM></H1><P>\n" +
-                "PUELLA MAGI MADOKA MAGICA: 16.5<BR>\n" +
-                "<P>Amount owed <EM> 16.5</EM><P>\n" +
+                "PUELLA MAGI MADOKA MAGICA: 18.0<BR>\n" +
+                "<P>Amount owed <EM> 18.0</EM><P>\n" +
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test

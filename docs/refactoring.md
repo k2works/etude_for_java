@@ -29,7 +29,7 @@
 + [x] ~~レンタルポイント計算部分の抽出~~
 + [x] ~~一時変数の削除~~
 + [ ] **料金計算の条件文をポリモーフィズムに置き換える**
-+ [ ] 最後は継承で
++ [x] ~~最後は継承で~~~
   
 ### クラス図
   
@@ -78,14 +78,14 @@ public class CustomerTest {
         customer.addRental(rental);
         String result = customer.statement();
         assertEquals("Rental Record for John\n" +
-                "\tPUELLA MAGI MADOKA MAGICA\t16.5\n" +
-                "Amount owed is 16.5\n" +
+                "\tPUELLA MAGI MADOKA MAGICA\t18.0\n" +
+                "Amount owed is 18.0\n" +
                 "You earned 1 frequent renter points",result);
   
         result = customer.htmlStatement();
         assertEquals("<H1>Rental Record for <EM>John</EM></H1><P>\n" +
-                "PUELLA MAGI MADOKA MAGICA: 16.5<BR>\n" +
-                "<P>Amount owed <EM> 16.5</EM><P>\n" +
+                "PUELLA MAGI MADOKA MAGICA: 18.0<BR>\n" +
+                "<P>Amount owed <EM> 18.0</EM><P>\n" +
                 "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
     }
     @Test
@@ -189,24 +189,7 @@ package refactoring.videorental;
 abstract class Price {
     abstract int getPriceCode();
   
-    double getCharge(int daysRented) {
-        double result = 0;
-        switch (getPriceCode()) {
-            case Movie.REGULAR:
-                result += 2;
-                if (daysRented > 2)
-                    result += (daysRented - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                result += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                if (daysRented > 3)
-                    result += (daysRented - 3) * 1.5;
-                break;
-        }
-        return result;
-    }
+    abstract double getCharge(int daysRented);
 }
   
 ```  
@@ -218,6 +201,13 @@ package refactoring.videorental;
 class ChildrensPrice extends Price {
     int getPriceCode() {
         return Movie.CHILDRENS;
+    }
+  
+    double getCharge(int daysRented) {
+        double result = 1.5;
+        if (daysRented > 3)
+            result += (daysRented - 3) * 1.5;
+        return result;
     }
 }
   
@@ -231,6 +221,10 @@ class NewReleasePrice extends Price {
     int getPriceCode() {
         return Movie.NEW_RELEASE;
     }
+  
+    double getCharge(int daysRented) {
+        return daysRented * 3;
+    }
 }
   
 ```  
@@ -242,6 +236,13 @@ package refactoring.videorental;
 class RegularPrice extends Price {
     int getPriceCode() {
         return Movie.REGULAR;
+    }
+  
+    double getCharge(int daysRented) {
+        double result = 2;
+        if (daysRented > 2)
+            result += (daysRented - 2) * 1.5;
+        return result;
     }
 }
   
