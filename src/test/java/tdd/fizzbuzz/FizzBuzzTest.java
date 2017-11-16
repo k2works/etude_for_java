@@ -24,4 +24,9 @@ public class FizzBuzzTest {
         String result = FizzBuzz.execute(6);
         assertNotEquals("Buzz",result);
     }
+    @Test
+    public void printFizzBuzz() {
+        String result = FizzBuzz.execute(15);
+        assertEquals("FizzBuzz",result);
+    }
 }
