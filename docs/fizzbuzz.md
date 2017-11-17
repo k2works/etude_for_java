@@ -18,6 +18,8 @@
 + [x] ~~３で割り切れる場合のテストを作成する~~
 + [x] ~~５で割り切れる場合のテストを作成する~~
 + [x] ~~両者で割り切れる場合のテストを作成する~~
++ [ ] **条件を満たさない場合のテストを作成する**
++ [ ] 指定された回数だけ繰り返し実行する場合のテストを作成する
   
 ### クラス図
   
@@ -32,6 +34,7 @@
 ```java
 package tdd.fizzbuzz;
   
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
   
@@ -65,6 +68,11 @@ public class FizzBuzzTest {
     public void notPrintFizzBuzz() {
         String result = FizzBuzz.execute(20);
         assertNotEquals("FizzBuzz",result);
+    }
+    @Test
+    public void printNotSatisfyTheCondition() {
+        String result = FizzBuzz.execute(1);
+        assertEquals(1,result);
     }
 }
   

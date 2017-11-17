@@ -1,5 +1,6 @@
 package tdd.fizzbuzz;
 
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,5 +34,10 @@ public class FizzBuzzTest {
     public void notPrintFizzBuzz() {
         String result = FizzBuzz.execute(20);
         assertNotEquals("FizzBuzz",result);
+    }
+    @Test
+    public void printNotSatisfyTheCondition() {
+        String result = FizzBuzz.execute(1);
+        assertEquals(1,result);
     }
 }
