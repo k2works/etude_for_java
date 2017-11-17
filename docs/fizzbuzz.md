@@ -18,7 +18,7 @@
 + [x] ~~３で割り切れる場合のテストを作成する~~
 + [x] ~~５で割り切れる場合のテストを作成する~~
 + [x] ~~両者で割り切れる場合のテストを作成する~~
-+ [ ] **条件を満たさない場合のテストを作成する**
++ [x] ~~条件を満たさない場合のテストを作成する~~
 + [ ] 指定された回数だけ繰り返し実行する場合のテストを作成する
   
 ### クラス図
@@ -72,7 +72,7 @@ public class FizzBuzzTest {
     @Test
     public void printNotSatisfyTheCondition() {
         String result = FizzBuzz.execute(1);
-        assertEquals(1,result);
+        assertEquals("1",result);
     }
 }
   
@@ -91,8 +91,8 @@ public class FizzBuzz {
             return "Buzz";
         } else if (number % 3 == 0) {
             return "Fizz";
-        } else  {
-            return null;
+        } else {
+            return String.valueOf(number);
         }
     }
 }

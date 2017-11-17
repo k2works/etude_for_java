@@ -9,8 +9,8 @@ public class FizzBuzz {
             return "Buzz";
         } else if (number % 3 == 0) {
             return "Fizz";
-        } else  {
-            return null;
+        } else {
+            return String.valueOf(number);
         }
     }
 }

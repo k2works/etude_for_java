@@ -38,6 +38,6 @@ public class FizzBuzzTest {
     @Test
     public void printNotSatisfyTheCondition() {
         String result = FizzBuzz.execute(1);
-        assertEquals(1,result);
+        assertEquals("1",result);
     }
 }
