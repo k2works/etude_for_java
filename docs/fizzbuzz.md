@@ -19,12 +19,12 @@
 + [x] ~~５で割り切れる場合のテストを作成する~~
 + [x] ~~両者で割り切れる場合のテストを作成する~~
 + [x] ~~条件を満たさない場合のテストを作成する~~
-+ [ ] 指定された回数だけ繰り返し実行する場合のテストを作成する
++ [ ] **指定された回数だけ繰り返し実行する場合のテストを作成する**
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.6295560150349389)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.25426525263835376)  
   
 ## 実装
   
@@ -74,6 +74,11 @@ public class FizzBuzzTest {
         String result = FizzBuzz.execute(1);
         assertEquals("1",result);
     }
+    @Test
+    public void print100thCountResult() {
+        String result = FizzBuzz.executeByCount(100);
+        assertEquals("Buzz",result);
+    }
 }
   
 ```  
@@ -94,6 +99,10 @@ public class FizzBuzz {
         } else {
             return String.valueOf(number);
         }
+    }
+  
+    public static String executeByCount(int count) {
+        return null;
     }
 }
   

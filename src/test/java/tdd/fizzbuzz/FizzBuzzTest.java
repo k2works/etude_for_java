@@ -40,4 +40,9 @@ public class FizzBuzzTest {
         String result = FizzBuzz.execute(1);
         assertEquals("1",result);
     }
+    @Test
+    public void print100thCountResult() {
+        String result = FizzBuzz.executeByCount(100);
+        assertEquals("Buzz",result);
+    }
 }

@@ -21,13 +21,14 @@ markdown:
 + [x] ~~５で割り切れる場合のテストを作成する~~
 + [x] ~~両者で割り切れる場合のテストを作成する~~
 + [x] ~~条件を満たさない場合のテストを作成する~~
-+ [ ] 指定された回数だけ繰り返し実行する場合のテストを作成する
++ [ ] **指定された回数だけ繰り返し実行する場合のテストを作成する**
 
 ### クラス図
 ```puml
 @startuml
 class FizzBuzz {
-  +execute(number:int) :int
+  +execute(number:int) :String
+  +excueteByCount(count:int) :String
 }
 @enduml
 ```

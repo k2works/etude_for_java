@@ -13,4 +13,8 @@ public class FizzBuzz {
             return String.valueOf(number);
         }
     }
+
+    public static String executeByCount(int count) {
+        return null;
+    }
 }
