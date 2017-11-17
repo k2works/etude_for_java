@@ -15,6 +15,10 @@ public class FizzBuzz {
     }
 
     public static String executeByCount(int count) {
-        return null;
+        String result = null;
+        for (int i = 0; i <= count; ++i) {
+            result = FizzBuzz.execute(i);
+        }
+        return result;
     }
 }
