@@ -32,6 +32,18 @@ class FizzBuzz {
 }
 @enduml
 ```
+### シーケンス図
+```puml
+@startuml
+   activate FizzBuzz
+   -> FizzBuzz :executeByCount
+   loop for each count
+      FizzBuzz -> FizzBuzz :execute
+   end
+   <-- FizzBuzz :Result String
+   deactivate FizzBuzz
+@enduml
+```
 
 ## 実装
 ### ふりかえり
@@ -39,6 +51,7 @@ class FizzBuzz {
 + 追加仕様をテスト駆動で実装した
 + 返り値が文字型の関数では数値をそのまま返すことができないので文字型に変換して返すようにした
 + 繰り返し処理は条件値の比較演算子に注意する
++ シーケンス図を作成した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
