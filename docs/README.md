@@ -2,7 +2,7 @@
 
 ## [FizzBuzz](./fizzbuzz.md)
 ### [イテレーション１](https://github.com/k2works/etude_for_java/blob/0b7c21277202a78c0455123c89eacc0b7770223a/docs/fizzbuzz.md)
-### [イテレーション２](https://github.com/k2works/etude_for_java/blob/e0dfb20c4865c556605f7fbabab27d1e7aeed07e/docs/fizzbuzz.md)
+### [イテレーション２](https://github.com/k2works/etude_for_java/blob/b022d968f23c439e0f53188e418d67a9a4f8d99b/docs/fizzbuzz.md)
 
 ## [テスト駆動開発](./TDD.md)
 
