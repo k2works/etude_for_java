@@ -28,6 +28,7 @@ markdown:
 ```puml
 @startuml
 class FizzBuzz {
+  results :String[ ]
   +execute(number:int) :String
   +excueteByCount(count:int) :String[]
 }

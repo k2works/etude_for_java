@@ -25,11 +25,11 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.40436024247702296)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.5225143881366623)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.4503815894446366)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.42670862085830685)  
   
 ## 実装
   
@@ -82,12 +82,12 @@ public class FizzBuzzTest {
     @Test
     public void print100thCountResult() {
         String[] result = FizzBuzz.executeByCount(100);
-        assertEquals("Buzz",result[100]);
+        assertEquals("Buzz",FizzBuzz.results[100]);
     }
     @Test
     public void print30thCountResult() {
         String result[] = FizzBuzz.executeByCount(30);
-        assertEquals("FizzBuzz",result[30]);
+        assertEquals("FizzBuzz",FizzBuzz.results[30]);
     }
 }
   
