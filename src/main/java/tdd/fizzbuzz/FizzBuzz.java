@@ -2,6 +2,8 @@ package tdd.fizzbuzz;
 
 public class FizzBuzz {
 
+    public static String[] results;
+
     public static String execute(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return "FizzBuzz";
@@ -14,11 +16,10 @@ public class FizzBuzz {
         }
     }
 
-    public static String[] executeByCount(int count) {
-        String result[] = new String[count + 1];
+    public static void executeByCount(int count) {
+        results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-            result[i] = FizzBuzz.execute(i);
+            results[i] = FizzBuzz.execute(i);
         }
-        return result;
     }
 }

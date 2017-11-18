@@ -28,7 +28,7 @@ markdown:
 ```puml
 @startuml
 class FizzBuzz {
-  results :String[ ]
+  +results :String[ ]
   +execute(number:int) :String
   +excueteByCount(count:int) :String[]
 }
@@ -42,7 +42,6 @@ class FizzBuzz {
    loop for each count
       FizzBuzz -> FizzBuzz :execute
    end
-   <-- FizzBuzz :Result StringArray
    deactivate FizzBuzz
 @enduml
 ```

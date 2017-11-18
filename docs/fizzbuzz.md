@@ -25,11 +25,11 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.5225143881366623)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.975584999148216)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.42670862085830685)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.3916987160985095)  
   
 ## 実装
   
@@ -39,7 +39,6 @@
 ```java
 package tdd.fizzbuzz;
   
-import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
   
@@ -81,12 +80,12 @@ public class FizzBuzzTest {
     }
     @Test
     public void print100thCountResult() {
-        String[] result = FizzBuzz.executeByCount(100);
+        FizzBuzz.executeByCount(100);
         assertEquals("Buzz",FizzBuzz.results[100]);
     }
     @Test
     public void print30thCountResult() {
-        String result[] = FizzBuzz.executeByCount(30);
+        FizzBuzz.executeByCount(30);
         assertEquals("FizzBuzz",FizzBuzz.results[30]);
     }
 }
@@ -98,6 +97,8 @@ public class FizzBuzzTest {
 package tdd.fizzbuzz;
   
 public class FizzBuzz {
+  
+    public static String[] results;
   
     public static String execute(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
@@ -111,12 +112,11 @@ public class FizzBuzz {
         }
     }
   
-    public static String[] executeByCount(int count) {
-        String result[] = new String[count + 1];
+    public static void executeByCount(int count) {
+        results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-            result[i] = FizzBuzz.execute(i);
+            results[i] = FizzBuzz.execute(i);
         }
-        return result;
     }
 }
   
