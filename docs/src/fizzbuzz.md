@@ -49,6 +49,11 @@ class FizzBuzz {
 ```
 
 ## 実装
+### ふりかえり
++ 配列を使って値を保持できるようにした
++ 必要なものだけを公開するための準備にテストを修正した
++ クラスに変数を使って値を保持できるようにした
++ アクセス修飾子とゲッターを使って必要な機能だけ外部に公開するようにした
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
