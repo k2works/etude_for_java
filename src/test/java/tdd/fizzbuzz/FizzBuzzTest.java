@@ -6,38 +6,38 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FizzBuzzTest {
     @Test
     public void printFizz() {
-        String result = FizzBuzz.execute(3);
-        assertEquals("Fizz",result);
+        FizzBuzz.executeByCount(3);
+        assertEquals("Fizz",FizzBuzz.results[3]);
     }
     @Test
     public void notPrintFizz() {
-        String result = FizzBuzz.execute(4);
-        assertNotEquals("Fizz",result);
+        FizzBuzz.executeByCount(4);
+        assertNotEquals("Fizz",FizzBuzz.results[4]);
     }
     @Test
     public void printBuzz() {
-        String result = FizzBuzz.execute(5);
-        assertEquals("Buzz",result);
+        FizzBuzz.executeByCount(5);
+        assertEquals("Buzz",FizzBuzz.results[5]);
     }
     @Test
     public void notPrintBuzz() {
-        String result = FizzBuzz.execute(6);
-        assertNotEquals("Buzz",result);
+        FizzBuzz.executeByCount(6);
+        assertNotEquals("Buzz",FizzBuzz.results[6]);
     }
     @Test
     public void printFizzBuzz() {
-        String result = FizzBuzz.execute(15);
-        assertEquals("FizzBuzz",result);
+        FizzBuzz.executeByCount(15);
+        assertEquals("FizzBuzz",FizzBuzz.results[15]);
     }
     @Test
     public void notPrintFizzBuzz() {
-        String result = FizzBuzz.execute(20);
-        assertNotEquals("FizzBuzz",result);
+        FizzBuzz.executeByCount(20);
+        assertEquals("Buzz",FizzBuzz.results[20]);
     }
     @Test
     public void printNotSatisfyTheCondition() {
-        String result = FizzBuzz.execute(1);
-        assertEquals("1",result);
+        FizzBuzz.executeByCount(1);
+        assertEquals("1",FizzBuzz.results[1]);
     }
     @Test
     public void print100thCountResult() {
