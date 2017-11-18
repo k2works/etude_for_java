@@ -14,12 +14,13 @@
   
 ### TODO
   
-+ [x] ~~クラスを定義する~~
++ [x] ~~クラスを定義する~~
 + [x] ~~３で割り切れる場合のテストを作成する~~
 + [x] ~~５で割り切れる場合のテストを作成する~~
-+ [x] ~~両者で割り切れる場合のテストを作成する~~
++ [x] ~~両者で割り切れる場合のテストを作成する~~
 + [x] ~~条件を満たさない場合のテストを作成する~~
-+ [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
++ [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
++ [ ] **出力された値を全て保持する**
   
 ### クラス図
   
@@ -32,13 +33,6 @@
   
 ## 実装
   
-### ふりかえり
-  
-+ 最初のイテレーションで不明だった部分の仕様を定義した
-+ 追加仕様をテスト駆動で実装した
-+ 返り値が文字型の関数では数値をそのまま返すことができないので文字型に変換して返すようにした
-+ 繰り返し処理は条件値の比較演算子に注意する
-+ シーケンス図を作成した
   
 ### `FizzBuzzTest.java`
   
@@ -87,8 +81,13 @@ public class FizzBuzzTest {
     }
     @Test
     public void print100thCountResult() {
-        String result = FizzBuzz.executeByCount(100);
-        assertEquals("Buzz",result);
+        String[] result = FizzBuzz.executeByCount(100);
+        assertEquals("Buzz",result[100]);
+    }
+    @Test
+    public void print30thCountResult() {
+        String result[] = FizzBuzz.executeByCount(30);
+        assertEquals("FizzBuzz",result[30]);
     }
 }
   

@@ -22,13 +22,14 @@ markdown:
 + [x] ~~両者で割り切れる場合のテストを作成する~~
 + [x] ~~条件を満たさない場合のテストを作成する~~
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
++ [ ] **出力された値を全て保持する**
 
 ### クラス図
 ```puml
 @startuml
 class FizzBuzz {
   +execute(number:int) :String
-  +excueteByCount(count:int) :String
+  +excueteByCount(count:int) :String[]
 }
 @enduml
 ```
@@ -46,12 +47,6 @@ class FizzBuzz {
 ```
 
 ## 実装
-### ふりかえり
-+ 最初のイテレーションで不明だった部分の仕様を定義した
-+ 追加仕様をテスト駆動で実装した
-+ 返り値が文字型の関数では数値をそのまま返すことができないので文字型に変換して返すようにした
-+ 繰り返し処理は条件値の比較演算子に注意する
-+ シーケンス図を作成した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
