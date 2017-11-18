@@ -25,11 +25,11 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.7396972910145652)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.40436024247702296)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.06619188803150022)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.4503815894446366)  
   
 ## 実装
   
@@ -111,10 +111,10 @@ public class FizzBuzz {
         }
     }
   
-    public static String executeByCount(int count) {
-        String result = null;
+    public static String[] executeByCount(int count) {
+        String result[] = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-            result = FizzBuzz.execute(i);
+            result[i] = FizzBuzz.execute(i);
         }
         return result;
     }

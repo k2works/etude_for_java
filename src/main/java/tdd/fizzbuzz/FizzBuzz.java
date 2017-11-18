@@ -14,10 +14,10 @@ public class FizzBuzz {
         }
     }
 
-    public static String executeByCount(int count) {
-        String result = null;
+    public static String[] executeByCount(int count) {
+        String result[] = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-            result = FizzBuzz.execute(i);
+            result[i] = FizzBuzz.execute(i);
         }
         return result;
     }

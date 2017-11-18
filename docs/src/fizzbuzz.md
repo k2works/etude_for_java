@@ -41,7 +41,7 @@ class FizzBuzz {
    loop for each count
       FizzBuzz -> FizzBuzz :execute
    end
-   <-- FizzBuzz :Result String
+   <-- FizzBuzz :Result StringArray
    deactivate FizzBuzz
 @enduml
 ```
