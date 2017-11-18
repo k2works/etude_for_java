@@ -1,10 +1,13 @@
 package tdd.fizzbuzz;
 
 public class FizzBuzz {
+    private static String[] results;
 
-    public static String[] results;
+    public static String[] getResults() {
+        return results;
+    }
 
-    public static String execute(int number) {
+    private static String execute(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return "FizzBuzz";
         } else if (number % 5 == 0) {

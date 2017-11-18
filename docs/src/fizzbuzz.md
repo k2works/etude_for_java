@@ -23,13 +23,14 @@ markdown:
 + [x] ~~条件を満たさない場合のテストを作成する~~
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
 + [x] ~~出力された値を全て保持する~~
-+ [ ] **必要なものだけを公開するようにする**
++ [x] ~~必要なものだけを公開するようにする~~
 
 ### クラス図
 ```puml
 @startuml
 class FizzBuzz {
   -results :String[ ]
+  +getResults() :String[]
   -execute(number:int) :String
   +excueteByCount(count:int) :String[]
 }

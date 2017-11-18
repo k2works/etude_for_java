@@ -21,16 +21,16 @@
 + [x] ~~条件を満たさない場合のテストを作成する~~
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
 + [x] ~~出力された値を全て保持する~~
-+ [ ] **必要なものだけを公開するようにする**
++ [x] ~~必要なものだけを公開するようにする~~
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.9122544805564938)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.9946724628762669)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.14335558336966558)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.5501460698044596)  
   
 ## 実装
   
@@ -46,48 +46,48 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FizzBuzzTest {
     @Test
     public void printFizz() {
-        String result = FizzBuzz.execute(3);
-        assertEquals("Fizz",result);
+        FizzBuzz.executeByCount(3);
+        assertEquals("Fizz", FizzBuzz.getResults()[3]);
     }
     @Test
     public void notPrintFizz() {
-        String result = FizzBuzz.execute(4);
-        assertNotEquals("Fizz",result);
+        FizzBuzz.executeByCount(4);
+        assertNotEquals("Fizz", FizzBuzz.getResults()[4]);
     }
     @Test
     public void printBuzz() {
-        String result = FizzBuzz.execute(5);
-        assertEquals("Buzz",result);
+        FizzBuzz.executeByCount(5);
+        assertEquals("Buzz", FizzBuzz.getResults()[5]);
     }
     @Test
     public void notPrintBuzz() {
-        String result = FizzBuzz.execute(6);
-        assertNotEquals("Buzz",result);
+        FizzBuzz.executeByCount(6);
+        assertNotEquals("Buzz", FizzBuzz.getResults()[6]);
     }
     @Test
     public void printFizzBuzz() {
-        String result = FizzBuzz.execute(15);
-        assertEquals("FizzBuzz",result);
+        FizzBuzz.executeByCount(15);
+        assertEquals("FizzBuzz", FizzBuzz.getResults()[15]);
     }
     @Test
     public void notPrintFizzBuzz() {
-        String result = FizzBuzz.execute(20);
-        assertNotEquals("FizzBuzz",result);
+        FizzBuzz.executeByCount(20);
+        assertEquals("Buzz", FizzBuzz.getResults()[20]);
     }
     @Test
     public void printNotSatisfyTheCondition() {
-        String result = FizzBuzz.execute(1);
-        assertEquals("1",result);
+        FizzBuzz.executeByCount(1);
+        assertEquals("1", FizzBuzz.getResults()[1]);
     }
     @Test
     public void print100thCountResult() {
         FizzBuzz.executeByCount(100);
-        assertEquals("Buzz",FizzBuzz.results[100]);
+        assertEquals("Buzz", FizzBuzz.getResults()[100]);
     }
     @Test
     public void print30thCountResult() {
         FizzBuzz.executeByCount(30);
-        assertEquals("FizzBuzz",FizzBuzz.results[30]);
+        assertEquals("FizzBuzz", FizzBuzz.getResults()[30]);
     }
 }
   
@@ -98,10 +98,13 @@ public class FizzBuzzTest {
 package tdd.fizzbuzz;
   
 public class FizzBuzz {
+    private static String[] results;
   
-    public static String[] results;
+    public static String[] getResults() {
+        return results;
+    }
   
-    public static String execute(int number) {
+    private static String execute(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return "FizzBuzz";
         } else if (number % 5 == 0) {

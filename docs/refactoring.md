@@ -1,360 +1,129 @@
   
   
-# リファクタリング
-  
-  
-## 要求
-  
-顧客が借りたビデオのレンタル料金を計算して計算書を印刷する。
-
-![](./assets/970e29cd95d34abd689ef29ef61f428b0.png?0.5864880505780123)  
+# FizzBuzz
   
 ## 仕様
   
-+ ビデオレンタルの料金を計算して計算書を印刷するプログラム
-+ システムにはどの映画を何日間借りるかが入力される。
-+ 貸出の日数によって料金が計算され、映画の分類が判定される。
-+ 映画の分類は３つある。一般向け、子供向け、新作。
-+ レンタルポイントも印刷される。新作かどうかによってポイント計算の仕方が異なる。
++ ３で割り切れる場合は「Fizz」を出力する。
++ ５で割り切れる場合は「Buzz」を出力する。
++ 両者で割り切れる場合は「FizzBuzz」を出力する。
++ 上記以外の場合は与えられた数値を出力する。
++ 指定された回数だけ繰り返し実行する。
   
 ## 設計
   
 ### TODO
   
-+ [x] ~~一般向けビデオのレンタルテスト作成~~
-+ [x] ~~子供向けビデオのレンタルテスト作成~~
-+ [x] ~~新作ビデオのレンタルテスト作成~~
-+ [x] ~~statementメソッドの分割、再配置~~
-+ [x] ~~amountForメソッドの移動~~
-+ [x] ~~レンタルポイント計算部分の抽出~~
-+ [x] ~~一時変数の削除~~
-+ [x] ~~料金計算の条件文をポリモーフィズムに置き換える~~
-+ [x] ~~最後は継承で~~~
++ [x] ~~クラスを定義する~~
++ [x] ~~３で割り切れる場合のテストを作成する~~
++ [x] ~~５で割り切れる場合のテストを作成する~~
++ [x] ~~両者で割り切れる場合のテストを作成する~~
++ [x] ~~条件を満たさない場合のテストを作成する~~
++ [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
++ [x] ~~出力された値を全て保持する~~
++ [ ] **必要なものだけを公開するようにする**
   
 ### クラス図
   
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b1.png?0.741962540318561)  
-  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.5799878797510258)  
 ### シーケンス図
   
-statement(計算書生成)メソッドのシーケンス図
 
-![](./assets/970e29cd95d34abd689ef29ef61f428b2.png?0.8099154829369399)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.7200258195521818)  
+  
 ## 実装
   
-### `CustomerTest.java`
+  
+### `FizzBuzzTest.java`
   
 ```java
-package refactoring.videorental;
+package tdd.fizzbuzz;
   
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
   
-public class CustomerTest {
+public class FizzBuzzTest {
     @Test
-    public void rentalRegularMovieForAWeek() throws IllegalAccessException {
-        Movie movie = new Movie("Attack of the Killer Tomatoes!", Movie.REGULAR);
-        Rental rental = new Rental(movie,7);
-        Customer customer = new Customer("Mike");
-        customer.addRental(rental);
-        String result = customer.statement();
-        assertEquals("Rental Record for Mike\n" +
-                "\tAttack of the Killer Tomatoes!\t9.5\n" +
-                "Amount owed is 9.5\n" +
-                "You earned 1 frequent renter points",result);
-  
-        result = customer.htmlStatement();
-        assertEquals("<H1>Rental Record for <EM>Mike</EM></H1><P>\n" +
-                "Attack of the Killer Tomatoes!: 9.5<BR>\n" +
-                "<P>Amount owed <EM> 9.5</EM><P>\n" +
-                "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
+    public void printFizz() {
+        FizzBuzz.executeByCount(3);
+        assertEquals("Fizz", FizzBuzz.getResults()[3]);
     }
     @Test
-    public void rentalChildrensMovieForTwoWeeks() throws IllegalAccessException {
-        Movie movie = new Movie("PUELLA MAGI MADOKA MAGICA", Movie.CHILDRENS);
-        Rental rental = new Rental(movie,14);
-        Customer customer = new Customer("John");
-        customer.addRental(rental);
-        String result = customer.statement();
-        assertEquals("Rental Record for John\n" +
-                "\tPUELLA MAGI MADOKA MAGICA\t18.0\n" +
-                "Amount owed is 18.0\n" +
-                "You earned 1 frequent renter points",result);
-  
-        result = customer.htmlStatement();
-        assertEquals("<H1>Rental Record for <EM>John</EM></H1><P>\n" +
-                "PUELLA MAGI MADOKA MAGICA: 18.0<BR>\n" +
-                "<P>Amount owed <EM> 18.0</EM><P>\n" +
-                "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
+    public void notPrintFizz() {
+        FizzBuzz.executeByCount(4);
+        assertNotEquals("Fizz", FizzBuzz.getResults()[4]);
     }
     @Test
-    public void rentalNewReleaseMovieForADay() throws IllegalAccessException {
-        Movie movie = new Movie("The Return of the Living Dead", Movie.NEW_RELEASE);
-        Rental rental = new Rental(movie,1);
-        Customer customer = new Customer("Nancy");
-        customer.addRental(rental);
-        String result = customer.statement();
-        assertEquals("Rental Record for Nancy\n" +
-                "\tThe Return of the Living Dead\t3.0\n" +
-                "Amount owed is 3.0\n" +
-                "You earned 1 frequent renter points",result);
-  
-        result = customer.htmlStatement();
-        assertEquals("<H1>Rental Record for <EM>Nancy</EM></H1><P>\n" +
-                "The Return of the Living Dead: 3.0<BR>\n" +
-                "<P>Amount owed <EM> 3.0</EM><P>\n" +
-                "On this rental you earned <EM>1</EM> frequent renter points<P>",result);
+    public void printBuzz() {
+        FizzBuzz.executeByCount(5);
+        assertEquals("Buzz", FizzBuzz.getResults()[5]);
     }
     @Test
-    public void rentalNewReleaseMovieTwoDays() throws IllegalAccessException {
-        Movie movie = new Movie("The Return of the Living Dead Part II", Movie.NEW_RELEASE);
-        Rental rental = new Rental(movie,2);
-        Customer customer = new Customer("Nancy");
-        customer.addRental(rental);
-        String result = customer.statement();
-        assertEquals("Rental Record for Nancy\n" +
-                "\tThe Return of the Living Dead Part II\t6.0\n" +
-                "Amount owed is 6.0\n" +
-                "You earned 2 frequent renter points",result);
-  
-        result = customer.htmlStatement();
-        assertEquals("<H1>Rental Record for <EM>Nancy</EM></H1><P>\n" +
-                "The Return of the Living Dead Part II: 6.0<BR>\n" +
-                "<P>Amount owed <EM> 6.0</EM><P>\n" +
-                "On this rental you earned <EM>2</EM> frequent renter points<P>",result);
+    public void notPrintBuzz() {
+        FizzBuzz.executeByCount(6);
+        assertNotEquals("Buzz", FizzBuzz.getResults()[6]);
+    }
+    @Test
+    public void printFizzBuzz() {
+        FizzBuzz.executeByCount(15);
+        assertEquals("FizzBuzz", FizzBuzz.getResults()[15]);
+    }
+    @Test
+    public void notPrintFizzBuzz() {
+        FizzBuzz.executeByCount(20);
+        assertEquals("Buzz", FizzBuzz.getResults()[20]);
+    }
+    @Test
+    public void printNotSatisfyTheCondition() {
+        FizzBuzz.executeByCount(1);
+        assertEquals("1", FizzBuzz.getResults()[1]);
+    }
+    @Test
+    public void print100thCountResult() {
+        FizzBuzz.executeByCount(100);
+        assertEquals("Buzz", FizzBuzz.getResults()[100]);
+    }
+    @Test
+    public void print30thCountResult() {
+        FizzBuzz.executeByCount(30);
+        assertEquals("FizzBuzz", FizzBuzz.getResults()[30]);
     }
 }
   
 ```  
-### `Movie.java`
+### `FizzBuzz.java`
   
 ```java
-package refactoring.videorental;
+package tdd.fizzbuzz;
   
-public class Movie {
+public class FizzBuzz {
+    private static String[] results;
   
-    public static final int CHILDRENS = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-  
-    private String _title;
-    private Price _price;
-  
-    public Movie(String title, int priceCode) throws IllegalAccessException {
-        _title = title;
-        setPriceCode(priceCode);
+    public static String[] getResults() {
+        return results;
     }
   
-    public int getPriceCode() {
-        return _price.getPriceCode();
-    }
-  
-    public void setPriceCode(int arg) throws IllegalAccessException {
-        switch (arg) {
-            case REGULAR:
-                _price = new RegularPrice();
-                break;
-            case CHILDRENS:
-                _price = new ChildrensPrice();
-                break;
-            case NEW_RELEASE:
-                _price = new NewReleasePrice();
-                break;
-            default:
-                throw new IllegalAccessException("不正な料金コード");
+    private static String execute(int number) {
+        if (number % 3 == 0 && number % 5 == 0) {
+            return "FizzBuzz";
+        } else if (number % 5 == 0) {
+            return "Buzz";
+        } else if (number % 3 == 0) {
+            return "Fizz";
+        } else {
+            return String.valueOf(number);
         }
     }
   
-    public String getTitle() {
-        return _title;
-    }
-    double getCharge(int daysRented) {
-        return _price.getCharge(daysRented);
-    }
-    int getFrequentRenterPoints(int daysRented) {
-        return _price.getFrequentRenterPoints(daysRented);
-    }
-}
-  
-```  
-### `Price.java`
-  
-```java
-package refactoring.videorental;
-  
-abstract class Price {
-    abstract int getPriceCode();
-  
-    abstract double getCharge(int daysRented);
-  
-    int getFrequentRenterPoints(int daysRented) {
-        return 1;
-    }
-}
-  
-```  
-### `ChildrensPrice.java`
-  
-```java
-package refactoring.videorental;
-  
-class ChildrensPrice extends Price {
-    int getPriceCode() {
-        return Movie.CHILDRENS;
-    }
-  
-    double getCharge(int daysRented) {
-        double result = 1.5;
-        if (daysRented > 3)
-            result += (daysRented - 3) * 1.5;
-        return result;
-    }
-}
-  
-```  
-### `NewReleasePrice.java`
-  
-```java
-package refactoring.videorental;
-  
-class NewReleasePrice extends Price {
-    int getPriceCode() {
-        return Movie.NEW_RELEASE;
-    }
-  
-    double getCharge(int daysRented) {
-        return daysRented * 3;
-    }
-  
-    int getFrequentRenterPoints(int daysRented) {
-        return (daysRented > 1) ? 2 : 1;
-    }
-}
-  
-```  
-### `RegularPrice.java`
-  
-```java
-package refactoring.videorental;
-  
-class RegularPrice extends Price {
-    int getPriceCode() {
-        return Movie.REGULAR;
-    }
-  
-    double getCharge(int daysRented) {
-        double result = 2;
-        if (daysRented > 2)
-            result += (daysRented - 2) * 1.5;
-        return result;
-    }
-}
-  
-```  
-### `Rental.java`
-  
-```java
-package refactoring.videorental;
-  
-class Rental {
-    private Movie _movie;
-    private int _daysRented;
-  
-    public Rental(Movie movie, int daysRented) {
-        _movie = movie;
-        _daysRented = daysRented;
-    }
-    public int getDaysRented() {
-        return _daysRented;
-    }
-    public Movie getMovie() {
-        return _movie;
-    }
-    double getCharge() {
-        return _movie.getCharge(_daysRented);
-    }
-    int getFrequentRenterPoints() {
-        return _movie.getFrequentRenterPoints(_daysRented);
-    }
-}
-  
-```  
-### `Customer.java`
-  
-```java
-package refactoring.videorental;
-  
-  
-import java.util.Enumeration;
-import java.util.Vector;
-  
-class Customer {
-    private String _name;
-    private Vector _rentals = new Vector();
-  
-    public Customer(String name) {
-        _name = name;
-    }
-  
-    public void addRental(Rental arg) {
-        _rentals.addElement(arg);
-    }
-    public String getName() {
-        return _name;
-    }
-    public String statement() {
-        Enumeration rentals = _rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
-        while(rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-  
-            //この貸し出しに関する数値の表示
-            result += "\t" + each.getMovie().getTitle() + "\t" +
-                    String.valueOf(each.getCharge()) + "\n";
+    public static void executeByCount(int count) {
+        results = new String[count + 1];
+        for (int i = 0; i <= count; ++i) {
+            results[i] = FizzBuzz.execute(i);
         }
-        //フッタ部分の追加
-        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
-        return result;
-    }
-  
-    public String htmlStatement() {
-        Enumeration rentals = _rentals.elements();
-        String result = "<H1>Rental Record for <EM>" + getName() + "</EM></H1><P>\n";
-        while(rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-  
-            //この貸し出しに関する数値の表示
-            result += each.getMovie().getTitle() + ": " +
-                    String.valueOf(each.getCharge()) + "<BR>\n";
-        }
-        //フッタ部分の追加
-        result += "<P>Amount owed <EM> " + String.valueOf(getTotalCharge()) + "</EM><P>\n";
-        result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) + "</EM> frequent renter points<P>";
-        return result;
-    }
-  
-    private double getTotalCharge() {
-        double result = 0;
-        Enumeration rentals = _rentals.elements();
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += each.getCharge();
-        }
-        return result;
-    }
-  
-    private int getTotalFrequentRenterPoints() {
-        int result = 0;
-        Enumeration rentals = _rentals.elements();
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += each.getFrequentRenterPoints();
-        }
-        return result;
     }
 }
   
 ```  
+  
   
