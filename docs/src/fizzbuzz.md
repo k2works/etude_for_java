@@ -58,6 +58,10 @@ FizzBuzzExecutor -> FizzBuzz
 ```
 
 ## 実装
+### ふりかえり
++ 単一責任の原則(SRP)に従って設計を変更した
++ リファクタリング（クラスの抽出）を実施して繰り返し実行するクラスを新規に作成した
++ 抽出したクラスに対してリファクタリング（フィールドの移動とメソッドの移動）を実施してテストが壊れていないことを確認した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
