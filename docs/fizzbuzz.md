@@ -22,24 +22,19 @@
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
 + [x] ~~出力された値を全て保持する~~
 + [x] ~~必要なものだけを公開するようにする~~
++ [ ] **繰り返し実行する部分を分離する**
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.9946724628762669)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b0.png?0.2330469346778128)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.5501460698044596)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b1.png?0.2159443224076032)  
   
 ## 実装
   
-### ふりかえり
-  
-+ 配列を使って値を保持できるようにした
-+ 必要なものだけを公開するための準備にテストを修正した
-+ クラスに変数を使って値を保持できるようにした
-+ アクセス修飾子とゲッターを使って必要な機能だけ外部に公開するようにした
   
 ### `FizzBuzzTest.java`
   
@@ -87,13 +82,13 @@ public class FizzBuzzTest {
     }
     @Test
     public void print100thCountResult() {
-        FizzBuzz.executeByCount(100);
-        assertEquals("Buzz", FizzBuzz.getResults()[100]);
+        FizzBuzzExecutor.executeByCount(100);
+        assertEquals("Buzz", FizzBuzzExecutor.getResults()[100]);
     }
     @Test
     public void print30thCountResult() {
-        FizzBuzz.executeByCount(30);
-        assertEquals("FizzBuzz", FizzBuzz.getResults()[30]);
+        FizzBuzzExecutor.executeByCount(30);
+        assertEquals("FizzBuzz", FizzBuzzExecutor.getResults()[30]);
     }
 }
   

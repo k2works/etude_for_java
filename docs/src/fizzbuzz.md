@@ -24,36 +24,39 @@ markdown:
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
 + [x] ~~出力された値を全て保持する~~
 + [x] ~~必要なものだけを公開するようにする~~
++ [ ] **繰り返し実行する部分を分離する**
 
 ### クラス図
 ```puml
 @startuml
-class FizzBuzz {
+class FizzBuzzExecutor {
   -results :String[ ]
-  +getResults() :String[]
-  -execute(number:int) :String
+  +getResults() :String[]  
   +excueteByCount(count:int) :String[]
 }
+class FizzBuzz {
+  -execute(number:int) :String
+}
+
+FizzBuzzExecutor -> FizzBuzz
 @enduml
 ```
 ### シーケンス図
 ```puml
 @startuml
-   activate FizzBuzz
-   -> FizzBuzz :executeByCount
+   activate FizzBuzzExecutor
+   -> FizzBuzzExecutor :executeByCount
    loop for each count
-      FizzBuzz -> FizzBuzz :execute
+      FizzBuzzExecutor -> FizzBuzz :execute
+      activate FizzBuzz
+        FizzBuzzExecutor <-- FizzBuzz :stringValue
+      deactivate FizzBuzz
    end
    deactivate FizzBuzz
 @enduml
 ```
 
 ## 実装
-### ふりかえり
-+ 配列を使って値を保持できるようにした
-+ 必要なものだけを公開するための準備にテストを修正した
-+ クラスに変数を使って値を保持できるようにした
-+ アクセス修飾子とゲッターを使って必要な機能だけ外部に公開するようにした
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"

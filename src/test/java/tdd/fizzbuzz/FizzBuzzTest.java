@@ -41,12 +41,12 @@ public class FizzBuzzTest {
     }
     @Test
     public void print100thCountResult() {
-        FizzBuzz.executeByCount(100);
-        assertEquals("Buzz", FizzBuzz.getResults()[100]);
+        FizzBuzzExecutor.executeByCount(100);
+        assertEquals("Buzz", FizzBuzzExecutor.getResults()[100]);
     }
     @Test
     public void print30thCountResult() {
-        FizzBuzz.executeByCount(30);
-        assertEquals("FizzBuzz", FizzBuzz.getResults()[30]);
+        FizzBuzzExecutor.executeByCount(30);
+        assertEquals("FizzBuzz", FizzBuzzExecutor.getResults()[30]);
     }
 }
