@@ -22,16 +22,16 @@
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
 + [x] ~~出力された値を全て保持する~~
 + [x] ~~必要なものだけを公開するようにする~~
-+ [ ] **繰り返し実行する部分を分離する**
++ [x] ~~繰り返し実行する部分を分離する~~
   
 ### クラス図
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b0.png?0.2330469346778128)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.19264454263325437)  
 ### シーケンス図
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b1.png?0.2159443224076032)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.31856369242089455)  
   
 ## 実装
   
@@ -47,38 +47,38 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FizzBuzzTest {
     @Test
     public void printFizz() {
-        FizzBuzz.executeByCount(3);
-        assertEquals("Fizz", FizzBuzz.getResults()[3]);
+        FizzBuzzExecutor.executeByCount(3);
+        assertEquals("Fizz", FizzBuzzExecutor.getResults()[3]);
     }
     @Test
     public void notPrintFizz() {
-        FizzBuzz.executeByCount(4);
-        assertNotEquals("Fizz", FizzBuzz.getResults()[4]);
+        FizzBuzzExecutor.executeByCount(4);
+        assertNotEquals("Fizz", FizzBuzzExecutor.getResults()[4]);
     }
     @Test
     public void printBuzz() {
-        FizzBuzz.executeByCount(5);
-        assertEquals("Buzz", FizzBuzz.getResults()[5]);
+        FizzBuzzExecutor.executeByCount(5);
+        assertEquals("Buzz", FizzBuzzExecutor.getResults()[5]);
     }
     @Test
     public void notPrintBuzz() {
-        FizzBuzz.executeByCount(6);
-        assertNotEquals("Buzz", FizzBuzz.getResults()[6]);
+        FizzBuzzExecutor.executeByCount(6);
+        assertNotEquals("Buzz", FizzBuzzExecutor.getResults()[6]);
     }
     @Test
     public void printFizzBuzz() {
-        FizzBuzz.executeByCount(15);
-        assertEquals("FizzBuzz", FizzBuzz.getResults()[15]);
+        FizzBuzzExecutor.executeByCount(15);
+        assertEquals("FizzBuzz", FizzBuzzExecutor.getResults()[15]);
     }
     @Test
     public void notPrintFizzBuzz() {
-        FizzBuzz.executeByCount(20);
-        assertEquals("Buzz", FizzBuzz.getResults()[20]);
+        FizzBuzzExecutor.executeByCount(20);
+        assertEquals("Buzz", FizzBuzzExecutor.getResults()[20]);
     }
     @Test
     public void printNotSatisfyTheCondition() {
-        FizzBuzz.executeByCount(1);
-        assertEquals("1", FizzBuzz.getResults()[1]);
+        FizzBuzzExecutor.executeByCount(1);
+        assertEquals("1", FizzBuzzExecutor.getResults()[1]);
     }
     @Test
     public void print100thCountResult() {
@@ -99,13 +99,7 @@ public class FizzBuzzTest {
 package tdd.fizzbuzz;
   
 public class FizzBuzz {
-    private static String[] results;
-  
-    public static String[] getResults() {
-        return results;
-    }
-  
-    private static String execute(int number) {
+    public static String execute(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return "FizzBuzz";
         } else if (number % 5 == 0) {
@@ -115,6 +109,20 @@ public class FizzBuzz {
         } else {
             return String.valueOf(number);
         }
+    }
+}
+  
+```  
+### `FizzBuzzExecutor.java`
+  
+```java
+package tdd.fizzbuzz;
+  
+public class FizzBuzzExecutor {
+    private static String[] results;
+  
+    public static String[] getResults() {
+        return results;
     }
   
     public static void executeByCount(int count) {
@@ -126,5 +134,6 @@ public class FizzBuzz {
 }
   
 ```  
+  
   
   

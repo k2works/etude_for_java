@@ -6,38 +6,38 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FizzBuzzTest {
     @Test
     public void printFizz() {
-        FizzBuzz.executeByCount(3);
-        assertEquals("Fizz", FizzBuzz.getResults()[3]);
+        FizzBuzzExecutor.executeByCount(3);
+        assertEquals("Fizz", FizzBuzzExecutor.getResults()[3]);
     }
     @Test
     public void notPrintFizz() {
-        FizzBuzz.executeByCount(4);
-        assertNotEquals("Fizz", FizzBuzz.getResults()[4]);
+        FizzBuzzExecutor.executeByCount(4);
+        assertNotEquals("Fizz", FizzBuzzExecutor.getResults()[4]);
     }
     @Test
     public void printBuzz() {
-        FizzBuzz.executeByCount(5);
-        assertEquals("Buzz", FizzBuzz.getResults()[5]);
+        FizzBuzzExecutor.executeByCount(5);
+        assertEquals("Buzz", FizzBuzzExecutor.getResults()[5]);
     }
     @Test
     public void notPrintBuzz() {
-        FizzBuzz.executeByCount(6);
-        assertNotEquals("Buzz", FizzBuzz.getResults()[6]);
+        FizzBuzzExecutor.executeByCount(6);
+        assertNotEquals("Buzz", FizzBuzzExecutor.getResults()[6]);
     }
     @Test
     public void printFizzBuzz() {
-        FizzBuzz.executeByCount(15);
-        assertEquals("FizzBuzz", FizzBuzz.getResults()[15]);
+        FizzBuzzExecutor.executeByCount(15);
+        assertEquals("FizzBuzz", FizzBuzzExecutor.getResults()[15]);
     }
     @Test
     public void notPrintFizzBuzz() {
-        FizzBuzz.executeByCount(20);
-        assertEquals("Buzz", FizzBuzz.getResults()[20]);
+        FizzBuzzExecutor.executeByCount(20);
+        assertEquals("Buzz", FizzBuzzExecutor.getResults()[20]);
     }
     @Test
     public void printNotSatisfyTheCondition() {
-        FizzBuzz.executeByCount(1);
-        assertEquals("1", FizzBuzz.getResults()[1]);
+        FizzBuzzExecutor.executeByCount(1);
+        assertEquals("1", FizzBuzzExecutor.getResults()[1]);
     }
     @Test
     public void print100thCountResult() {

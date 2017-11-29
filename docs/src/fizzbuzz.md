@@ -24,7 +24,7 @@ markdown:
 + [x] ~~指定された回数だけ繰り返し実行する場合のテストを作成する~~
 + [x] ~~出力された値を全て保持する~~
 + [x] ~~必要なものだけを公開するようにする~~
-+ [ ] **繰り返し実行する部分を分離する**
++ [x] ~~繰り返し実行する部分を分離する~~
 
 ### クラス図
 ```puml
@@ -35,7 +35,7 @@ class FizzBuzzExecutor {
   +excueteByCount(count:int) :String[]
 }
 class FizzBuzz {
-  -execute(number:int) :String
+  +execute(number:int) :String
 }
 
 FizzBuzzExecutor -> FizzBuzz
@@ -52,7 +52,8 @@ FizzBuzzExecutor -> FizzBuzz
         FizzBuzzExecutor <-- FizzBuzz :stringValue
       deactivate FizzBuzz
    end
-   deactivate FizzBuzz
+   <-- FizzBuzzExecutor :stringArray
+   deactivate FizzBuzzExecutor
 @enduml
 ```
 
@@ -62,4 +63,7 @@ FizzBuzzExecutor -> FizzBuzz
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
 ### `FizzBuzz.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzz.java"
+### `FizzBuzzExecutor.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
+
 
