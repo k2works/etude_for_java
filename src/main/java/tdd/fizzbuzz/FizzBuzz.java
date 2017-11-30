@@ -1,9 +1,12 @@
 package tdd.fizzbuzz;
 
 public class FizzBuzz extends FizzBuzzValue {
+
+    public static final String FIZZ_BUZZ = "FizzBuzz";
+
     public FizzBuzz(int number) {
         _number = number;
-        _value = "FizzBuzz";
+        _value = FIZZ_BUZZ;
     }
 
     @Override

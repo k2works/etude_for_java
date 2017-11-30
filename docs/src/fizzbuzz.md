@@ -83,6 +83,9 @@ FizzBuzzValue <|-- NullValue
 + ValueObjectパターンを導入した
 + メンバ変数にプロテクティッドタイプを使って継承したクラスでだけ使えるようにした
 + 条件に該当しないケースた対応するためNullObjectパターンを導入した
++ オブジェクト配列を返すので文字型からObject型に配列の定義を変更した
++ 配列を受け取る際に元のオブジェクトが何かを明示すひ必要があるので型のキャストを実行した
++ リファクタリング（ローカル変数の抽出・マジックナンバーからシンボル定数へ）を実施した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
