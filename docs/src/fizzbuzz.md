@@ -26,6 +26,7 @@ markdown:
 + [x] ~~必要なものだけを公開するようにする~~
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
++ [ ] **オブジェクトを返すようにする**
 
 ### クラス図
 ```puml
@@ -36,15 +37,23 @@ class FizzBuzzExecutor {
   +excueteByCount(count:int) :String[]
 }
 abstract class FizzBuzzValue {
+  -number :Int
+  -value  :String
   +execute() :String
 }
 class FizzBuzz {
+  -number :Int
+  -value  :String  
   +execute() :String
 }
 class Fizz {
+  -number :Int
+  -value  :String  
   +execute() :String
 }
 class Buzz {
+  -number :Int
+  -value  :String  
   +execute() :String  
 }
 FizzBuzzExecutor -> FizzBuzzValue
@@ -62,21 +71,15 @@ FizzBuzzValue <|-- FizzBuzz
    loop for each count
       FizzBuzzExecutor -> FizzBuzzValue :execute
       activate FizzBuzzValue
-        FizzBuzzExecutor <-- FizzBuzzValue :stringValue
+        FizzBuzzExecutor <-- FizzBuzzValue :FizzBuzzValue
       deactivate FizzBuzzValue
    end
-   <-- FizzBuzzExecutor :stringArray
+   <-- FizzBuzzExecutor :objectArray
    deactivate FizzBuzzExecutor
 @enduml
 ```
 
 ## 実装
-###ふりかえり
-+ オープン・クローズドの原則(OCP)に従い設計を変更した
-+ 抽象クラスを作成した
-+ 抽象クラスを継承したクラスを作成するにあたってインスタンスを生成するようにした
-+ 文字列を返す仕様は変更していないのでテストを壊すことなくアプリケーション構造を変更した
-+ 単一責任の原則(SRP)に従いファクトリメソッドにインスタンス生成判定をメソッド移動した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"

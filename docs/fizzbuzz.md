@@ -24,25 +24,19 @@
 + [x] ~~必要なものだけを公開するようにする~~
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
++ [ ] **オブジェクトを返すようにする**
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.30787987220899304)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.5126498026680886)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.598274863653192)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.28571632574818606)  
   
 ## 実装
   
-### ふりかえり
-  
-+ オープン・クローズドの原則(OCP)に従い設計を変更した
-+ 抽象クラスを作成した
-+ 抽象クラスを継承したクラスを作成するにあたってインスタンスを生成するようにした
-+ 文字列を返す仕様は変更していないのでテストを壊すことなくアプリケーション構造を変更した
-+ 単一責任の原則(SRP)に従いファクトリメソッドにインスタンス生成判定をメソッド移動した
   
 ### `FizzBuzzTest.java`
   
@@ -107,15 +101,18 @@ public class FizzBuzzTest {
 package tdd.fizzbuzz;
   
 abstract class FizzBuzzValue {
+    private int _number;
+    private String _value;
+  
     abstract String execute();
   
     static FizzBuzzValue makeFizzBuzzValue(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
-            return new FizzBuzz();
+            return new FizzBuzz(number);
         } else if (number % 5 == 0) {
-            return new Buzz();
+            return new Buzz(number);
         } else if (number % 3 == 0) {
-            return new Fizz();
+            return new Fizz(number);
         } else {
             return null;
         }
@@ -129,6 +126,10 @@ abstract class FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class FizzBuzz extends FizzBuzzValue {
+    public FizzBuzz(int number) {
+        super();
+    }
+  
     @Override
     String execute() {
         return "FizzBuzz";
@@ -142,6 +143,10 @@ public class FizzBuzz extends FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class Fizz extends FizzBuzzValue {
+    public Fizz(int number) {
+        super();
+    }
+  
     @Override
     String execute() {
         return "Fizz";
@@ -155,6 +160,10 @@ public class Fizz extends FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class Buzz extends FizzBuzzValue {
+    public Buzz(int number) {
+        super();
+    }
+  
     @Override
     String execute() {
         return "Buzz";
