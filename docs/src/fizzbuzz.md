@@ -26,7 +26,7 @@ markdown:
 + [x] ~~必要なものだけを公開するようにする~~
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
-+ [ ] **オブジェクトを返すようにする**
++ [x] ~~オブジェクトを返すようにする~~
 
 ### クラス図
 ```puml
@@ -40,15 +40,18 @@ abstract class FizzBuzzValue {
   #number :Int
   #value  :String
   +execute() :String
+  +{static} makeFizzBuzzValue()
 }
 class FizzBuzz {
+  #{static} FIZZ_BUZZ = "fizz_buzz"
   +execute() :String
 }
 class Fizz {
-
+  #{static} FIZZ = "fizz"
   +execute() :String
 }
 class Buzz {
+  #{static} BUZZ = "buzz"  
   +execute() :String  
 }
 class NullValue {

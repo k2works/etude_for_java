@@ -24,16 +24,16 @@
 + [x] ~~必要なものだけを公開するようにする~~
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
-+ [ ] **オブジェクトを返すようにする**
++ [x] ~~オブジェクトを返すようにする~~
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.9053063069169198)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.16467176386997417)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.5073297490685269)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.10912989986891652)  
   
 ## 実装
   
@@ -42,6 +42,9 @@
 + ValueObjectパターンを導入した
 + メンバ変数にプロテクティッドタイプを使って継承したクラスでだけ使えるようにした
 + 条件に該当しないケースた対応するためNullObjectパターンを導入した
++ オブジェクト配列を返すので文字型からObject型に配列の定義を変更した
++ 配列を受け取る際に元のオブジェクトが何かを明示すひ必要があるので型のキャストを実行した
++ リファクタリング（ローカル変数の抽出・マジックナンバーからシンボル定数へ）を実施した
   
 ### `FizzBuzzTest.java`
   
@@ -54,48 +57,65 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FizzBuzzTest {
     @Test
     public void printFizz() {
-        FizzBuzzExecutor.executeByCount(3);
-        assertEquals("Fizz", FizzBuzzExecutor.getResults()[3]);
+        int count = 3;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("Fizz", value.execute());
     }
     @Test
     public void notPrintFizz() {
-        FizzBuzzExecutor.executeByCount(4);
-        assertNotEquals("Fizz", FizzBuzzExecutor.getResults()[4]);
+        int count = 4;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertNotEquals("Fizz", value.execute());
     }
     @Test
     public void printBuzz() {
-        FizzBuzzExecutor.executeByCount(5);
-        assertEquals("Buzz", FizzBuzzExecutor.getResults()[5]);
+        int count = 5;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("Buzz", value.execute());
     }
     @Test
     public void notPrintBuzz() {
         FizzBuzzExecutor.executeByCount(6);
-        assertNotEquals("Buzz", FizzBuzzExecutor.getResults()[6]);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[6];
+        assertNotEquals("Buzz", value.execute());
     }
     @Test
     public void printFizzBuzz() {
-        FizzBuzzExecutor.executeByCount(15);
-        assertEquals("FizzBuzz", FizzBuzzExecutor.getResults()[15]);
+        int count = 15;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("FizzBuzz", value.execute());
     }
     @Test
     public void notPrintFizzBuzz() {
-        FizzBuzzExecutor.executeByCount(20);
-        assertEquals("Buzz", FizzBuzzExecutor.getResults()[20]);
+        int count = 20;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("Buzz", value.execute());
     }
     @Test
     public void printNotSatisfyTheCondition() {
-        FizzBuzzExecutor.executeByCount(1);
-        assertEquals("1", FizzBuzzExecutor.getResults()[1]);
+        int count = 1;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("1", value.execute());
     }
     @Test
     public void print100thCountResult() {
-        FizzBuzzExecutor.executeByCount(100);
-        assertEquals("Buzz", FizzBuzzExecutor.getResults()[100]);
+        int count = 100;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("Buzz", value.execute());
     }
     @Test
     public void print30thCountResult() {
-        FizzBuzzExecutor.executeByCount(30);
-        assertEquals("FizzBuzz", FizzBuzzExecutor.getResults()[30]);
+        int count = 30;
+        FizzBuzzExecutor.executeByCount(count);
+        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        assertEquals("FizzBuzz", value.execute());
     }
 }
   
@@ -131,9 +151,12 @@ abstract class FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class FizzBuzz extends FizzBuzzValue {
+  
+    public static final String FIZZ_BUZZ = "FizzBuzz";
+  
     public FizzBuzz(int number) {
         _number = number;
-        _value = "FizzBuzz";
+        _value = FIZZ_BUZZ;
     }
   
     @Override
@@ -149,9 +172,12 @@ public class FizzBuzz extends FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class Fizz extends FizzBuzzValue {
+  
+    public static final String FIZZ = "Fizz";
+  
     public Fizz(int number) {
         _number = number;
-        _value = "Fizz";
+        _value = FIZZ;
     }
   
     @Override
@@ -167,9 +193,12 @@ public class Fizz extends FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class Buzz extends FizzBuzzValue {
+  
+    public static final String BUZZ = "Buzz";
+  
     public Buzz(int number) {
         _number = number;
-        _value = "Buzz";
+        _value = BUZZ;
     }
   
     @Override
@@ -202,18 +231,17 @@ public class NullValue extends FizzBuzzValue {
 package tdd.fizzbuzz;
   
 public class FizzBuzzExecutor {
-    private static String[] results;
+    private static Object[] results;
   
-    public static String[] getResults() {
+    public static Object[] getResults() {
         return results;
     }
   
     public static void executeByCount(int count) {
-        FizzBuzzValue value;
-        results = new String[count + 1];
+        results = new Object[count + 1];
         for (int i = 0; i <= count; ++i) {
-            value = FizzBuzzValue.makeFizzBuzzValue(i);
-            results[i] = value.execute();
+            FizzBuzzValue value = FizzBuzzValue.makeFizzBuzzValue(i);
+            results[i] = value;
         }
     }
 }
