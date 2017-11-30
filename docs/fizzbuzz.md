@@ -94,22 +94,51 @@ public class FizzBuzzTest {
 }
   
 ```  
+### `FizzBuzzValue.java`
+  
+```java
+package tdd.fizzbuzz;
+  
+abstract class FizzBuzzValue {
+    abstract String execute();
+}
+  
+```  
 ### `FizzBuzz.java`
   
 ```java
 package tdd.fizzbuzz;
   
-public class FizzBuzz {
-    public static String execute(int number) {
-        if (number % 3 == 0 && number % 5 == 0) {
-            return "FizzBuzz";
-        } else if (number % 5 == 0) {
-            return "Buzz";
-        } else if (number % 3 == 0) {
-            return "Fizz";
-        } else {
-            return String.valueOf(number);
-        }
+public class FizzBuzz extends FizzBuzzValue {
+    @Override
+    String execute() {
+        return "FizzBuzz";
+    }
+}
+  
+```  
+### `Fizz.java`
+  
+```java
+package tdd.fizzbuzz;
+  
+public class Fizz extends FizzBuzzValue {
+    @Override
+    String execute() {
+        return "Fizz";
+    }
+}
+  
+```  
+### `Buzz.java`
+  
+```java
+package tdd.fizzbuzz;
+  
+public class Buzz extends FizzBuzzValue {
+    @Override
+    String execute() {
+        return "Buzz";
     }
 }
   
@@ -127,9 +156,25 @@ public class FizzBuzzExecutor {
     }
   
     public static void executeByCount(int count) {
+        FizzBuzzValue value;
         results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-            results[i] = FizzBuzz.execute(i);
+  
+            if (i % 3 == 0 && i % 5 == 0) {
+                value = new FizzBuzz();
+            } else if (i % 5 == 0) {
+                value = new Buzz();
+            } else if (i % 3 == 0) {
+                value = new Fizz();
+            } else {
+                value = null;
+            }
+  
+            if (value == null) {
+                results[i] = String.valueOf(i);
+            } else {
+                results[i] = value.execute();
+            }
         }
     }
 }

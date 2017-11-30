@@ -74,8 +74,14 @@ FizzBuzzValue <|-- FizzBuzz
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
+### `FizzBuzzValue.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValue.java"
 ### `FizzBuzz.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzz.java"
+### `Fizz.java`
+@import "../../src/main/java/tdd/fizzbuzz/Fizz.java"
+### `Buzz.java`
+@import "../../src/main/java/tdd/fizzbuzz/Buzz.java"
 ### `FizzBuzzExecutor.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
 
