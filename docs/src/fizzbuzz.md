@@ -25,6 +25,7 @@ markdown:
 + [x] ~~出力された値を全て保持する~~
 + [x] ~~必要なものだけを公開するようにする~~
 + [x] ~~繰り返し実行する部分を分離する~~
++ [ ] **新しい条件を追加しやすくする**
 
 ### クラス図
 ```puml
@@ -34,11 +35,23 @@ class FizzBuzzExecutor {
   +getResults() :String[]  
   +excueteByCount(count:int) :String[]
 }
+abstract class FizzBuzzValue {
+  +execute(number:int) :String
+}
 class FizzBuzz {
   +execute(number:int) :String
 }
+class Fizz {
+  +execute(number:int) :String
+}
+class Buzz {
+  +execute(number:int) :String  
+}
+FizzBuzzExecutor -> FizzBuzzValue
+FizzBuzzValue <|-- Fizz
+FizzBuzzValue <|-- Buzz
+FizzBuzzValue <|-- FizzBuzz
 
-FizzBuzzExecutor -> FizzBuzz
 @enduml
 ```
 ### シーケンス図
@@ -47,10 +60,10 @@ FizzBuzzExecutor -> FizzBuzz
    activate FizzBuzzExecutor
    -> FizzBuzzExecutor :executeByCount
    loop for each count
-      FizzBuzzExecutor -> FizzBuzz :execute
-      activate FizzBuzz
-        FizzBuzzExecutor <-- FizzBuzz :stringValue
-      deactivate FizzBuzz
+      FizzBuzzExecutor -> FizzBuzzValue :execute
+      activate FizzBuzzValue
+        FizzBuzzExecutor <-- FizzBuzzValue :stringValue
+      deactivate FizzBuzzValue
    end
    <-- FizzBuzzExecutor :stringArray
    deactivate FizzBuzzExecutor
@@ -58,10 +71,6 @@ FizzBuzzExecutor -> FizzBuzz
 ```
 
 ## 実装
-### ふりかえり
-+ 単一責任の原則(SRP)に従って設計を変更した
-+ リファクタリング（クラスの抽出）を実施して繰り返し実行するクラスを新規に作成した
-+ 抽出したクラスに対してリファクタリング（フィールドの移動とメソッドの移動）を実施してテストが壊れていないことを確認した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
