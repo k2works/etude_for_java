@@ -6,6 +6,7 @@
 ### [イテレーション３](https://github.com/k2works/etude_for_java/blob/f5fce692d24dde9546c371193560a4463881b3de/docs/fizzbuzz.md)
 ### [イテレーション４](https://github.com/k2works/etude_for_java/blob/a3a67d0ab845aa08b44bb81f9eda0b7c805765ad/docs/fizzbuzz.md)
 ### [イテレーション５](https://github.com/k2works/etude_for_java/blob/8c6ed3e2b0e5b151eda7e4b93d8ae66da814981c/docs/fizzbuzz.md)
+### [イテレーション６](https://github.com/k2works/etude_for_java/blob/895f5bd21def0d26ce69302458c8f5fcc65c56b3/docs/fizzbuzz.md)
 
 ## [テスト駆動開発](./TDD.md)
 
