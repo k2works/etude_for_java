@@ -1,8 +1,8 @@
 package tdd.fizzbuzz;
 
 abstract class FizzBuzzValue {
-    private int _number;
-    private String _value;
+    protected int _number;
+    protected String _value;
 
     abstract String execute();
 
@@ -14,7 +14,7 @@ abstract class FizzBuzzValue {
         } else if (number % 3 == 0) {
             return new Fizz(number);
         } else {
-            return null;
+            return new NullValue(number);
         }
     }
 }

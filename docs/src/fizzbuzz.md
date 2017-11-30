@@ -37,29 +37,28 @@ class FizzBuzzExecutor {
   +excueteByCount(count:int) :String[]
 }
 abstract class FizzBuzzValue {
-  -number :Int
-  -value  :String
+  #number :Int
+  #value  :String
   +execute() :String
 }
 class FizzBuzz {
-  -number :Int
-  -value  :String  
   +execute() :String
 }
 class Fizz {
-  -number :Int
-  -value  :String  
+
   +execute() :String
 }
 class Buzz {
-  -number :Int
-  -value  :String  
+  +execute() :String  
+}
+class NullValue {
   +execute() :String  
 }
 FizzBuzzExecutor -> FizzBuzzValue
 FizzBuzzValue <|-- Fizz
 FizzBuzzValue <|-- Buzz
 FizzBuzzValue <|-- FizzBuzz
+FizzBuzzValue <|-- NullValue
 
 @enduml
 ```
@@ -80,6 +79,10 @@ FizzBuzzValue <|-- FizzBuzz
 ```
 
 ## 実装
+### ふりかえり
++ ValueObjectパターンを導入した
++ メンバ変数にプロテクティッドタイプを使って継承したクラスでだけ使えるようにした
++ 条件に該当しないケースた対応するためNullObjectパターンを導入した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
@@ -91,6 +94,8 @@ FizzBuzzValue <|-- FizzBuzz
 @import "../../src/main/java/tdd/fizzbuzz/Fizz.java"
 ### `Buzz.java`
 @import "../../src/main/java/tdd/fizzbuzz/Buzz.java"
+### `NullValue.java`
+@import "../../src/main/java/tdd/fizzbuzz/NullValue.java"
 ### `FizzBuzzExecutor.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
 

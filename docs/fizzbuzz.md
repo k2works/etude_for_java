@@ -29,14 +29,19 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.5126498026680886)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.9053063069169198)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.28571632574818606)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.5073297490685269)  
   
 ## 実装
   
+### ふりかえり
+  
++ ValueObjectパターンを導入した
++ メンバ変数にプロテクティッドタイプを使って継承したクラスでだけ使えるようにした
++ 条件に該当しないケースた対応するためNullObjectパターンを導入した
   
 ### `FizzBuzzTest.java`
   
@@ -101,8 +106,8 @@ public class FizzBuzzTest {
 package tdd.fizzbuzz;
   
 abstract class FizzBuzzValue {
-    private int _number;
-    private String _value;
+    protected int _number;
+    protected String _value;
   
     abstract String execute();
   
@@ -114,7 +119,7 @@ abstract class FizzBuzzValue {
         } else if (number % 3 == 0) {
             return new Fizz(number);
         } else {
-            return null;
+            return new NullValue(number);
         }
     }
 }
@@ -127,12 +132,13 @@ package tdd.fizzbuzz;
   
 public class FizzBuzz extends FizzBuzzValue {
     public FizzBuzz(int number) {
-        super();
+        _number = number;
+        _value = "FizzBuzz";
     }
   
     @Override
     String execute() {
-        return "FizzBuzz";
+        return _value;
     }
 }
   
@@ -144,12 +150,13 @@ package tdd.fizzbuzz;
   
 public class Fizz extends FizzBuzzValue {
     public Fizz(int number) {
-        super();
+        _number = number;
+        _value = "Fizz";
     }
   
     @Override
     String execute() {
-        return "Fizz";
+        return _value;
     }
 }
   
@@ -161,12 +168,30 @@ package tdd.fizzbuzz;
   
 public class Buzz extends FizzBuzzValue {
     public Buzz(int number) {
-        super();
+        _number = number;
+        _value = "Buzz";
     }
   
     @Override
     String execute() {
-        return "Buzz";
+        return _value;
+    }
+}
+  
+```  
+### `NullValue.java`
+  
+```java
+package tdd.fizzbuzz;
+  
+public class NullValue extends FizzBuzzValue {
+    public NullValue(int number) {
+        _number = number;
+        _value = String.valueOf(number);
+    }
+    @Override
+    String execute() {
+        return _value;
     }
 }
   
@@ -188,11 +213,7 @@ public class FizzBuzzExecutor {
         results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
             value = FizzBuzzValue.makeFizzBuzzValue(i);
-            if (value == null) {
-                results[i] = String.valueOf(i);
-            } else {
-                results[i] = value.execute();
-            }
+            results[i] = value.execute();
         }
     }
 }

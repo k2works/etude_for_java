@@ -8,15 +8,10 @@ public class FizzBuzzExecutor {
     }
 
     public static void executeByCount(int count) {
-        FizzBuzzValue value;
         results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-            value = FizzBuzzValue.makeFizzBuzzValue(i);
-            if (value == null) {
-                results[i] = String.valueOf(i);
-            } else {
-                results[i] = value.execute();
-            }
+            FizzBuzzValue value = FizzBuzzValue.makeFizzBuzzValue(i);
+            results[i] = value.execute();
         }
     }
 }
