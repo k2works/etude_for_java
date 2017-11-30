@@ -36,16 +36,16 @@ class FizzBuzzExecutor {
   +excueteByCount(count:int) :String[]
 }
 abstract class FizzBuzzValue {
-  +execute(number:int) :String
+  +execute() :String
 }
 class FizzBuzz {
-  +execute(number:int) :String
+  +execute() :String
 }
 class Fizz {
-  +execute(number:int) :String
+  +execute() :String
 }
 class Buzz {
-  +execute(number:int) :String  
+  +execute() :String  
 }
 FizzBuzzExecutor -> FizzBuzzValue
 FizzBuzzValue <|-- Fizz
@@ -71,6 +71,11 @@ FizzBuzzValue <|-- FizzBuzz
 ```
 
 ## 実装
+###ふりかえり
++ オープン・クローズドの原則(OCP)に従い設計を変更した
++ 抽象クラスを作成した
++ 抽象クラスを継承したクラスを作成するにあたってインスタンスを生成するようにした
++ 文字列を返す仕様は変更していないのでテストを壊すことなくアプリケーション構造を変更した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
