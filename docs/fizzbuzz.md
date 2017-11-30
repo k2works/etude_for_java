@@ -23,16 +23,16 @@
 + [x] ~~出力された値を全て保持する~~
 + [x] ~~必要なものだけを公開するようにする~~
 + [x] ~~繰り返し実行する部分を分離する~~
-+ [ ] **新しい条件を追加しやすくする**
++ [x] ~~新しい条件を追加しやすくする~~
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.9280814673496562)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.30787987220899304)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.2901953619389872)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.598274863653192)  
   
 ## 実装
   
@@ -42,6 +42,7 @@
 + 抽象クラスを作成した
 + 抽象クラスを継承したクラスを作成するにあたってインスタンスを生成するようにした
 + 文字列を返す仕様は変更していないのでテストを壊すことなくアプリケーション構造を変更した
++ 単一責任の原則(SRP)に従いファクトリメソッドにインスタンス生成判定をメソッド移動した
   
 ### `FizzBuzzTest.java`
   
@@ -107,6 +108,18 @@ package tdd.fizzbuzz;
   
 abstract class FizzBuzzValue {
     abstract String execute();
+  
+    static FizzBuzzValue makeFizzBuzzValue(int number) {
+        if (number % 3 == 0 && number % 5 == 0) {
+            return new FizzBuzz();
+        } else if (number % 5 == 0) {
+            return new Buzz();
+        } else if (number % 3 == 0) {
+            return new Fizz();
+        } else {
+            return null;
+        }
+    }
 }
   
 ```  
@@ -165,17 +178,7 @@ public class FizzBuzzExecutor {
         FizzBuzzValue value;
         results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-  
-            if (i % 3 == 0 && i % 5 == 0) {
-                value = new FizzBuzz();
-            } else if (i % 5 == 0) {
-                value = new Buzz();
-            } else if (i % 3 == 0) {
-                value = new Fizz();
-            } else {
-                value = null;
-            }
-  
+            value = FizzBuzzValue.makeFizzBuzzValue(i);
             if (value == null) {
                 results[i] = String.valueOf(i);
             } else {

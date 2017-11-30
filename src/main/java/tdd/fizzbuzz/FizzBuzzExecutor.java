@@ -11,17 +11,7 @@ public class FizzBuzzExecutor {
         FizzBuzzValue value;
         results = new String[count + 1];
         for (int i = 0; i <= count; ++i) {
-
-            if (i % 3 == 0 && i % 5 == 0) {
-                value = new FizzBuzz();
-            } else if (i % 5 == 0) {
-                value = new Buzz();
-            } else if (i % 3 == 0) {
-                value = new Fizz();
-            } else {
-                value = null;
-            }
-
+            value = FizzBuzzValue.makeFizzBuzzValue(i);
             if (value == null) {
                 results[i] = String.valueOf(i);
             } else {
