@@ -27,48 +27,39 @@
 + [x] ~~オブジェクトを返すようにする~~
 + [ ] **オブジェクトを演算できるようにする**
   + [x] <img src="https://latex.codecogs.com/gif.latex?FizzBuzz%20=%20{Fizz}&#x5C;times{Buzz}"/>
-  + [ ] <img src="https://latex.codecogs.com/gif.latex?Buzz%20=%20&#x5C;frac{Fizz}{FizzBuzz}"/>
-  + [ ] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{Buzz}{FizzBuzz}"/>
+  + [ ] <img src="https://latex.codecogs.com/gif.latex?Buzz%20=%20&#x5C;frac{FizzBuzz}{Fizz}"/>
+  + [ ] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{FizzBuzz}{Buzz}"/>
 + [x] ~~equals()~~
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.6471331230957889)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.8983028533358803)  
 ### シーケンス図
   
 #### #executeByCount
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.5875084294756334)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.20216168735632922)  
 #### #times
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.3671251803515936)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.1780558170784381)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.8220048095487791)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.24818821722410878)  
   
 #### #reduce
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.45360463450490895)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.2971188419617259)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.04394123468745903)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.39799201100734716)  
   
   
 ## 実装
   
-### ふりかえり
-  
-+ オブジェクト等価テストをパスするためにequalメソッドを実装した
-+ Expressionインタフェースを導入した
-+ 積の概念を表すオブジェクトを実装した
-+ ポリモーフィズムを使って明示的なクラスチェックを置き換えた
-+ Expressionへの一般化を実施した
-+ 積から直接積を求められるようにした
-+ 積の概念を表すオブジェクトでオブジェクト演算を実行できるようにした
   
 ### `FizzBuzzTest.java`
   
@@ -187,6 +178,13 @@ public class FizzBuzzTest {
         Expression product = new FizzBuzzValueProduct(fizz,buzz).times(fizz);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        assertEquals(fizzBuzz, result);
+    }
+    public void simpleDivision() {
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz.times(buzz));
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
         assertEquals(fizzBuzz, result);
     }
 }

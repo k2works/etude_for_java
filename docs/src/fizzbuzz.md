@@ -29,8 +29,8 @@ markdown:
 + [x] ~~オブジェクトを返すようにする~~
 + [ ] **オブジェクトを演算できるようにする**
   + [x] $FizzBuzz = {Fizz}\times{Buzz}$
-  + [ ] $Buzz = \frac{Fizz}{FizzBuzz}$
-  + [ ] $Fizz = \frac{Buzz}{FizzBuzz}$
+  + [ ] $Buzz = \frac{FizzBuzz}{Fizz}$
+  + [ ] $Fizz = \frac{FizzBuzz}{Buzz}$
 + [x] ~~equals()~~
 
 ### クラス図
@@ -73,6 +73,12 @@ class FizzBuzzValueProduct {
   ~_multiplier
   FizzBuzzValueProduct(augend: Expression, addend: Expression)
   +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
+}
+class FizzBuzzValueQuotient {
+  ~_dividend
+  ~_divisor
+  FizzBuzzValueProduct(augend: Expression, addend: Expression)
   +divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
 }
@@ -88,8 +94,11 @@ FizzBuzzValue <|-- FizzBuzz
 FizzBuzzValue <|-- NullValue
 FizzBuzzValueProduct -- FizzBuzzValue
 FizzBuzzValueProduct <- FizzBuzzExecutor
+FizzBuzzValueQuotient - FizzBuzzValue
+FizzBuzzValueQuotient <-- FizzBuzzExecutor
 Expression <|- FizzBuzzValue
 Expression <|-- FizzBuzzValueProduct
+Expression <|-- FizzBuzzValueQuotient
 
 @enduml
 ```
@@ -168,14 +177,6 @@ Expression <|-- FizzBuzzValueProduct
 
 
 ## 実装
-### ふりかえり
-+ オブジェクト等価テストをパスするためにequalメソッドを実装した
-+ Expressionインタフェースを導入した
-+ 積の概念を表すオブジェクトを実装した
-+ ポリモーフィズムを使って明示的なクラスチェックを置き換えた
-+ Expressionへの一般化を実施した
-+ 積から直接積を求められるようにした
-+ 積の概念を表すオブジェクトでオブジェクト演算を実行できるようにした
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
