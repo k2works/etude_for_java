@@ -97,4 +97,12 @@ public class FizzBuzzTest {
         FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz);
         assertEquals(FizzBuzzValue.makeFizzBuzzValue(3), result);
     }
+    @Test
+    public void mixedMultiple() {
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz.times(buzz));
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        assertEquals(fizzBuzz, result);
+    }
 }

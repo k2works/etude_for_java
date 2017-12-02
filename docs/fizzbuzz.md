@@ -34,20 +34,26 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.4535366069107447)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.06561400989394106)  
 ### シーケンス図
   
 #### #executeByCount
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.747045611207974)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.818247355381275)  
+#### #times
+  
+
+![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.2668289972126727)  
+  
+  
 #### #reduce
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.4576950584791448)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.9076533015668802)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.6655924748286774)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.8974003787917764)  
   
   
 ## 実装
@@ -58,6 +64,7 @@
 + Expressionインタフェースを導入した
 + 積の概念を表すオブジェクトを実装した
 + ポリモーフィズムを使って明示的なクラスチェックを置き換えた
++ Expressionへの一般化を実施した
   
 ### `FizzBuzzTest.java`
   
@@ -148,15 +155,26 @@ public class FizzBuzzTest {
     }
     @Test
     public void reduceProduct() {
-        Expression product = new FizzBuzzValueProduct(FizzBuzzValue.makeFizzBuzzValue(15), FizzBuzzValue.makeFizzBuzzValue(45));
+        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        Expression product = new FizzBuzzValueProduct(fizz,buzz);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
-        assertEquals(FizzBuzzValue.makeFizzBuzzValue(675), result);
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        assertEquals(fizzBuzz, result);
     }
     @Test
     public void reduceValue() {
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz);
         assertEquals(FizzBuzzValue.makeFizzBuzzValue(3), result);
+    }
+    @Test
+    public void mixedMultiple() {
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz.times(buzz));
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        assertEquals(fizzBuzz, result);
     }
 }
   
@@ -194,7 +212,7 @@ abstract class FizzBuzzValue implements Expression {
         return _number + " " + _value;
     }
   
-    public Expression times(FizzBuzzValue multiplier) {
+    public Expression times(Expression multiplier) {
         return new FizzBuzzValueProduct(this, multiplier);
     }
   
@@ -317,6 +335,8 @@ package tdd.fizzbuzz;
   
 public interface Expression {
     FizzBuzzValue reduce();
+  
+    Expression times(Expression multiplier);
 }
   
 ```  
@@ -326,16 +346,21 @@ public interface Expression {
 package tdd.fizzbuzz;
   
 public class FizzBuzzValueProduct implements Expression {
-    FizzBuzzValue _multiplicand;
-    FizzBuzzValue _multiplier;
+    Expression _multiplicand;
+    Expression _multiplier;
   
-    FizzBuzzValueProduct(FizzBuzzValue multiplicand, FizzBuzzValue multiplier) {
+    FizzBuzzValueProduct(Expression multiplicand, Expression multiplier) {
         _multiplicand = multiplicand;
         _multiplier = multiplier;
     }
     public FizzBuzzValue reduce() {
-        int number = _multiplicand._number * _multiplier._number;
+        int number = _multiplicand.reduce()._number * _multiplier.reduce()._number;
         return FizzBuzzValue.makeFizzBuzzValue(number);
+    }
+  
+    @Override
+    public Expression times(Expression multiplier) {
+        return null;
     }
 }
   

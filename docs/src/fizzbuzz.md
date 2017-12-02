@@ -69,8 +69,8 @@ class NullValue {
   +execute() :String  
 }
 class FizzBuzzValueProduct {
-  ~augend
-  ~addend
+  ~_multiplicand
+  ~_multiplier
   FizzBuzzValueProduct(augend: Expression, addend: Expression)
   +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   +divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
@@ -109,6 +109,19 @@ Expression <|-- FizzBuzzValueProduct
    deactivate FizzBuzzExecutor
 @enduml
 ```
+#### #times
+```puml
+@startuml
+   -> FizzBuzzValue :times
+   activate FizzBuzzValueProduct
+      FizzBuzzValue -> FizzBuzzValueProduct :new(FizzBuzzValue, multiplier: Expression)
+      FizzBuzzValueProduct -> FizzBuzzValue :Expression
+   deactivate FizzBuzzValueProduct
+   <-- FizzBuzzValue :Expression
+@enduml
+```
+
+
 #### #reduce
 ```puml
 @startuml
@@ -134,6 +147,10 @@ Expression <|-- FizzBuzzValueProduct
       FizzBuzzExecutor -> FizzBuzzValueProduct :reduce
       activate FizzBuzzValueProduct
         FizzBuzzExecutor <-- FizzBuzzValueProduct :FizzBuzzValue
+          activate FizzBuzzValue
+            FizzBuzzValueProduct -> FizzBuzzValue :reduce
+            FizzBuzzValue --> FizzBuzzValueProduct :FizzBuzzValue
+          deactivate FizzBuzzValue
       deactivate FizzBuzzValue   
    <-- FizzBuzzExecutor :FizzBuzzValue
    deactivate FizzBuzzExecutor
@@ -147,6 +164,7 @@ Expression <|-- FizzBuzzValueProduct
 + Expressionインタフェースを導入した
 + 積の概念を表すオブジェクトを実装した
 + ポリモーフィズムを使って明示的なクラスチェックを置き換えた
++ Expressionへの一般化を実施した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
