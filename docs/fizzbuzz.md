@@ -34,26 +34,28 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.06561400989394106)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.6471331230957889)  
 ### シーケンス図
   
 #### #executeByCount
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.818247355381275)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.5875084294756334)  
 #### #times
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.2668289972126727)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.3671251803515936)  
   
+
+![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.8220048095487791)  
   
 #### #reduce
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.9076533015668802)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.45360463450490895)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.8974003787917764)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.04394123468745903)  
   
   
 ## 実装
@@ -65,6 +67,7 @@
 + 積の概念を表すオブジェクトを実装した
 + ポリモーフィズムを使って明示的なクラスチェックを置き換えた
 + Expressionへの一般化を実施した
++ 積から直接積を求められるようにした
   
 ### `FizzBuzzTest.java`
   
@@ -174,6 +177,15 @@ public class FizzBuzzTest {
         Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz.times(buzz));
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        assertEquals(fizzBuzz, result);
+    }
+    @Test
+    public void productTimesValue() {
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        Expression product = new FizzBuzzValueProduct(fizz,buzz).times(fizz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
         assertEquals(fizzBuzz, result);
     }
 }
@@ -360,7 +372,7 @@ public class FizzBuzzValueProduct implements Expression {
   
     @Override
     public Expression times(Expression multiplier) {
-        return null;
+        return new FizzBuzzValueProduct(this, multiplier);
     }
 }
   

@@ -105,4 +105,13 @@ public class FizzBuzzTest {
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
         assertEquals(fizzBuzz, result);
     }
+    @Test
+    public void productTimesValue() {
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        Expression product = new FizzBuzzValueProduct(fizz,buzz).times(fizz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        assertEquals(fizzBuzz, result);
+    }
 }

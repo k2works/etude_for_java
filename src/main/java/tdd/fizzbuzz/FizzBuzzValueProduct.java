@@ -15,6 +15,6 @@ public class FizzBuzzValueProduct implements Expression {
 
     @Override
     public Expression times(Expression multiplier) {
-        return null;
+        return new FizzBuzzValueProduct(this, multiplier);
     }
 }

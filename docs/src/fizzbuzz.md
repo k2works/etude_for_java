@@ -121,6 +121,15 @@ Expression <|-- FizzBuzzValueProduct
 @enduml
 ```
 
+```puml
+@startuml
+   -> FizzBuzzValueProduct :times
+   activate FizzBuzzValueProduct
+      FizzBuzzValueProduct -> FizzBuzzValueProduct :new(FizzBuzzValueProduct, multiplier: Expression)
+   deactivate FizzBuzzValueProduct
+   <-- FizzBuzzValueProduct :Expression
+@enduml
+```
 
 #### #reduce
 ```puml
@@ -165,6 +174,7 @@ Expression <|-- FizzBuzzValueProduct
 + 積の概念を表すオブジェクトを実装した
 + ポリモーフィズムを使って明示的なクラスチェックを置き換えた
 + Expressionへの一般化を実施した
++ 積から直接積を求められるようにした
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
