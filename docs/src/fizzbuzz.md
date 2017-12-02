@@ -28,7 +28,7 @@ markdown:
 + [x] ~~新しい条件を追加しやすくする~~
 + [x] ~~オブジェクトを返すようにする~~
 + [ ] **オブジェクトを演算できるようにする**
-  + [ ] $FizzBuzz = {Fizz}\times{Buzz}$
+  + [x] $FizzBuzz = {Fizz}\times{Buzz}$
   + [ ] $Buzz = \frac{Fizz}{FizzBuzz}$
   + [ ] $Fizz = \frac{Buzz}{FizzBuzz}$
 + [x] ~~equals()~~
@@ -40,7 +40,7 @@ class FizzBuzzExecutor {
   -results :String[ ]
   +{static}getResults() :String[]  
   +{static}excueteByCount(count:int) :String[]
-  +{static}reduce()
+  +{static}reduce(source :Expression)
 }
 abstract class FizzBuzzValue {
   #number :Int
@@ -68,10 +68,10 @@ class Buzz {
 class NullValue {
   +execute() :String  
 }
-class FizzBuzzValueSum {
+class FizzBuzzValueProduct {
   ~augend
   ~addend
-  FizzBuzzValueSum(augend: Expression, addend: Expression)
+  FizzBuzzValueProduct(augend: Expression, addend: Expression)
   +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   +divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
@@ -86,14 +86,15 @@ FizzBuzzValue <|-- Fizz
 FizzBuzzValue <|-- Buzz
 FizzBuzzValue <|-- FizzBuzz
 FizzBuzzValue <|-- NullValue
-FizzBuzzValueSum -- FizzBuzzValue
-FizzBuzzValueSum <- FizzBuzzExecutor
+FizzBuzzValueProduct -- FizzBuzzValue
+FizzBuzzValueProduct <- FizzBuzzExecutor
 Expression <|- FizzBuzzValue
-Expression <|-- FizzBuzzValueSum
+Expression <|-- FizzBuzzValueProduct
 
 @enduml
 ```
 ### シーケンス図
+#### #executeByCount
 ```puml
 @startuml
    activate FizzBuzzExecutor
@@ -108,11 +109,44 @@ Expression <|-- FizzBuzzValueSum
    deactivate FizzBuzzExecutor
 @enduml
 ```
+#### #reduce
+```puml
+@startuml
+   -> FizzBuzzValue :makeFizzBuzzValue
+   activate FizzBuzzExecutor
+   -> FizzBuzzExecutor :reduce(FizzBuzzValue)
+      FizzBuzzExecutor -> FizzBuzzValue :reduce
+      activate FizzBuzzValue
+        FizzBuzzExecutor <-- FizzBuzzValue :FizzBuzzValue
+      deactivate FizzBuzzValue   
+   <-- FizzBuzzExecutor :FizzBuzzValue
+   deactivate FizzBuzzExecutor
+@enduml
+```
+
+```puml
+@startuml
+   -> FizzBuzzValue :makeFizzBuzzValue
+   -> FizzBuzzValue :makeFizzBuzzValue
+   -> FizzBuzzValueProduct :new(FizzBuzzValue,FizzBuzzValue)
+   activate FizzBuzzExecutor
+   -> FizzBuzzExecutor :reduce(FizzBuzzValueProduct)
+      FizzBuzzExecutor -> FizzBuzzValueProduct :reduce
+      activate FizzBuzzValueProduct
+        FizzBuzzExecutor <-- FizzBuzzValueProduct :FizzBuzzValue
+      deactivate FizzBuzzValue   
+   <-- FizzBuzzExecutor :FizzBuzzValue
+   deactivate FizzBuzzExecutor
+@enduml
+```
+
 
 ## 実装
 ### ふりかえり
 + オブジェクト等価テストをパスするためにequalメソッドを実装した
 + Expressionインタフェースを導入した
++ 積の概念を表すオブジェクトを実装した
++ ポリモーフィズムを使って明示的なクラスチェックを置き換えた
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
@@ -130,5 +164,7 @@ Expression <|-- FizzBuzzValueSum
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
 ### `Expression.java`
 @import "../../src/main/java/tdd/fizzbuzz/Expression.java"
+### `FizzBuzzValueProduct.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueProduct.java"
 
 

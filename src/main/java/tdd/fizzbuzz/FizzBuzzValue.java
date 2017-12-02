@@ -29,6 +29,10 @@ abstract class FizzBuzzValue implements Expression {
     }
 
     public Expression times(FizzBuzzValue multiplier) {
-        return makeFizzBuzzValue(_number * multiplier._number);
+        return new FizzBuzzValueProduct(this, multiplier);
+    }
+
+    public FizzBuzzValue reduce() {
+        return this;
     }
 }

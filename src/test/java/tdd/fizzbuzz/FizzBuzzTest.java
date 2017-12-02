@@ -68,12 +68,33 @@ public class FizzBuzzTest {
     }
     @Test
     public void simpleMultiplication() {
+        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        FizzBuzzValueProduct result = (FizzBuzzValueProduct) fizz.times(buzz);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
-        Expression sum = FizzBuzzValue.makeFizzBuzzValue(3).times(FizzBuzzValue.makeFizzBuzzValue(5));
-        assertEquals(fizzBuzz, sum);
-
-        sum = FizzBuzzValue.makeFizzBuzzValue(225);
-        Expression reduced = FizzBuzzExecutor.reduce(sum);
-        assertEquals(sum, reduced);
+        assertEquals(fizzBuzz, result.reduce());
+    }
+    @Test
+    public void timesReturnsProduct() {
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Expression result = fizzBuzz.times(fizzBuzz);
+        FizzBuzzValueProduct fizzBuzzValueProduct = (FizzBuzzValueProduct) result;
+        assertEquals(fizzBuzz, fizzBuzzValueProduct._multiplicand);
+        assertEquals(fizzBuzz, fizzBuzzValueProduct._multiplier);
+    }
+    @Test
+    public void reduceProduct() {
+        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        Expression product = new FizzBuzzValueProduct(fizz,buzz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        assertEquals(fizzBuzz, result);
+    }
+    @Test
+    public void reduceValue() {
+        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz);
+        assertEquals(FizzBuzzValue.makeFizzBuzzValue(3), result);
     }
 }

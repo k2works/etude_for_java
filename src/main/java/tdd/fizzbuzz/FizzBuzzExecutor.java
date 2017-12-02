@@ -15,7 +15,7 @@ public class FizzBuzzExecutor {
         }
     }
 
-    public static Expression reduce(Expression source) {
-        return FizzBuzzValue.makeFizzBuzzValue(225);
+    public static FizzBuzzValue reduce(Expression source) {
+        return source.reduce();
     }
 }
