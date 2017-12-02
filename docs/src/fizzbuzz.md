@@ -175,6 +175,7 @@ Expression <|-- FizzBuzzValueProduct
 + ポリモーフィズムを使って明示的なクラスチェックを置き換えた
 + Expressionへの一般化を実施した
 + 積から直接積を求められるようにした
++ 積の概念を表すオブジェクトでオブジェクト演算を実行できるようにした
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
