@@ -31,14 +31,16 @@ markdown:
   + [ ] $FizzBuzz = {Fizz}\times{Buzz}$
   + [ ] $Buzz = \frac{Fizz}{FizzBuzz}$
   + [ ] $Fizz = \frac{Buzz}{FizzBuzz}$
++ [x] ~~equals()~~
 
 ### クラス図
 ```puml
 @startuml
 class FizzBuzzExecutor {
   -results :String[ ]
-  +getResults() :String[]  
-  +excueteByCount(count:int) :String[]
+  +{static}getResults() :String[]  
+  +{static}excueteByCount(count:int) :String[]
+  +{static}reduce()
 }
 abstract class FizzBuzzValue {
   #number :Int
@@ -48,6 +50,8 @@ abstract class FizzBuzzValue {
   #times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   #divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   #reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
+  +equlas(object :Object) :boolean
+  +toString() :String
 }
 class FizzBuzz {
   #{static} FIZZ_BUZZ = "fizz_buzz"
@@ -106,6 +110,9 @@ Expression <|-- FizzBuzzValueSum
 ```
 
 ## 実装
+### ふりかえり
++ オブジェクト等価テストをパスするためにequalメソッドを実装した
++ Expressionインタフェースを導入した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
@@ -121,5 +128,7 @@ Expression <|-- FizzBuzzValueSum
 @import "../../src/main/java/tdd/fizzbuzz/NullValue.java"
 ### `FizzBuzzExecutor.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
+### `Expression.java`
+@import "../../src/main/java/tdd/fizzbuzz/Expression.java"
 
 

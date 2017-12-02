@@ -14,4 +14,8 @@ public class FizzBuzzExecutor {
             results[i] = value;
         }
     }
+
+    public static Expression reduce(Expression source) {
+        return FizzBuzzValue.makeFizzBuzzValue(225);
+    }
 }

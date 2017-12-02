@@ -1,6 +1,6 @@
 package tdd.fizzbuzz;
 
-abstract class FizzBuzzValue {
+abstract class FizzBuzzValue implements Expression {
     protected int _number;
     protected String _value;
 
@@ -16,5 +16,19 @@ abstract class FizzBuzzValue {
         } else {
             return new NullValue(number);
         }
+    }
+
+    public boolean equals(Object object) {
+        FizzBuzzValue value = (FizzBuzzValue) object;
+        return _number == value._number
+                && _value.equals(value._value);
+    }
+
+    public String toString() {
+        return _number + " " + _value;
+    }
+
+    public Expression times(FizzBuzzValue multiplier) {
+        return makeFizzBuzzValue(_number * multiplier._number);
     }
 }

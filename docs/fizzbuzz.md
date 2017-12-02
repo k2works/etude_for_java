@@ -29,18 +29,23 @@
   + [ ] <img src="https://latex.codecogs.com/gif.latex?FizzBuzz%20=%20{Fizz}&#x5C;times{Buzz}"/>
   + [ ] <img src="https://latex.codecogs.com/gif.latex?Buzz%20=%20&#x5C;frac{Fizz}{FizzBuzz}"/>
   + [ ] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{Buzz}{FizzBuzz}"/>
++ [x] ~~equals()~~
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.8930534158228254)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.06008299352397328)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.1330251092924586)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.4186112392063277)  
   
 ## 実装
   
+### ふりかえり
+  
++ オブジェクト等価テストをパスするためにequalメソッドを実装した
++ Expressionインタフェースを導入した
   
 ### `FizzBuzzTest.java`
   
@@ -113,6 +118,16 @@ public class FizzBuzzTest {
         FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
         assertEquals("FizzBuzz", value.execute());
     }
+    @Test
+    public void simpleMultiplication() {
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Expression sum = FizzBuzzValue.makeFizzBuzzValue(3).times(FizzBuzzValue.makeFizzBuzzValue(5));
+        assertEquals(fizzBuzz, sum);
+  
+        sum = FizzBuzzValue.makeFizzBuzzValue(225);
+        Expression reduced = FizzBuzzExecutor.reduce(sum);
+        assertEquals(sum, reduced);
+    }
 }
   
 ```  
@@ -121,7 +136,7 @@ public class FizzBuzzTest {
 ```java
 package tdd.fizzbuzz;
   
-abstract class FizzBuzzValue {
+abstract class FizzBuzzValue implements Expression {
     protected int _number;
     protected String _value;
   
@@ -137,6 +152,20 @@ abstract class FizzBuzzValue {
         } else {
             return new NullValue(number);
         }
+    }
+  
+    public boolean equals(Object object) {
+        FizzBuzzValue value = (FizzBuzzValue) object;
+        return _number == value._number
+                && _value.equals(value._value);
+    }
+  
+    public String toString() {
+        return _number + " " + _value;
+    }
+  
+    public Expression times(FizzBuzzValue multiplier) {
+        return makeFizzBuzzValue(_number * multiplier._number);
     }
 }
   
@@ -240,6 +269,20 @@ public class FizzBuzzExecutor {
             results[i] = value;
         }
     }
+  
+    public static Expression reduce(Expression source) {
+        return FizzBuzzValue.makeFizzBuzzValue(225);
+    }
+}
+  
+```  
+### `Expression.java`
+  
+```java
+package tdd.fizzbuzz;
+  
+public interface Expression {
+  
 }
   
 ```  

@@ -66,4 +66,14 @@ public class FizzBuzzTest {
         FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
         assertEquals("FizzBuzz", value.execute());
     }
+    @Test
+    public void simpleMultiplication() {
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Expression sum = FizzBuzzValue.makeFizzBuzzValue(3).times(FizzBuzzValue.makeFizzBuzzValue(5));
+        assertEquals(fizzBuzz, sum);
+
+        sum = FizzBuzzValue.makeFizzBuzzValue(225);
+        Expression reduced = FizzBuzzExecutor.reduce(sum);
+        assertEquals(sum, reduced);
+    }
 }
