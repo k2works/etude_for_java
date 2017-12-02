@@ -25,26 +25,22 @@
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
 + [x] ~~オブジェクトを返すようにする~~
++ [ ] **オブジェクトを演算できるようにする**
+  + [ ] <img src="https://latex.codecogs.com/gif.latex?FizzBuzz%20=%20{Fizz}&#x5C;times{Buzz}"/>
+  + [ ] <img src="https://latex.codecogs.com/gif.latex?Buzz%20=%20&#x5C;frac{Fizz}{FizzBuzz}"/>
+  + [ ] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{Buzz}{FizzBuzz}"/>
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.16467176386997417)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.8930534158228254)  
 ### シーケンス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.10912989986891652)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.1330251092924586)  
   
 ## 実装
   
-### ふりかえり
-  
-+ ValueObjectパターンを導入した
-+ メンバ変数にプロテクティッドタイプを使って継承したクラスでだけ使えるようにした
-+ 条件に該当しないケースた対応するためNullObjectパターンを導入した
-+ オブジェクト配列を返すので文字型からObject型に配列の定義を変更した
-+ 配列を受け取る際に元のオブジェクトが何かを明示すひ必要があるので型のキャストを実行した
-+ リファクタリング（ローカル変数の抽出・マジックナンバーからシンボル定数へ）を実施した
   
 ### `FizzBuzzTest.java`
   

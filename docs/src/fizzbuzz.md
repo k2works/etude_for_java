@@ -27,6 +27,10 @@ markdown:
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
 + [x] ~~オブジェクトを返すようにする~~
++ [ ] **オブジェクトを演算できるようにする**
+  + [ ] $FizzBuzz = {Fizz}\times{Buzz}$
+  + [ ] $Buzz = \frac{Fizz}{FizzBuzz}$
+  + [ ] $Fizz = \frac{Buzz}{FizzBuzz}$
 
 ### クラス図
 ```puml
@@ -39,8 +43,11 @@ class FizzBuzzExecutor {
 abstract class FizzBuzzValue {
   #number :Int
   #value  :String
-  +execute() :String
+  +{abstract}execute() :String
   +{static} makeFizzBuzzValue()
+  #times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  #divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  #reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
 }
 class FizzBuzz {
   #{static} FIZZ_BUZZ = "fizz_buzz"
@@ -57,11 +64,28 @@ class Buzz {
 class NullValue {
   +execute() :String  
 }
+class FizzBuzzValueSum {
+  ~augend
+  ~addend
+  FizzBuzzValueSum(augend: Expression, addend: Expression)
+  +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  +divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
+}
+interface Expression {
+  times(value: FizzBuzzValue, value: FizzBuzzValue)
+  divideFraction(value: FizzBuzzValue, value: FizzBuzzValue)
+  reduce(value :FizzBuzzValue, number: int)
+}
 FizzBuzzExecutor -> FizzBuzzValue
 FizzBuzzValue <|-- Fizz
 FizzBuzzValue <|-- Buzz
 FizzBuzzValue <|-- FizzBuzz
 FizzBuzzValue <|-- NullValue
+FizzBuzzValueSum -- FizzBuzzValue
+FizzBuzzValueSum <- FizzBuzzExecutor
+Expression <|- FizzBuzzValue
+Expression <|-- FizzBuzzValueSum
 
 @enduml
 ```
@@ -82,13 +106,6 @@ FizzBuzzValue <|-- NullValue
 ```
 
 ## 実装
-### ふりかえり
-+ ValueObjectパターンを導入した
-+ メンバ変数にプロテクティッドタイプを使って継承したクラスでだけ使えるようにした
-+ 条件に該当しないケースた対応するためNullObjectパターンを導入した
-+ オブジェクト配列を返すので文字型からObject型に配列の定義を変更した
-+ 配列を受け取る際に元のオブジェクトが何かを明示すひ必要があるので型のキャストを実行した
-+ リファクタリング（ローカル変数の抽出・マジックナンバーからシンボル定数へ）を実施した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
