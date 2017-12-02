@@ -27,10 +27,10 @@ markdown:
 + [x] ~~繰り返し実行する部分を分離する~~
 + [x] ~~新しい条件を追加しやすくする~~
 + [x] ~~オブジェクトを返すようにする~~
-+ [ ] **オブジェクトを演算できるようにする**
++ [x] ~~オブジェクトを演算できるようにする~~
   + [x] $FizzBuzz = {Fizz}\times{Buzz}$
-  + [ ] $Buzz = \frac{FizzBuzz}{Fizz}$
-  + [ ] $Fizz = \frac{FizzBuzz}{Buzz}$
+  + [x] $Buzz = \frac{FizzBuzz}{Fizz}$
+  + [x] $Fizz = \frac{FizzBuzz}{Buzz}$
 + [x] ~~equals()~~
 
 ### クラス図
@@ -48,7 +48,7 @@ abstract class FizzBuzzValue {
   +{abstract}execute() :String
   +{static} makeFizzBuzzValue()
   #times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
-  #divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  #divide(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   #reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
   +equlas(object :Object) :boolean
   +toString() :String
@@ -73,18 +73,20 @@ class FizzBuzzValueProduct {
   ~_multiplier
   FizzBuzzValueProduct(augend: Expression, addend: Expression)
   +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  +divide(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
 }
 class FizzBuzzValueQuotient {
   ~_dividend
   ~_divisor
-  FizzBuzzValueProduct(augend: Expression, addend: Expression)
-  +divideFraction(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
+  FizzBuzzValueQuotient(augend: Expression, addend: Expression)
+  +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression  
+  +divide(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
   +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
 }
 interface Expression {
   times(value: FizzBuzzValue, value: FizzBuzzValue)
-  divideFraction(value: FizzBuzzValue, value: FizzBuzzValue)
+  divide(value: FizzBuzzValue, value: FizzBuzzValue)
   reduce(value :FizzBuzzValue, number: int)
 }
 FizzBuzzExecutor -> FizzBuzzValue
@@ -140,6 +142,29 @@ Expression <|-- FizzBuzzValueQuotient
 @enduml
 ```
 
+#### #divide
+```puml
+@startuml
+   -> FizzBuzzValue :divide
+   activate FizzBuzzValueProduct
+      FizzBuzzValue -> FizzBuzzValueProduct :new(FizzBuzzValue, multiplier: Expression)
+      FizzBuzzValueProduct -> FizzBuzzValue :Expression
+   deactivate FizzBuzzValueProduct
+   <-- FizzBuzzValue :Expression
+@enduml
+```
+
+```puml
+@startuml
+   -> FizzBuzzValueProduct :divide
+   activate FizzBuzzValueProduct
+      FizzBuzzValueProduct -> FizzBuzzValueProduct :new(FizzBuzzValueProduct, multiplier: Expression)
+   deactivate FizzBuzzValueProduct
+   <-- FizzBuzzValueProduct :Expression
+@enduml
+```
+
+
 #### #reduce
 ```puml
 @startuml
@@ -177,6 +202,8 @@ Expression <|-- FizzBuzzValueQuotient
 
 
 ## 実装
+### ふりかえり
++ 商の概念を表すオブジェクトを導入した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
@@ -196,5 +223,7 @@ Expression <|-- FizzBuzzValueQuotient
 @import "../../src/main/java/tdd/fizzbuzz/Expression.java"
 ### `FizzBuzzValueProduct.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueProduct.java"
+### `FizzBuzzValueQuotient.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueQuotient.java"
 
 

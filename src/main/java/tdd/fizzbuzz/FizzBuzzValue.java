@@ -32,6 +32,10 @@ abstract class FizzBuzzValue implements Expression {
         return new FizzBuzzValueProduct(this, multiplier);
     }
 
+    public Expression divide(Expression divisor) {
+        return new FizzBuzzValueQuotient(this, divisor);
+    }
+
     public FizzBuzzValue reduce() {
         return this;
     }

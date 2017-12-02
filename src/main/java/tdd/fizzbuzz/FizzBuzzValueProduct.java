@@ -17,4 +17,9 @@ public class FizzBuzzValueProduct implements Expression {
     public Expression times(Expression multiplier) {
         return new FizzBuzzValueProduct(this, multiplier);
     }
+
+    @Override
+    public Expression divide(Expression divisor) {
+        return null;
+    }
 }

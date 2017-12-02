@@ -114,4 +114,25 @@ public class FizzBuzzTest {
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
         assertEquals(fizzBuzz, result);
     }
+    @Test
+    public void simpleDivision() {
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizzBuzz.divide(fizz));
+
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        assertEquals(buzz, result);
+        result = FizzBuzzExecutor.reduce(fizzBuzz.divide(buzz));
+        assertEquals(fizz, result);
+    }
+    @Test
+    public void quotientDivideValue() {
+        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Expression quotient = new FizzBuzzValueQuotient(fizzBuzz,fizz).divide(fizz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient);
+        fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        assertEquals(fizzBuzz, result);
+
+    }
 }
