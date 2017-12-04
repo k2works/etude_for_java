@@ -39,10 +39,10 @@ markdown:
 ```puml
 @startuml
 class FizzBuzzExecutor {
-  -results :String[ ]
-  +{static}getResults() :String[]  
-  +{static}excueteByCount(count:int) :String[]
-  +{static}reduce(source :Expression)
+  +FizzBuzzExecutor(count :int)
+  +getResults() :String[]
+  +setSources(source :Expression)
+  +reduce(source :Expression)
 }
 abstract class FizzBuzzValue {
   #number :Int
@@ -192,6 +192,9 @@ Expression <|-- FizzBuzzValueAccumulate
 ### ふりかえり
 + 実行クラスをインスタンスに変更する
 + 結果を配列からコレクションに変更する
++ コレクションの学習テストを実施する
++ reduceメソッドのカプセル化
++ 不適切なメソッド名称の整理
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
