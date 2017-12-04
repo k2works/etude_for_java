@@ -30,48 +30,44 @@
   + [x] <img src="https://latex.codecogs.com/gif.latex?Buzz%20=%20&#x5C;frac{FizzBuzz}{Fizz}"/>
   + [x] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{FizzBuzz}{Buzz}"/>
 + [x] ~~equals()~~
++ [ ] **合計の概念を表すオブジェクトを追加して構造をシンプルにする**
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.48955585618213826)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.42708988521170044)  
 ### シーケンス図
   
 #### #executeByCount
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.8817503300305234)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.6651421024352966)  
 #### #times
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.890982593252541)  
-  
-
-![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.27249137190309525)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.07766862707062483)  
   
 #### #divide
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.16388317392450635)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.45737732055311575)  
+  
+#### #plus
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.73964468345231)  
-  
+![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.04061922023655962)  
   
 #### #reduce
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e566.png?0.7386556946150973)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.9164818469265983)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e567.png?0.6455094440643563)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e566.png?0.989020456908136)  
   
   
 ## 実装
   
-### ふりかえり
-  
-+ 商の概念を表すオブジェクトを導入した
   
 ### `FizzBuzzTest.java`
   
@@ -202,6 +198,16 @@ public class FizzBuzzTest {
         assertEquals(buzz, result);
         result = FizzBuzzExecutor.reduce(fizzBuzz.divide(buzz));
         assertEquals(fizz, result);
+    }
+    @Test
+    public void quotientDivideValue() {
+        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Expression quotient = new FizzBuzzValueQuotient(fizzBuzz,fizz).divide(fizz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient);
+        fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        assertEquals(fizzBuzz, result);
+  
     }
 }
   

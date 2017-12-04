@@ -32,6 +32,7 @@ markdown:
   + [x] $Buzz = \frac{FizzBuzz}{Fizz}$
   + [x] $Fizz = \frac{FizzBuzz}{Buzz}$
 + [x] ~~equals()~~
++ [ ] **合計の概念を表すオブジェクトを追加して構造をシンプルにする**
 
 ### クラス図
 ```puml
@@ -47,9 +48,10 @@ abstract class FizzBuzzValue {
   #value  :String
   +{abstract}execute() :String
   +{static} makeFizzBuzzValue()
-  #times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
-  #divide(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
-  #reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
+  #reduce() :FizzBuzzValue
+  #times(multiplier: Expression) :Expression
+  #divide(divisor: Expression) :Expression
+  #plus(added: Expression) :Expression  
   +equlas(object :Object) :boolean
   +toString() :String
 }
@@ -68,39 +70,29 @@ class Buzz {
 class NullValue {
   +execute() :String  
 }
-class FizzBuzzValueProduct {
-  ~_multiplicand
-  ~_multiplier
-  FizzBuzzValueProduct(augend: Expression, addend: Expression)
-  +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
-  +divide(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
-  +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
-}
-class FizzBuzzValueQuotient {
-  ~_dividend
-  ~_divisor
-  FizzBuzzValueQuotient(augend: Expression, addend: Expression)
-  +times(value: FizzBuzzValue, value: FizzBuzzValue) :Expression  
-  +divide(value: FizzBuzzValue, value: FizzBuzzValue) :Expression
-  +reduce(value :FizzBuzzValue, number: int) :FizzBuzzValue
+class FizzBuzzValueSum {
+  ~augend
+  ~addend
+  Sum(augend: Expression, addend: Expression)
+  +times(mulitiplier: Expression) :Expression
+  +divide(divisor: Expression) :Expression
+  +plus(added: Expression)
 }
 interface Expression {
-  times(value: FizzBuzzValue, value: FizzBuzzValue)
-  divide(value: FizzBuzzValue, value: FizzBuzzValue)
-  reduce(value :FizzBuzzValue, number: int)
+  times(multiplier: Expression)
+  divide(divisor: Expression)
+  plus(added: Expression)
+  reduce() :FizzBuzzValue
 }
 FizzBuzzExecutor -> FizzBuzzValue
 FizzBuzzValue <|-- Fizz
 FizzBuzzValue <|-- Buzz
 FizzBuzzValue <|-- FizzBuzz
 FizzBuzzValue <|-- NullValue
-FizzBuzzValueProduct -- FizzBuzzValue
-FizzBuzzValueProduct <- FizzBuzzExecutor
-FizzBuzzValueQuotient - FizzBuzzValue
-FizzBuzzValueQuotient <-- FizzBuzzExecutor
+FizzBuzzValueSum -- FizzBuzzValue
+FizzBuzzValueSum <- FizzBuzzExecutor
 Expression <|- FizzBuzzValue
-Expression <|-- FizzBuzzValueProduct
-Expression <|-- FizzBuzzValueQuotient
+Expression <|-- FizzBuzzValueSum
 
 @enduml
 ```
@@ -124,21 +116,10 @@ Expression <|-- FizzBuzzValueQuotient
 ```puml
 @startuml
    -> FizzBuzzValue :times
-   activate FizzBuzzValueProduct
-      FizzBuzzValue -> FizzBuzzValueProduct :new(FizzBuzzValue, multiplier: Expression)
-      FizzBuzzValueProduct -> FizzBuzzValue :Expression
-   deactivate FizzBuzzValueProduct
-   <-- FizzBuzzValue :Expression
-@enduml
-```
-
-```puml
-@startuml
-   -> FizzBuzzValueProduct :times
-   activate FizzBuzzValueProduct
-      FizzBuzzValueProduct -> FizzBuzzValueProduct :new(FizzBuzzValueProduct, multiplier: Expression)
-   deactivate FizzBuzzValueProduct
-   <-- FizzBuzzValueProduct :Expression
+   activate FizzBuzzValue
+      FizzBuzzValue -> FizzBuzzValue :makeFizzBuzzValue(number :int)      
+   deactivate FizzBuzzValue
+   <-- FizzBuzzValue :FizzBuzzValue
 @enduml
 ```
 
@@ -146,24 +127,24 @@ Expression <|-- FizzBuzzValueQuotient
 ```puml
 @startuml
    -> FizzBuzzValue :divide
-   activate FizzBuzzValueProduct
-      FizzBuzzValue -> FizzBuzzValueProduct :new(FizzBuzzValue, multiplier: Expression)
-      FizzBuzzValueProduct -> FizzBuzzValue :Expression
-   deactivate FizzBuzzValueProduct
+   activate FizzBuzzValue
+      FizzBuzzValue -> FizzBuzzValue :makeFizzBuzzValue(number :int)
+   deactivate FizzBuzzValue
+   <-- FizzBuzzValue :FizzBuzzValue
+@enduml
+```
+
+#### #plus
+```puml
+@startuml
+   -> FizzBuzzValue :plus
+   activate FizzBuzzValueSum
+      FizzBuzzValue -> FizzBuzzValueSum :makeFizzBuzzValue(number :int)
+      FizzBuzzValue <-- FizzBuzzValueSum :Expression
+   deactivate FizzBuzzValueSum
    <-- FizzBuzzValue :Expression
 @enduml
 ```
-
-```puml
-@startuml
-   -> FizzBuzzValueProduct :divide
-   activate FizzBuzzValueProduct
-      FizzBuzzValueProduct -> FizzBuzzValueProduct :new(FizzBuzzValueProduct, multiplier: Expression)
-   deactivate FizzBuzzValueProduct
-   <-- FizzBuzzValueProduct :Expression
-@enduml
-```
-
 
 #### #reduce
 ```puml
@@ -183,16 +164,15 @@ Expression <|-- FizzBuzzValueQuotient
 ```puml
 @startuml
    -> FizzBuzzValue :makeFizzBuzzValue
-   -> FizzBuzzValue :makeFizzBuzzValue
-   -> FizzBuzzValueProduct :new(FizzBuzzValue,FizzBuzzValue)
+   FizzBuzzValue -> FizzBuzzValueSum :plus(added: FizzBuzzValue)
    activate FizzBuzzExecutor
    -> FizzBuzzExecutor :reduce(FizzBuzzValueProduct)
-      FizzBuzzExecutor -> FizzBuzzValueProduct :reduce
-      activate FizzBuzzValueProduct
-        FizzBuzzExecutor <-- FizzBuzzValueProduct :FizzBuzzValue
+      FizzBuzzExecutor -> FizzBuzzValueSum :reduce
+      activate FizzBuzzValueSum
+        FizzBuzzExecutor <-- FizzBuzzValueSum :FizzBuzzValue
           activate FizzBuzzValue
-            FizzBuzzValueProduct -> FizzBuzzValue :reduce
-            FizzBuzzValue --> FizzBuzzValueProduct :FizzBuzzValue
+            FizzBuzzValueSum -> FizzBuzzValue :reduce
+            FizzBuzzValue --> FizzBuzzValueSum :FizzBuzzValue
           deactivate FizzBuzzValue
       deactivate FizzBuzzValue   
    <-- FizzBuzzExecutor :FizzBuzzValue
@@ -202,8 +182,6 @@ Expression <|-- FizzBuzzValueQuotient
 
 
 ## 実装
-### ふりかえり
-+ 商の概念を表すオブジェクトを導入した
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
