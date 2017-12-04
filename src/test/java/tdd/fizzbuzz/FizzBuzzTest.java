@@ -78,7 +78,7 @@ public class FizzBuzzTest {
     public void reduceProduct() {
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueProduct(fizz,buzz);
+        Expression product = new FizzBuzzValueAccumulate(fizz,buzz);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
         assertEquals(fizzBuzz, result);
@@ -101,7 +101,7 @@ public class FizzBuzzTest {
     public void productTimesValue() {
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueProduct(fizz,buzz).times(fizz);
+        Expression product = new FizzBuzzValueAccumulate(fizz,buzz).times(fizz);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
         assertEquals(fizzBuzz, result);
@@ -119,10 +119,10 @@ public class FizzBuzzTest {
     }
     @Test
     public void quotientDivideValue() {
-        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression quotient = new FizzBuzzValueQuotient(fizzBuzz,fizz).divide(fizz);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient);
+        Expression quotient = new FizzBuzzValueAccumulate(fizzBuzz,fizz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient.divide(fizz));
         fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(5);
         assertEquals(fizzBuzz, result);
 

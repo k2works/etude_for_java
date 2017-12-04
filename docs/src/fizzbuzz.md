@@ -32,7 +32,7 @@ markdown:
   + [x] $Buzz = \frac{FizzBuzz}{Fizz}$
   + [x] $Fizz = \frac{FizzBuzz}{Buzz}$
 + [x] ~~equals()~~
-+ [ ] **集積の概念を表すオブジェクトを追加して構造をシンプルにする**
++ [x] ~~集積の概念を表すオブジェクトを追加して構造をシンプルにする~~
 
 ### クラス図
 ```puml
@@ -121,6 +121,16 @@ Expression <|-- FizzBuzzValueAccumulate
 @enduml
 ```
 
+```puml
+@startuml
+   -> FizzBuzzValueAccumulate :times
+   activate FizzBuzzValueAccumulate
+      FizzBuzzValueAccumulate -> FizzBuzzValueAccumulate :new
+   deactivate FizzBuzzValueAccumulate
+   <-- FizzBuzzValueAccumulate :FizzBuzzValueAccumulate
+@enduml
+```
+
 #### #divide
 ```puml
 @startuml
@@ -129,6 +139,16 @@ Expression <|-- FizzBuzzValueAccumulate
       FizzBuzzValue -> FizzBuzzValue :makeFizzBuzzValue(number :int)
    deactivate FizzBuzzValue
    <-- FizzBuzzValue :FizzBuzzValue
+@enduml
+```
+
+```puml
+@startuml
+   -> FizzBuzzValueAccumulate :divide
+   activate FizzBuzzValueAccumulate
+      FizzBuzzValueAccumulate -> FizzBuzzValueAccumulate :new
+   deactivate FizzBuzzValueAccumulate
+   <-- FizzBuzzValueAccumulate :FizzBuzzValueAccumulate
 @enduml
 ```
 
@@ -187,9 +207,4 @@ Expression <|-- FizzBuzzValueAccumulate
 @import "../../src/main/java/tdd/fizzbuzz/Expression.java"
 ### `FizzBuzzValueAccumulate.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueAccumulate.java"
-### `FizzBuzzValueProduct.java`
-@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueProduct.java"
-### `FizzBuzzValueQuotient.java`
-@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueQuotient.java"
-
 

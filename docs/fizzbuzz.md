@@ -30,35 +30,41 @@
   + [x] <img src="https://latex.codecogs.com/gif.latex?Buzz%20=%20&#x5C;frac{FizzBuzz}{Fizz}"/>
   + [x] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{FizzBuzz}{Buzz}"/>
 + [x] ~~equals()~~
-+ [ ] **集積の概念を表すオブジェクトを追加して構造をシンプルにする**
++ [x] ~~集積の概念を表すオブジェクトを追加して構造をシンプルにする~~
   
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.3126923926589169)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.6548352639738342)  
 ### シーケンス図
   
 #### #executeByCount
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.24173247699893463)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.7582185988329189)  
 #### #times
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.5928637824989513)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.03828165870966593)  
+  
+
+![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.3374008541763258)  
   
 #### #divide
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.784615103855778)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.9869126501141594)  
+  
+
+![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.7245123740961841)  
   
 #### #reduce
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.6096471977600835)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e566.png?0.06524803215302977)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.8983172183493981)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e567.png?0.7831505281913316)  
   
   
 ## 実装
@@ -147,7 +153,7 @@ public class FizzBuzzTest {
     public void reduceProduct() {
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueProduct(fizz,buzz);
+        Expression product = new FizzBuzzValueAccumulate(fizz,buzz);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
         assertEquals(fizzBuzz, result);
@@ -170,7 +176,7 @@ public class FizzBuzzTest {
     public void productTimesValue() {
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueProduct(fizz,buzz).times(fizz);
+        Expression product = new FizzBuzzValueAccumulate(fizz,buzz).times(fizz);
         FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
         assertEquals(fizzBuzz, result);
@@ -188,10 +194,10 @@ public class FizzBuzzTest {
     }
     @Test
     public void quotientDivideValue() {
-        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression quotient = new FizzBuzzValueQuotient(fizzBuzz,fizz).divide(fizz);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient);
+        Expression quotient = new FizzBuzzValueAccumulate(fizzBuzz,fizz);
+        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient.divide(fizz));
         fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(5);
         assertEquals(fizzBuzz, result);
   
@@ -398,7 +404,7 @@ public class FizzBuzzValueAccumulate implements Expression {
   
     @Override
     public Expression divide(Expression divisor) {
-        return new FizzBuzzValueAccumulate(this, divisor);
+        return new FizzBuzzValueAccumulate(_accumulated.divide(divisor), _accumulate.divide(divisor));
     }
   
     @Override
@@ -409,68 +415,5 @@ public class FizzBuzzValueAccumulate implements Expression {
 }
   
 ```  
-### `FizzBuzzValueProduct.java`
-  
-```java
-package tdd.fizzbuzz;
-  
-public class FizzBuzzValueProduct implements Expression {
-    Expression _multiplicand;
-    Expression _multiplier;
-  
-    FizzBuzzValueProduct(Expression multiplicand, Expression multiplier) {
-        _multiplicand = multiplicand;
-        _multiplier = multiplier;
-    }
-    public FizzBuzzValue reduce() {
-        int number = _multiplicand.reduce()._number * _multiplier.reduce()._number;
-        return FizzBuzzValue.makeFizzBuzzValue(number);
-    }
-  
-    @Override
-    public Expression times(Expression multiplier) {
-        return new FizzBuzzValueProduct(this, multiplier);
-    }
-  
-    @Override
-    public Expression divide(Expression divisor) {
-        return null;
-    }
-}
-  
-```  
-### `FizzBuzzValueQuotient.java`
-  
-```java
-package tdd.fizzbuzz;
-  
-public class FizzBuzzValueQuotient implements Expression {
-    Expression _dividend;
-    Expression _divisor;
-  
-    FizzBuzzValueQuotient(Expression dividend, Expression divisor) {
-        _dividend = dividend;
-        _divisor = divisor;
-    }
-  
-    @Override
-    public FizzBuzzValue reduce() {
-        int number = _dividend.reduce()._number / _divisor.reduce()._number;
-        return FizzBuzzValue.makeFizzBuzzValue(number);
-    }
-  
-    @Override
-    public Expression times(Expression multiplier) {
-        return null;
-    }
-  
-    @Override
-    public Expression divide(Expression divisor) {
-        return new FizzBuzzValueQuotient(this, divisor);
-    }
-}
-  
-```  
-  
   
   

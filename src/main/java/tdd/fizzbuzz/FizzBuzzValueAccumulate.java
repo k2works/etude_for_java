@@ -16,7 +16,7 @@ public class FizzBuzzValueAccumulate implements Expression {
 
     @Override
     public Expression divide(Expression divisor) {
-        return new FizzBuzzValueAccumulate(this, divisor);
+        return new FizzBuzzValueAccumulate(_accumulated.divide(divisor), _accumulate.divide(divisor));
     }
 
     @Override
