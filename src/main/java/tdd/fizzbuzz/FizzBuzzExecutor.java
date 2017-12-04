@@ -1,17 +1,24 @@
 package tdd.fizzbuzz;
 
-public class FizzBuzzExecutor {
-    private static Object[] results;
+import java.util.ArrayList;
+import java.util.List;
 
-    public static Object[] getResults() {
-        return results;
+public class FizzBuzzExecutor {
+    private Integer _count;
+    private List<FizzBuzzValue> _results;
+    public List<FizzBuzzValue> getResults() {
+        return _results;
     }
 
-    public static void executeByCount(int count) {
-        results = new Object[count + 1];
-        for (int i = 0; i <= count; ++i) {
+    public FizzBuzzExecutor(Integer count) {
+        _count = count;
+        _results = new ArrayList<>();
+    }
+
+    public void executeByCount() {
+        for (int i = 0; i <= _count; ++i) {
             FizzBuzzValue value = FizzBuzzValue.makeFizzBuzzValue(i);
-            results[i] = value;
+            _results.add(value);
         }
     }
 
