@@ -188,6 +188,10 @@ Expression <|-- FizzBuzzValueAccumulate
 
 
 ## 実装
+### ふりかえり
++ 商と積を表す概念の責務を集積の概念にクラスのインラインすることで構造をシンプルにした
++ 商を表す振る舞いが変わったがむしろ意図に沿っているので問題はない
++ クラスのインライン化リファクタリングによりテストを壊さずにクラスを削除できた
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
