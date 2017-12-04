@@ -29,11 +29,13 @@ abstract class FizzBuzzValue implements Expression {
     }
 
     public Expression times(Expression multiplier) {
-        return new FizzBuzzValueProduct(this, multiplier);
+        int number = this.reduce()._number * multiplier.reduce()._number;
+        return FizzBuzzValue.makeFizzBuzzValue(number);
     }
 
     public Expression divide(Expression divisor) {
-        return new FizzBuzzValueQuotient(this, divisor);
+        int number = this.reduce()._number / divisor.reduce()._number;
+        return FizzBuzzValue.makeFizzBuzzValue(number);
     }
 
     public FizzBuzzValue reduce() {

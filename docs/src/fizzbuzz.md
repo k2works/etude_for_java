@@ -32,7 +32,7 @@ markdown:
   + [x] $Buzz = \frac{FizzBuzz}{Fizz}$
   + [x] $Fizz = \frac{FizzBuzz}{Buzz}$
 + [x] ~~equals()~~
-+ [ ] **合計の概念を表すオブジェクトを追加して構造をシンプルにする**
++ [ ] **集積の概念を表すオブジェクトを追加して構造をシンプルにする**
 
 ### クラス図
 ```puml
@@ -48,10 +48,9 @@ abstract class FizzBuzzValue {
   #value  :String
   +{abstract}execute() :String
   +{static} makeFizzBuzzValue()
-  #reduce() :FizzBuzzValue
+  #reduce() :FizzBuzzValue  
   #times(multiplier: Expression) :Expression
   #divide(divisor: Expression) :Expression
-  #plus(added: Expression) :Expression  
   +equlas(object :Object) :boolean
   +toString() :String
 }
@@ -70,18 +69,17 @@ class Buzz {
 class NullValue {
   +execute() :String  
 }
-class FizzBuzzValueSum {
-  ~augend
-  ~addend
-  Sum(augend: Expression, addend: Expression)
+class FizzBuzzValueAccumulate {
+  ~accumulated
+  ~accumulate
+  FizzBuzzValueAccumulate(accumulated: Expression, accumulate: Expression)
   +times(mulitiplier: Expression) :Expression
   +divide(divisor: Expression) :Expression
-  +plus(added: Expression)
+  +reduce() :FizzBuzzValue  
 }
 interface Expression {
   times(multiplier: Expression)
   divide(divisor: Expression)
-  plus(added: Expression)
   reduce() :FizzBuzzValue
 }
 FizzBuzzExecutor -> FizzBuzzValue
@@ -89,10 +87,10 @@ FizzBuzzValue <|-- Fizz
 FizzBuzzValue <|-- Buzz
 FizzBuzzValue <|-- FizzBuzz
 FizzBuzzValue <|-- NullValue
-FizzBuzzValueSum -- FizzBuzzValue
-FizzBuzzValueSum <- FizzBuzzExecutor
+FizzBuzzValueAccumulate -- FizzBuzzValue
+FizzBuzzValueAccumulate <- FizzBuzzExecutor
 Expression <|- FizzBuzzValue
-Expression <|-- FizzBuzzValueSum
+Expression <|-- FizzBuzzValueAccumulate
 
 @enduml
 ```
@@ -134,18 +132,6 @@ Expression <|-- FizzBuzzValueSum
 @enduml
 ```
 
-#### #plus
-```puml
-@startuml
-   -> FizzBuzzValue :plus
-   activate FizzBuzzValueSum
-      FizzBuzzValue -> FizzBuzzValueSum :makeFizzBuzzValue(number :int)
-      FizzBuzzValue <-- FizzBuzzValueSum :Expression
-   deactivate FizzBuzzValueSum
-   <-- FizzBuzzValue :Expression
-@enduml
-```
-
 #### #reduce
 ```puml
 @startuml
@@ -164,17 +150,17 @@ Expression <|-- FizzBuzzValueSum
 ```puml
 @startuml
    -> FizzBuzzValue :makeFizzBuzzValue
-   FizzBuzzValue -> FizzBuzzValueSum :plus(added: FizzBuzzValue)
+   FizzBuzzValue -> FizzBuzzValueAccumulate :plus(added: FizzBuzzValue)
    activate FizzBuzzExecutor
    -> FizzBuzzExecutor :reduce(FizzBuzzValueProduct)
-      FizzBuzzExecutor -> FizzBuzzValueSum :reduce
-      activate FizzBuzzValueSum
-        FizzBuzzExecutor <-- FizzBuzzValueSum :FizzBuzzValue
+      FizzBuzzExecutor -> FizzBuzzValueAccumulate :reduce
+      activate FizzBuzzValueAccumulate
+        FizzBuzzExecutor <-- FizzBuzzValueAccumulate :FizzBuzzValue
           activate FizzBuzzValue
-            FizzBuzzValueSum -> FizzBuzzValue :reduce
-            FizzBuzzValue --> FizzBuzzValueSum :FizzBuzzValue
+            FizzBuzzValueAccumulate -> FizzBuzzValue :reduce
+            FizzBuzzValue --> FizzBuzzValueAccumulate :FizzBuzzValue
           deactivate FizzBuzzValue
-      deactivate FizzBuzzValue   
+      deactivate FizzBuzzValue
    <-- FizzBuzzExecutor :FizzBuzzValue
    deactivate FizzBuzzExecutor
 @enduml
@@ -199,6 +185,8 @@ Expression <|-- FizzBuzzValueSum
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
 ### `Expression.java`
 @import "../../src/main/java/tdd/fizzbuzz/Expression.java"
+### `FizzBuzzValueAccumulate.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueAccumulate.java"
 ### `FizzBuzzValueProduct.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueProduct.java"
 ### `FizzBuzzValueQuotient.java`
