@@ -25,3 +25,5 @@ etude_for_java.iml
 .gradle
 build
 out
+bin
+.vscode

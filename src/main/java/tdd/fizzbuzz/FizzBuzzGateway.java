@@ -3,12 +3,12 @@ package tdd.fizzbuzz;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FizzBuzzExecutor {
+public class FizzBuzzGateway {
     private List<FizzBuzzValue> _results;
     private Expression _accumulated;
     private List<Expression> _sources;
 
-    public FizzBuzzExecutor(Integer count) {
+    public FizzBuzzGateway(Integer count) {
         Integer _count = count;
         _results = new ArrayList<>();
         _sources = new ArrayList<>();

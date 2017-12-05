@@ -38,8 +38,8 @@ markdown:
 ### クラス図
 ```puml
 @startuml
-class FizzBuzzExecutor {
-  +FizzBuzzExecutor(count :int)
+class FizzBuzzGateway {
+  +FizzBuzzGateway(count :int)
   +getResults() :String[]
   +setSources(source :Expression)
   +reduce(source :Expression)
@@ -83,32 +83,32 @@ interface Expression {
   divide(divisor: Expression)
   reduce() :FizzBuzzValue
 }
-FizzBuzzExecutor -> FizzBuzzValue
+FizzBuzzGateway -> FizzBuzzValue
 FizzBuzzValue <|-- Fizz
 FizzBuzzValue <|-- Buzz
 FizzBuzzValue <|-- FizzBuzz
 FizzBuzzValue <|-- NullValue
 FizzBuzzValueAccumulate -- FizzBuzzValue
-FizzBuzzValueAccumulate <- FizzBuzzExecutor
+FizzBuzzValueAccumulate <- FizzBuzzGateway
 Expression <|- FizzBuzzValue
 Expression <|-- FizzBuzzValueAccumulate
 
 @enduml
 ```
 ### シーケンス図
-#### #executeByCount
+#### #FizzBuzzGateway
 ```puml
 @startuml
-   activate FizzBuzzExecutor
-   -> FizzBuzzExecutor :executeByCount
+   activate FizzBuzzGateway
+   -> FizzBuzzGateway :new
    loop for each count
-      FizzBuzzExecutor -> FizzBuzzValue :execute
+      FizzBuzzGateway -> FizzBuzzValue :execute
       activate FizzBuzzValue
-        FizzBuzzExecutor <-- FizzBuzzValue :FizzBuzzValue
+        FizzBuzzGateway <-- FizzBuzzValue :FizzBuzzValue
+        FizzBuzzGateway <- FizzBuzzGateway :List
       deactivate FizzBuzzValue
    end
-   <-- FizzBuzzExecutor :objectArray
-   deactivate FizzBuzzExecutor
+   deactivate FizzBuzzGateway
 @enduml
 ```
 #### #times
@@ -157,14 +157,14 @@ Expression <|-- FizzBuzzValueAccumulate
 ```puml
 @startuml
    -> FizzBuzzValue :makeFizzBuzzValue
-   activate FizzBuzzExecutor
-   -> FizzBuzzExecutor :reduce(FizzBuzzValue)
-      FizzBuzzExecutor -> FizzBuzzValue :reduce
+   activate FizzBuzzGateway
+   -> FizzBuzzGateway :reduce(FizzBuzzValue)
+      FizzBuzzGateway -> FizzBuzzValue :reduce
       activate FizzBuzzValue
-        FizzBuzzExecutor <-- FizzBuzzValue :FizzBuzzValue
+        FizzBuzzGateway <-- FizzBuzzValue :FizzBuzzValue
       deactivate FizzBuzzValue   
-   <-- FizzBuzzExecutor :FizzBuzzValue
-   deactivate FizzBuzzExecutor
+   <-- FizzBuzzGateway :FizzBuzzValue
+   deactivate FizzBuzzGateway
 @enduml
 ```
 
@@ -172,18 +172,18 @@ Expression <|-- FizzBuzzValueAccumulate
 @startuml
    -> FizzBuzzValue :makeFizzBuzzValue
    FizzBuzzValue -> FizzBuzzValueAccumulate :plus(added: FizzBuzzValue)
-   activate FizzBuzzExecutor
-   -> FizzBuzzExecutor :reduce(FizzBuzzValueProduct)
-      FizzBuzzExecutor -> FizzBuzzValueAccumulate :reduce
+   activate FizzBuzzGateway
+   -> FizzBuzzGateway :reduce(FizzBuzzValueProduct)
+      FizzBuzzGateway -> FizzBuzzValueAccumulate :reduce
       activate FizzBuzzValueAccumulate
-        FizzBuzzExecutor <-- FizzBuzzValueAccumulate :FizzBuzzValue
+        FizzBuzzGateway <-- FizzBuzzValueAccumulate :FizzBuzzValue
           activate FizzBuzzValue
             FizzBuzzValueAccumulate -> FizzBuzzValue :reduce
             FizzBuzzValue --> FizzBuzzValueAccumulate :FizzBuzzValue
           deactivate FizzBuzzValue
       deactivate FizzBuzzValue
-   <-- FizzBuzzExecutor :FizzBuzzValue
-   deactivate FizzBuzzExecutor
+   <-- FizzBuzzGateway :FizzBuzzValue
+   deactivate FizzBuzzGateway
 @enduml
 ```
 
@@ -195,6 +195,7 @@ Expression <|-- FizzBuzzValueAccumulate
 + コレクションの学習テストを実施する
 + reduceメソッドのカプセル化
 + 不適切なメソッド名称の整理
++ クラスの名称を変更
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
@@ -208,8 +209,8 @@ Expression <|-- FizzBuzzValueAccumulate
 @import "../../src/main/java/tdd/fizzbuzz/Buzz.java"
 ### `NullValue.java`
 @import "../../src/main/java/tdd/fizzbuzz/NullValue.java"
-### `FizzBuzzExecutor.java`
-@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzExecutor.java"
+### `FizzBuzzGateway.java`
+@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzGateway.java"
 ### `Expression.java`
 @import "../../src/main/java/tdd/fizzbuzz/Expression.java"
 ### `FizzBuzzValueAccumulate.java`

@@ -7,14 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class FizzBuzzTest {
-    private FizzBuzzExecutor _executor;
+    private FizzBuzzGateway _executor;
 
     private FizzBuzzValue getValue(int count) {
         return _executor.getResults().get(count);
     }
 
     private void setup(Integer count) {
-        _executor = new FizzBuzzExecutor(count);
+        _executor = new FizzBuzzGateway(count);
     }
 
     @Test

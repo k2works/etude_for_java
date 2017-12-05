@@ -36,36 +36,36 @@
 ### クラス図
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.7165905455035446)  
+![](../assets/40b84e327c2d377e13e9a6639722fa8b0.png?0.4253870326003564)  
 ### シーケンス図
   
-#### #executeByCount
+#### #FizzBuzzGateway
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.8717316901147429)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b1.png?0.9469275314805472)  
 #### #times
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.8577774625105534)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b2.png?0.9924742526710641)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.2715505146251591)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b3.png?0.24693410612951538)  
   
 #### #divide
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.9296906213545277)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b4.png?0.8686967405082322)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.6162612879658118)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b5.png?0.37844817427950805)  
   
 #### #reduce
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e566.png?0.2496968538396096)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b6.png?0.07122400260322914)  
   
 
-![](./assets/e8d064149b1f1533be1aa0a12f272e567.png?0.05084935077912123)  
+![](./assets/40b84e327c2d377e13e9a6639722fa8b7.png?0.8629681070899449)  
   
   
 ## 実装
@@ -77,6 +77,7 @@
 + コレクションの学習テストを実施する
 + reduceメソッドのカプセル化
 + 不適切なメソッド名称の整理
++ クラスの名称を変更
   
 ### `FizzBuzzTest.java`
   
@@ -84,140 +85,190 @@
 package tdd.fizzbuzz;
   
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+  
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
   
 public class FizzBuzzTest {
+    private FizzBuzzExecutor _executor;
+  
+    private FizzBuzzValue getValue(int count) {
+        return _executor.getResults().get(count);
+    }
+  
+    private void setup(Integer count) {
+        _executor = new FizzBuzzExecutor(count);
+    }
+  
     @Test
     public void printFizz() {
         int count = 3;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("Fizz", value.execute());
     }
     @Test
     public void notPrintFizz() {
         int count = 4;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertNotEquals("Fizz", value.execute());
     }
     @Test
     public void printBuzz() {
         int count = 5;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("Buzz", value.execute());
     }
     @Test
     public void notPrintBuzz() {
-        FizzBuzzExecutor.executeByCount(6);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[6];
+        setup(6);
+        FizzBuzzValue value = getValue(6);
         assertNotEquals("Buzz", value.execute());
     }
     @Test
     public void printFizzBuzz() {
         int count = 15;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("FizzBuzz", value.execute());
     }
     @Test
     public void notPrintFizzBuzz() {
         int count = 20;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("Buzz", value.execute());
     }
     @Test
     public void printNotSatisfyTheCondition() {
         int count = 1;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("1", value.execute());
     }
     @Test
     public void print100thCountResult() {
         int count = 100;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("Buzz", value.execute());
     }
     @Test
     public void print30thCountResult() {
         int count = 30;
-        FizzBuzzExecutor.executeByCount(count);
-        FizzBuzzValue value = (FizzBuzzValue)FizzBuzzExecutor.getResults()[count];
+        setup(count);
+        FizzBuzzValue value = getValue(count);
         assertEquals("FizzBuzz", value.execute());
     }
     @Test
     public void simpleMultiplication() {
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue result = (FizzBuzzValue) fizz.times(buzz);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        FizzBuzzValue result = (FizzBuzzValue) fizz.times(buzz);
         assertEquals(fizzBuzz, result.reduce());
     }
     @Test
     public void reduceProduct() {
+        setup(0);
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueAccumulate(fizz,buzz);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        _executor.setSources(fizz);
+        _executor.setSources(buzz);
+        FizzBuzzValue result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void reduceValue() {
+        setup(0);
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz);
+        _executor.setSources(fizz);
+        FizzBuzzValue result = _executor.reduce();
         assertEquals(FizzBuzzValue.makeFizzBuzzValue(3), result);
     }
     @Test
     public void mixedMultiple() {
+        setup(0);
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizz.times(buzz));
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        _executor.setSources(fizz.times(buzz));
+        FizzBuzzValue result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void productTimesValue() {
+        setup(0);
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueAccumulate(fizz,buzz).times(fizz);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        _executor.setSources(fizz);
+        _executor.setSources(buzz);
+        _executor.setSources(fizz);
+        FizzBuzzValue result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void simpleDivision() {
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(fizzBuzz.divide(fizz));
-  
         Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+  
+        FizzBuzzValue result = (FizzBuzzValue) fizzBuzz.divide(fizz);
         assertEquals(buzz, result);
-        result = FizzBuzzExecutor.reduce(fizzBuzz.divide(buzz));
+  
+        result = (FizzBuzzValue) fizzBuzz.divide(buzz);
         assertEquals(fizz, result);
     }
     @Test
     public void quotientDivideValue() {
-        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        setup(0);
+        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
         Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression quotient = new FizzBuzzValueAccumulate(fizzBuzz,fizz);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(quotient.divide(fizz));
-        fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        assertEquals(fizzBuzz, result);
+        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        _executor.setSources(fizzBuzz.divide(fizz).divide(fizz));
   
+        FizzBuzzValue result = _executor.reduce();
+        assertEquals(buzz, result);
     }
     @Test
     public void simpleAccumulateValue(){
+        setup(0);
         FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
         FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        Expression product = new FizzBuzzValueAccumulate(fizz,buzz);
-        FizzBuzzValue result = FizzBuzzExecutor.reduce(product);
         FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+  
+        _executor.setSources(fizz);
+        _executor.setSources(buzz);
+        FizzBuzzValue result = _executor.reduce();
         assertEquals(fizzBuzz, result);
+    }
+    @Test
+    public void studyListApi() {
+        int count = 10;
+        setup(count);
+        List<FizzBuzzValue> results = _executor.getResults();
+        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+  
+        assertEquals(fizz, results.get(3));
+        results.add(11,fizzBuzz);
+        assertEquals(fizzBuzz, results.get(11));
+        results.set(11,buzz);
+        assertEquals(buzz, results.get(11));
+        results.remove(11);
+        assertEquals(false,results.contains(fizzBuzz));
+        assertEquals(true,results.contains(fizz));
+        assertEquals(true,results.contains(buzz));
+        assertEquals(false, results.isEmpty());
+        assertEquals(11,results.size());
+        results.clear();
+        assertEquals(true, results.isEmpty());
     }
 }
   
@@ -351,28 +402,54 @@ public class NullValue extends FizzBuzzValue {
 }
   
 ```  
-### `FizzBuzzExecutor.java`
+### `FizzBuzzGateway.java`
   
 ```java
 package tdd.fizzbuzz;
   
-public class FizzBuzzExecutor {
-    private static Object[] results;
+import java.util.ArrayList;
+import java.util.List;
   
-    public static Object[] getResults() {
-        return results;
-    }
+public class FizzBuzzGateway {
+    private List<FizzBuzzValue> _results;
+    private Expression _accumulated;
+    private List<Expression> _sources;
   
-    public static void executeByCount(int count) {
-        results = new Object[count + 1];
-        for (int i = 0; i <= count; ++i) {
+    public FizzBuzzGateway(Integer count) {
+        Integer _count = count;
+        _results = new ArrayList<>();
+        _sources = new ArrayList<>();
+  
+        for (int i = 0; i <= _count; ++i) {
             FizzBuzzValue value = FizzBuzzValue.makeFizzBuzzValue(i);
-            results[i] = value;
+            _results.add(value);
         }
     }
   
-    public static FizzBuzzValue reduce(Expression source) {
-        return source.reduce();
+    public List<FizzBuzzValue> getResults() {
+        return _results;
+    }
+  
+    public void setSources(Expression source) {
+        if (_accumulated == null) {
+            _accumulated = source;
+        } else {
+            source = new FizzBuzzValueAccumulate(_accumulated, source);
+            _sources.add(source);
+            _accumulated = source;
+        }
+    }
+  
+    public FizzBuzzValue reduce() {
+        FizzBuzzValue value = null;
+  
+        if (_sources.isEmpty())
+            return _accumulated.reduce();
+  
+        for (Expression source : _sources)
+            value = source.reduce();
+  
+        return value;
     }
 }
   
