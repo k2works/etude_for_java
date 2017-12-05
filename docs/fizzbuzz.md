@@ -31,41 +31,41 @@
   + [x] <img src="https://latex.codecogs.com/gif.latex?Fizz%20=%20&#x5C;frac{FizzBuzz}{Buzz}"/>
 + [x] ~~equals()~~
 + [x] ~~集積の概念を表すオブジェクトを追加して構造をシンプルにする~~
-+ [ ] **仕上げのリファクタリング**
++ [x] ~~仕上げのリファクタリング~~
   
 ### クラス図
   
 
-![](../assets/40b84e327c2d377e13e9a6639722fa8b0.png?0.4253870326003564)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e560.png?0.2420579313131861)  
 ### シーケンス図
   
-#### #FizzBuzzGateway
+#### #Gateway
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b1.png?0.9469275314805472)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e561.png?0.1127433255934156)  
 #### #times
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b2.png?0.9924742526710641)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e562.png?0.7076900289053965)  
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b3.png?0.24693410612951538)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e563.png?0.6086094950633942)  
   
 #### #divide
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b4.png?0.8686967405082322)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e564.png?0.1941820816820934)  
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b5.png?0.37844817427950805)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e565.png?0.3934619898539995)  
   
 #### #reduce
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b6.png?0.07122400260322914)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e566.png?0.15999240588689023)  
   
 
-![](./assets/40b84e327c2d377e13e9a6639722fa8b7.png?0.8629681070899449)  
+![](./assets/e8d064149b1f1533be1aa0a12f272e567.png?0.04204588085948702)  
   
   
 ## 実装
@@ -77,7 +77,8 @@
 + コレクションの学習テストを実施する
 + reduceメソッドのカプセル化
 + 不適切なメソッド名称の整理
-+ クラスの名称を変更
++ クラスの名称を変更
++ パッケージの導入
   
 ### `FizzBuzzTest.java`
   
@@ -273,18 +274,18 @@ public class FizzBuzzTest {
 }
   
 ```  
-### `FizzBuzzValue.java`
+### `Value.java`
   
 ```java
 package tdd.fizzbuzz;
   
-abstract class FizzBuzzValue implements Expression {
+abstract class Value implements Expression {
     protected int _number;
     protected String _value;
   
     abstract String execute();
   
-    static FizzBuzzValue makeFizzBuzzValue(int number) {
+    static Value makeFizzBuzzValue(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return new FizzBuzz(number);
         } else if (number % 5 == 0) {
@@ -297,7 +298,7 @@ abstract class FizzBuzzValue implements Expression {
     }
   
     public boolean equals(Object object) {
-        FizzBuzzValue value = (FizzBuzzValue) object;
+        Value value = (Value) object;
         return _number == value._number
                 && _value.equals(value._value);
     }
@@ -308,15 +309,15 @@ abstract class FizzBuzzValue implements Expression {
   
     public Expression times(Expression multiplier) {
         int number = this.reduce()._number * multiplier.reduce()._number;
-        return FizzBuzzValue.makeFizzBuzzValue(number);
+        return Value.makeFizzBuzzValue(number);
     }
   
     public Expression divide(Expression divisor) {
         int number = this.reduce()._number / divisor.reduce()._number;
-        return FizzBuzzValue.makeFizzBuzzValue(number);
+        return Value.makeFizzBuzzValue(number);
     }
   
-    public FizzBuzzValue reduce() {
+    public Value reduce() {
         return this;
     }
 }
@@ -402,7 +403,7 @@ public class NullValue extends FizzBuzzValue {
 }
   
 ```  
-### `FizzBuzzGateway.java`
+### `Gateway.java`
   
 ```java
 package tdd.fizzbuzz;
@@ -410,23 +411,23 @@ package tdd.fizzbuzz;
 import java.util.ArrayList;
 import java.util.List;
   
-public class FizzBuzzGateway {
-    private List<FizzBuzzValue> _results;
+public class Gateway {
+    private List<Value> _results;
     private Expression _accumulated;
     private List<Expression> _sources;
   
-    public FizzBuzzGateway(Integer count) {
+    public Gateway(Integer count) {
         Integer _count = count;
         _results = new ArrayList<>();
         _sources = new ArrayList<>();
   
         for (int i = 0; i <= _count; ++i) {
-            FizzBuzzValue value = FizzBuzzValue.makeFizzBuzzValue(i);
+            Value value = Value.makeFizzBuzzValue(i);
             _results.add(value);
         }
     }
   
-    public List<FizzBuzzValue> getResults() {
+    public List<Value> getResults() {
         return _results;
     }
   
@@ -434,14 +435,14 @@ public class FizzBuzzGateway {
         if (_accumulated == null) {
             _accumulated = source;
         } else {
-            source = new FizzBuzzValueAccumulate(_accumulated, source);
+            source = new Accumulate(_accumulated, source);
             _sources.add(source);
             _accumulated = source;
         }
     }
   
-    public FizzBuzzValue reduce() {
-        FizzBuzzValue value = null;
+    public Value reduce() {
+        Value value = null;
   
         if (_sources.isEmpty())
             return _accumulated.reduce();
@@ -468,34 +469,34 @@ public interface Expression {
 }
   
 ```  
-### `FizzBuzzValueAccumulate.java`
+### `Accumulate.java`
   
 ```java
 package tdd.fizzbuzz;
   
-public class FizzBuzzValueAccumulate implements Expression {
+public class Accumulate implements Expression {
     Expression _accumulated;
     Expression _accumulate;
   
-    FizzBuzzValueAccumulate(Expression accumulated, Expression accumulate) {
+    Accumulate(Expression accumulated, Expression accumulate) {
         _accumulated = accumulated;
         _accumulate = accumulate;
     }
   
     @Override
     public Expression times(Expression multiplier) {
-        return new FizzBuzzValueAccumulate(this, multiplier);
+        return new Accumulate(this, multiplier);
     }
   
     @Override
     public Expression divide(Expression divisor) {
-        return new FizzBuzzValueAccumulate(_accumulated.divide(divisor), _accumulate.divide(divisor));
+        return new Accumulate(_accumulated.divide(divisor), _accumulate.divide(divisor));
     }
   
     @Override
-    public FizzBuzzValue reduce() {
+    public Value reduce() {
         int number = _accumulated.reduce()._number * _accumulate.reduce()._number;
-        return FizzBuzzValue.makeFizzBuzzValue(number);
+        return Value.makeFizzBuzzValue(number);
     }
 }
   
