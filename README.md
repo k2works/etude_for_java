@@ -48,6 +48,7 @@ touch .circleci/config.yml
 **[⬆ back to top](#運用)**
 
 ## 開発
++ [FizzBuzz](./docs/fizzbuzz.md)
 + [テスト駆動開発](./docs/TDD.md)
 + [リファクタリング](./docs/refactoring.md)
 
