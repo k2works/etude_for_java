@@ -7,170 +7,170 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class FizzBuzzTest {
-    private FizzBuzzGateway _executor;
+    private Gateway _executor;
 
-    private FizzBuzzValue getValue(int count) {
+    private Value getValue(int count) {
         return _executor.getResults().get(count);
     }
 
     private void setup(Integer count) {
-        _executor = new FizzBuzzGateway(count);
+        _executor = new Gateway(count);
     }
 
     @Test
     public void printFizz() {
         int count = 3;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("Fizz", value.execute());
     }
     @Test
     public void notPrintFizz() {
         int count = 4;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertNotEquals("Fizz", value.execute());
     }
     @Test
     public void printBuzz() {
         int count = 5;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("Buzz", value.execute());
     }
     @Test
     public void notPrintBuzz() {
         setup(6);
-        FizzBuzzValue value = getValue(6);
+        Value value = getValue(6);
         assertNotEquals("Buzz", value.execute());
     }
     @Test
     public void printFizzBuzz() {
         int count = 15;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("FizzBuzz", value.execute());
     }
     @Test
     public void notPrintFizzBuzz() {
         int count = 20;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("Buzz", value.execute());
     }
     @Test
     public void printNotSatisfyTheCondition() {
         int count = 1;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("1", value.execute());
     }
     @Test
     public void print100thCountResult() {
         int count = 100;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("Buzz", value.execute());
     }
     @Test
     public void print30thCountResult() {
         int count = 30;
         setup(count);
-        FizzBuzzValue value = getValue(count);
+        Value value = getValue(count);
         assertEquals("FizzBuzz", value.execute());
     }
     @Test
     public void simpleMultiplication() {
-        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
-        FizzBuzzValue result = (FizzBuzzValue) fizz.times(buzz);
+        Value fizz = Value.makeFizzBuzzValue(3);
+        Value buzz = Value.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(15);
+        Value result = (Value) fizz.times(buzz);
         assertEquals(fizzBuzz, result.reduce());
     }
     @Test
     public void reduceProduct() {
         setup(0);
-        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Value fizz = Value.makeFizzBuzzValue(3);
+        Value buzz = Value.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(15);
         _executor.setSources(fizz);
         _executor.setSources(buzz);
-        FizzBuzzValue result = _executor.reduce();
+        Value result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void reduceValue() {
         setup(0);
-        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
+        Value fizz = Value.makeFizzBuzzValue(3);
         _executor.setSources(fizz);
-        FizzBuzzValue result = _executor.reduce();
-        assertEquals(FizzBuzzValue.makeFizzBuzzValue(3), result);
+        Value result = _executor.reduce();
+        assertEquals(Value.makeFizzBuzzValue(3), result);
     }
     @Test
     public void mixedMultiple() {
         setup(0);
-        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Expression fizz = Value.makeFizzBuzzValue(3);
+        Expression buzz = Value.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(15);
         _executor.setSources(fizz.times(buzz));
-        FizzBuzzValue result = _executor.reduce();
+        Value result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void productTimesValue() {
         setup(0);
-        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
+        Expression fizz = Value.makeFizzBuzzValue(3);
+        Expression buzz = Value.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(45);
         _executor.setSources(fizz);
         _executor.setSources(buzz);
         _executor.setSources(fizz);
-        FizzBuzzValue result = _executor.reduce();
+        Value result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void simpleDivision() {
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
-        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(15);
+        Expression fizz = Value.makeFizzBuzzValue(3);
+        Expression buzz = Value.makeFizzBuzzValue(5);
 
-        FizzBuzzValue result = (FizzBuzzValue) fizzBuzz.divide(fizz);
+        Value result = (Value) fizzBuzz.divide(fizz);
         assertEquals(buzz, result);
 
-        result = (FizzBuzzValue) fizzBuzz.divide(buzz);
+        result = (Value) fizzBuzz.divide(buzz);
         assertEquals(fizz, result);
     }
     @Test
     public void quotientDivideValue() {
         setup(0);
-        Expression fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(45);
-        Expression fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        Expression buzz = FizzBuzzValue.makeFizzBuzzValue(5);
+        Expression fizzBuzz = Value.makeFizzBuzzValue(45);
+        Expression fizz = Value.makeFizzBuzzValue(3);
+        Expression buzz = Value.makeFizzBuzzValue(5);
         _executor.setSources(fizzBuzz.divide(fizz).divide(fizz));
 
-        FizzBuzzValue result = _executor.reduce();
+        Value result = _executor.reduce();
         assertEquals(buzz, result);
     }
     @Test
     public void simpleAccumulateValue(){
         setup(0);
-        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        Value fizz = Value.makeFizzBuzzValue(3);
+        Value buzz = Value.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(15);
 
         _executor.setSources(fizz);
         _executor.setSources(buzz);
-        FizzBuzzValue result = _executor.reduce();
+        Value result = _executor.reduce();
         assertEquals(fizzBuzz, result);
     }
     @Test
     public void studyListApi() {
         int count = 10;
         setup(count);
-        List<FizzBuzzValue> results = _executor.getResults();
-        FizzBuzzValue fizz = FizzBuzzValue.makeFizzBuzzValue(3);
-        FizzBuzzValue buzz = FizzBuzzValue.makeFizzBuzzValue(5);
-        FizzBuzzValue fizzBuzz = FizzBuzzValue.makeFizzBuzzValue(15);
+        List<Value> results = _executor.getResults();
+        Value fizz = Value.makeFizzBuzzValue(3);
+        Value buzz = Value.makeFizzBuzzValue(5);
+        Value fizzBuzz = Value.makeFizzBuzzValue(15);
 
         assertEquals(fizz, results.get(3));
         results.add(11,fizzBuzz);

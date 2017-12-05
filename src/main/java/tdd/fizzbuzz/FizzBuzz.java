@@ -1,6 +1,6 @@
 package tdd.fizzbuzz;
 
-public class FizzBuzz extends FizzBuzzValue {
+public class FizzBuzz extends Value {
 
     public static final String FIZZ_BUZZ = "FizzBuzz";
 

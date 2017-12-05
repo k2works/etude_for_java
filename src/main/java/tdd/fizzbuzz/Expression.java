@@ -1,7 +1,7 @@
 package tdd.fizzbuzz;
 
 public interface Expression {
-    FizzBuzzValue reduce();
+    Value reduce();
 
     Expression times(Expression multiplier);
 

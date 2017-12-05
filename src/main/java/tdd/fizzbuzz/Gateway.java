@@ -3,23 +3,23 @@ package tdd.fizzbuzz;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FizzBuzzGateway {
-    private List<FizzBuzzValue> _results;
+public class Gateway {
+    private List<Value> _results;
     private Expression _accumulated;
     private List<Expression> _sources;
 
-    public FizzBuzzGateway(Integer count) {
+    public Gateway(Integer count) {
         Integer _count = count;
         _results = new ArrayList<>();
         _sources = new ArrayList<>();
 
         for (int i = 0; i <= _count; ++i) {
-            FizzBuzzValue value = FizzBuzzValue.makeFizzBuzzValue(i);
+            Value value = Value.makeFizzBuzzValue(i);
             _results.add(value);
         }
     }
 
-    public List<FizzBuzzValue> getResults() {
+    public List<Value> getResults() {
         return _results;
     }
 
@@ -27,14 +27,14 @@ public class FizzBuzzGateway {
         if (_accumulated == null) {
             _accumulated = source;
         } else {
-            source = new FizzBuzzValueAccumulate(_accumulated, source);
+            source = new Accumulate(_accumulated, source);
             _sources.add(source);
             _accumulated = source;
         }
     }
 
-    public FizzBuzzValue reduce() {
-        FizzBuzzValue value = null;
+    public Value reduce() {
+        Value value = null;
 
         if (_sources.isEmpty())
             return _accumulated.reduce();

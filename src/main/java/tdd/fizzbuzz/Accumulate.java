@@ -1,27 +1,27 @@
 package tdd.fizzbuzz;
 
-public class FizzBuzzValueAccumulate implements Expression {
+public class Accumulate implements Expression {
     Expression _accumulated;
     Expression _accumulate;
 
-    FizzBuzzValueAccumulate(Expression accumulated, Expression accumulate) {
+    Accumulate(Expression accumulated, Expression accumulate) {
         _accumulated = accumulated;
         _accumulate = accumulate;
     }
 
     @Override
     public Expression times(Expression multiplier) {
-        return new FizzBuzzValueAccumulate(this, multiplier);
+        return new Accumulate(this, multiplier);
     }
 
     @Override
     public Expression divide(Expression divisor) {
-        return new FizzBuzzValueAccumulate(_accumulated.divide(divisor), _accumulate.divide(divisor));
+        return new Accumulate(_accumulated.divide(divisor), _accumulate.divide(divisor));
     }
 
     @Override
-    public FizzBuzzValue reduce() {
+    public Value reduce() {
         int number = _accumulated.reduce()._number * _accumulate.reduce()._number;
-        return FizzBuzzValue.makeFizzBuzzValue(number);
+        return Value.makeFizzBuzzValue(number);
     }
 }

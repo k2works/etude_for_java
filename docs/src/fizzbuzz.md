@@ -38,18 +38,19 @@ markdown:
 ### クラス図
 ```puml
 @startuml
-class FizzBuzzGateway {
-  +FizzBuzzGateway(count :int)
+package fizzbuzz {
+class Gateway {
+  +Gateway(count :int)
   +getResults() :String[]
   +setSources(source :Expression)
   +reduce(source :Expression)
 }
-abstract class FizzBuzzValue {
+abstract class Value {
   #number :Int
   #value  :String
   +{abstract}execute() :String
-  +{static} makeFizzBuzzValue()
-  #reduce() :FizzBuzzValue  
+  +{static} makeValue()
+  #reduce() :Value  
   #times(multiplier: Expression) :Expression
   #divide(divisor: Expression) :Expression
   +equlas(object :Object) :boolean
@@ -70,120 +71,122 @@ class Buzz {
 class NullValue {
   +execute() :String  
 }
-class FizzBuzzValueAccumulate {
+class Accumulate {
   ~accumulated
   ~accumulate
-  FizzBuzzValueAccumulate(accumulated: Expression, accumulate: Expression)
+  Accumulate(accumulated: Expression, accumulate: Expression)
   +times(mulitiplier: Expression) :Expression
   +divide(divisor: Expression) :Expression
-  +reduce() :FizzBuzzValue  
+  +reduce() :Value  
 }
 interface Expression {
   times(multiplier: Expression)
   divide(divisor: Expression)
-  reduce() :FizzBuzzValue
+  reduce() :Value
 }
-FizzBuzzGateway -> FizzBuzzValue
-FizzBuzzValue <|-- Fizz
-FizzBuzzValue <|-- Buzz
-FizzBuzzValue <|-- FizzBuzz
-FizzBuzzValue <|-- NullValue
-FizzBuzzValueAccumulate -- FizzBuzzValue
-FizzBuzzValueAccumulate <- FizzBuzzGateway
-Expression <|- FizzBuzzValue
-Expression <|-- FizzBuzzValueAccumulate
+}
+
+Gateway -> Value
+Value <|-- Fizz
+Value <|-- Buzz
+Value <|-- FizzBuzz
+Value <|-- NullValue
+Accumulate -- Value
+Accumulate <- Gateway
+Expression <|- Value
+Expression <|-- Accumulate
 
 @enduml
 ```
 ### シーケンス図
-#### #FizzBuzzGateway
+#### #Gateway
 ```puml
 @startuml
-   activate FizzBuzzGateway
-   -> FizzBuzzGateway :new
+   activate Gateway
+   -> Gateway :new
    loop for each count
-      FizzBuzzGateway -> FizzBuzzValue :execute
-      activate FizzBuzzValue
-        FizzBuzzGateway <-- FizzBuzzValue :FizzBuzzValue
-        FizzBuzzGateway <- FizzBuzzGateway :List
-      deactivate FizzBuzzValue
+      Gateway -> Value :execute
+      activate Value
+        Gateway <-- Value :Value
+        Gateway <- Gateway :List
+      deactivate Value
    end
-   deactivate FizzBuzzGateway
+   deactivate Gateway
 @enduml
 ```
 #### #times
 ```puml
 @startuml
-   -> FizzBuzzValue :times
-   activate FizzBuzzValue
-      FizzBuzzValue -> FizzBuzzValue :makeFizzBuzzValue(number :int)      
-   deactivate FizzBuzzValue
-   <-- FizzBuzzValue :FizzBuzzValue
+   -> Value :times
+   activate Value
+      Value -> Value :makeValue(number :int)      
+   deactivate Value
+   <-- Value :Value
 @enduml
 ```
 
 ```puml
 @startuml
-   -> FizzBuzzValueAccumulate :times
-   activate FizzBuzzValueAccumulate
-      FizzBuzzValueAccumulate -> FizzBuzzValueAccumulate :new
-   deactivate FizzBuzzValueAccumulate
-   <-- FizzBuzzValueAccumulate :FizzBuzzValueAccumulate
+   -> Accumulate :times
+   activate Accumulate
+      Accumulate -> Accumulate :new
+   deactivate Accumulate
+   <-- Accumulate :Accumulate
 @enduml
 ```
 
 #### #divide
 ```puml
 @startuml
-   -> FizzBuzzValue :divide
-   activate FizzBuzzValue
-      FizzBuzzValue -> FizzBuzzValue :makeFizzBuzzValue(number :int)
-   deactivate FizzBuzzValue
-   <-- FizzBuzzValue :FizzBuzzValue
+   -> Value :divide
+   activate Value
+      Value -> Value :makeValue(number :int)
+   deactivate Value
+   <-- Value :Value
 @enduml
 ```
 
 ```puml
 @startuml
-   -> FizzBuzzValueAccumulate :divide
-   activate FizzBuzzValueAccumulate
-      FizzBuzzValueAccumulate -> FizzBuzzValueAccumulate :new
-   deactivate FizzBuzzValueAccumulate
-   <-- FizzBuzzValueAccumulate :FizzBuzzValueAccumulate
+   -> Accumulate :divide
+   activate Accumulate
+      Accumulate -> Accumulate :new
+   deactivate Accumulate
+   <-- Accumulate :Accumulate
 @enduml
 ```
 
 #### #reduce
 ```puml
 @startuml
-   -> FizzBuzzValue :makeFizzBuzzValue
-   activate FizzBuzzGateway
-   -> FizzBuzzGateway :reduce(FizzBuzzValue)
-      FizzBuzzGateway -> FizzBuzzValue :reduce
-      activate FizzBuzzValue
-        FizzBuzzGateway <-- FizzBuzzValue :FizzBuzzValue
-      deactivate FizzBuzzValue   
-   <-- FizzBuzzGateway :FizzBuzzValue
-   deactivate FizzBuzzGateway
+   -> Value :makeValue
+   activate Gateway
+   -> Gateway :reduce(Value)
+      Gateway -> Value :reduce
+      activate Value
+        Gateway <-- Value :Value
+      deactivate Value   
+   <-- Gateway :Value
+   deactivate Gateway
 @enduml
 ```
 
 ```puml
 @startuml
-   -> FizzBuzzValue :makeFizzBuzzValue
-   FizzBuzzValue -> FizzBuzzValueAccumulate :plus(added: FizzBuzzValue)
-   activate FizzBuzzGateway
-   -> FizzBuzzGateway :reduce(FizzBuzzValueProduct)
-      FizzBuzzGateway -> FizzBuzzValueAccumulate :reduce
-      activate FizzBuzzValueAccumulate
-        FizzBuzzGateway <-- FizzBuzzValueAccumulate :FizzBuzzValue
-          activate FizzBuzzValue
-            FizzBuzzValueAccumulate -> FizzBuzzValue :reduce
-            FizzBuzzValue --> FizzBuzzValueAccumulate :FizzBuzzValue
-          deactivate FizzBuzzValue
-      deactivate FizzBuzzValue
-   <-- FizzBuzzGateway :FizzBuzzValue
-   deactivate FizzBuzzGateway
+   -> Value :makeValue
+   Value -> Accumulate :plus(added: Value)
+   activate Gateway
+   -> Gateway :reduce(ValueProduct)
+      Gateway -> Accumulate :reduce
+      activate Accumulate
+        Gateway <-- Accumulate :Value
+          activate Value
+            Accumulate -> Value :reduce
+            Value --> Accumulate :Value
+          deactivate Value
+      deactivate Value
+   <-- Gateway :Value
+   deactivate Gateway
 @enduml
 ```
 
@@ -196,11 +199,12 @@ Expression <|-- FizzBuzzValueAccumulate
 + reduceメソッドのカプセル化
 + 不適切なメソッド名称の整理
 + クラスの名称を変更
++ パッケージの導入
 
 ### `FizzBuzzTest.java`
 @import "../../src/test/java/tdd/fizzbuzz/FizzBuzzTest.java"
-### `FizzBuzzValue.java`
-@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValue.java"
+### `Value.java`
+@import "../../src/main/java/tdd/fizzbuzz/Value.java"
 ### `FizzBuzz.java`
 @import "../../src/main/java/tdd/fizzbuzz/FizzBuzz.java"
 ### `Fizz.java`
@@ -209,10 +213,10 @@ Expression <|-- FizzBuzzValueAccumulate
 @import "../../src/main/java/tdd/fizzbuzz/Buzz.java"
 ### `NullValue.java`
 @import "../../src/main/java/tdd/fizzbuzz/NullValue.java"
-### `FizzBuzzGateway.java`
-@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzGateway.java"
+### `Gateway.java`
+@import "../../src/main/java/tdd/fizzbuzz/Gateway.java"
 ### `Expression.java`
 @import "../../src/main/java/tdd/fizzbuzz/Expression.java"
-### `FizzBuzzValueAccumulate.java`
-@import "../../src/main/java/tdd/fizzbuzz/FizzBuzzValueAccumulate.java"
+### `Accumulate.java`
+@import "../../src/main/java/tdd/fizzbuzz/Accumulate.java"
 

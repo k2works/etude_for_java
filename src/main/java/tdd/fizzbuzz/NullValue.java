@@ -1,6 +1,6 @@
 package tdd.fizzbuzz;
 
-public class NullValue extends FizzBuzzValue {
+public class NullValue extends Value {
     public NullValue(int number) {
         _number = number;
         _value = String.valueOf(number);
