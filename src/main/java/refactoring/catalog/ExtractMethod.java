@@ -22,10 +22,7 @@ class ExtractMethod {
     public void printOwing() {
         double outstanding = 0.0;
 
-        // バナーの印刷
-        System.out.println("***********************");
-        System.out.println("**** Customer Owes ****");
-        System.out.println("***********************");
+        printBanner();
 
         // 未払い金の計算
         for(Order _order : _orders)
@@ -34,5 +31,12 @@ class ExtractMethod {
         // 明細の印刷
         System.out.println("name:" + _name);
         System.out.println("amount:" + outstanding);
+    }
+
+    private void printBanner() {
+        // バナーの印刷
+        System.out.println("***********************");
+        System.out.println("**** Customer Owes ****");
+        System.out.println("***********************");
     }
 }
