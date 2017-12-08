@@ -18,7 +18,9 @@ class ExtractMethod {
   -name :String
   -orders :List<Order>
   +ExtractMethod()
-  +printBanner()
+  +printOwing()
+  -printBanner()
+  -printDetails(outstanding :double)
 }
 class Order {
   + getAmount() :double
@@ -30,7 +32,7 @@ ExtractMethod  -> Order
 ```puml
 @startuml
 ExtractMethod -> Order :new
-ExtractMethod -> ExtractMethod :printBanner
+ExtractMethod -> ExtractMethod :printOwing
 @enduml
 ```
 #### 実装

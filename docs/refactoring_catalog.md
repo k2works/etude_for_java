@@ -12,11 +12,11 @@
 ##### クラス図
   
 
-![](./assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a0.png?0.5216419387048097)  
+![](./assets/refactoring_catalog/30c0abba45d31db5980c104fd57a660d0.png?0.8339249788810696)  
 ##### シーケンス図
   
 
-![](./assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a1.png?0.012318845162063052)  
+![](./assets/refactoring_catalog/30c0abba45d31db5980c104fd57a660d1.png?0.25187368969870594)  
 #### 実装
   
 `ExtractMethodTest.java`
@@ -79,7 +79,12 @@ class ExtractMethod {
         // 未払い金の計算
         for(Order _order : _orders)
             outstanding += _order.getAmount();
+        printDetails(outstanding);
   
+  
+    }
+  
+    private void printDetails(double outstanding) {
         // 明細の印刷
         System.out.println("name:" + _name);
         System.out.println("amount:" + outstanding);

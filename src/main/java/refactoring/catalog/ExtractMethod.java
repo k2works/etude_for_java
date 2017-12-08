@@ -27,7 +27,12 @@ class ExtractMethod {
         // 未払い金の計算
         for(Order _order : _orders)
             outstanding += _order.getAmount();
+        printDetails(outstanding);
 
+
+    }
+
+    private void printDetails(double outstanding) {
         // 明細の印刷
         System.out.println("name:" + _name);
         System.out.println("amount:" + outstanding);
