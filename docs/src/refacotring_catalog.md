@@ -21,6 +21,7 @@ class ExtractMethod {
   +printOwing()
   +printOwing(previousAmount :double)
   -getOutstanding() :double
+  -getOutstanding(prefiousAmount :double) :double
   -printBanner()  
   -printDetails(outstanding :double)  
 }

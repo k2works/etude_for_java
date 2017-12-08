@@ -26,21 +26,21 @@ class ExtractMethod {
     }
 
     public void printOwing(double previousAmount) {
-        double outstanding = previousAmount * 1.2;
-
         printBanner();
-
-        for(Order order : _orders)
-            outstanding += order.getAmount();
+        double outstanding = getOutstanding(previousAmount * 1.2);
 
         printDetails(outstanding);
     }
 
+    private double getOutstanding(double previousAmount) {
+        double outstanding = previousAmount;
+        for (Order order : _orders)
+            outstanding += order.getAmount();
+        return outstanding;
+    }
+
     private double getOutstanding() {
-        double result = 0.0;
-        // 未払い金の計算
-        for(Order _order : _orders)
-            result += _order.getAmount();
+        double result = getOutstanding(0.0);
         return result;
     }
 
