@@ -20,16 +20,17 @@ class ExtractMethod {
     }
 
     public void printOwing() {
-        double outstanding = 0.0;
-
         printBanner();
+        double outstanding = getOutstanding();
+        printDetails(outstanding);
+    }
 
+    private double getOutstanding() {
+        double result = 0.0;
         // 未払い金の計算
         for(Order _order : _orders)
-            outstanding += _order.getAmount();
-        printDetails(outstanding);
-
-
+            result += _order.getAmount();
+        return result;
     }
 
     private void printDetails(double outstanding) {
