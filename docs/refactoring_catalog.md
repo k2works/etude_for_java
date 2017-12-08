@@ -12,11 +12,11 @@
 ##### クラス図
   
 
-![](./assets/refactoring_catalog/30c0abba45d31db5980c104fd57a660d0.png?0.17928808768056514)  
+![](./assets/refactoring_catalog/30c0abba45d31db5980c104fd57a660d0.png?0.7672691645703071)  
 ##### シーケンス図
   
 
-![](./assets/refactoring_catalog/30c0abba45d31db5980c104fd57a660d1.png?0.25978914527823327)  
+![](./assets/refactoring_catalog/30c0abba45d31db5980c104fd57a660d1.png?0.18524817336526445)  
 #### 実装
   
 `ExtractMethodTest.java`
@@ -43,6 +43,20 @@ public class ExtractMethodTest {
   
         ExtractMethod extractMethod = new ExtractMethod();
         extractMethod.printOwing();
+        assertEquals(expected, outContent.toString());
+    }
+    @Test void printBannerWithArg() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        String expected = "***********************\n" +
+                "**** Customer Owes ****\n" +
+                "***********************\n" +
+                "name:Test\n" +
+                "amount:12.0\n";
+  
+        ExtractMethod extractMethod = new ExtractMethod();
+        double previousAmount = 10;
+        extractMethod.printOwing(previousAmount);
         assertEquals(expected, outContent.toString());
     }
 }
@@ -74,6 +88,17 @@ class ExtractMethod {
     public void printOwing() {
         printBanner();
         double outstanding = getOutstanding();
+        printDetails(outstanding);
+    }
+  
+    public void printOwing(double previousAmount) {
+        double outstanding = previousAmount * 1.2;
+  
+        printBanner();
+  
+        for(Order order : _orders)
+            outstanding += order.getAmount();
+  
         printDetails(outstanding);
     }
   

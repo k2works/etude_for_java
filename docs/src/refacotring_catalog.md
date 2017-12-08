@@ -19,9 +19,10 @@ class ExtractMethod {
   -orders :List<Order>
   +ExtractMethod()
   +printOwing()
+  +printOwing(previousAmount :double)
   -getOutstanding() :double
   -printBanner()  
-  -printDetails(outstanding :double)
+  -printDetails(outstanding :double)  
 }
 class Order {
   + getAmount() :double

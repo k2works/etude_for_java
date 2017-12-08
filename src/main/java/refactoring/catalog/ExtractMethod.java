@@ -25,6 +25,17 @@ class ExtractMethod {
         printDetails(outstanding);
     }
 
+    public void printOwing(double previousAmount) {
+        double outstanding = previousAmount * 1.2;
+
+        printBanner();
+
+        for(Order order : _orders)
+            outstanding += order.getAmount();
+
+        printDetails(outstanding);
+    }
+
     private double getOutstanding() {
         double result = 0.0;
         // 未払い金の計算
