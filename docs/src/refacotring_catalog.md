@@ -43,6 +43,45 @@ ExtractMethod -> ExtractMethod :printOwing
 @import "../../src/test/java/refactoring/catalog/ExtractMethodTest.java"
 `ExtractMethod.java`
 @import "../../src/main/java/refactoring/catalog/ExtractMethod.java"
+`Order.java`
+@import "../../src/main/java/refactoring/catalog/Order.java"
+
+
+### 問い合わせによる一時変数の置き換え
+#### 設計
+##### クラス図
+```puml
+@startuml
+class ReplaceTempWithQuery {
+  ~ getPrice() :double
+}
+class Order {
+  - quantity
+  - itemPrice
+  ~ getPrice() :double
+}
+ReplaceTempWithQuery -> Order
+@enduml
+```
+##### シーケンス図
+```puml
+@startuml
+ReplaceTempWithQuery -> Order :getPrice
+activate Order
+Order -> Order :getPrice
+deactivate Order
+ReplaceTempWithQuery <-- Order
+@enduml
+```
+
+#### 実装
+`ReplaceTempWithQueryTest.java`
+@import "../../src/test/java/refactoring/catalog/ReplaceTempWithQueryTest.java"
+`ReplaceTempWithQuery.java`
+@import "../../src/main/java/refactoring/catalog/ReplaceTempWithQuery.java"
+`Order.java`
+@import "../../src/main/java/refactoring/catalog/Order.java"
+
 
 ## オブジェクト間での特性の移動
 ## データの再編成

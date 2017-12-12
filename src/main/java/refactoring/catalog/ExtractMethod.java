@@ -3,12 +3,6 @@ package refactoring.catalog;
 import java.util.ArrayList;
 import java.util.List;
 
-class Order {
-    public double getAmount() {
-        return 0;
-    }
-}
-
 class ExtractMethod {
     private String _name;
     private List<Order> _orders;
