@@ -82,6 +82,45 @@ ReplaceTempWithQuery <-- Order
 `Order.java`
 @import "../../src/main/java/refactoring/catalog/Order.java"
 
+### 説明用変数の導入
+#### 設計
+##### クラス図
+```puml
+@startuml
+class  IntroduceExplainingVariable {
+  - quantity
+  - itemPrice
+  + getPrice() :Double
+}
+class Order {
+  - quantity
+  - itemPrice
+  ~ getPrice() :double
+  + price() :double
+}
+IntroduceExplainingVariable -> Order
+@enduml
+```
+##### シーケンス図
+```puml
+@startuml
+IntroduceExplainingVariable -> Order :new
+IntroduceExplainingVariable -> Order :price
+activate Order
+Order -> Order :price
+deactivate Order
+IntroduceExplainingVariable <-- Order
+@enduml
+```
+
+#### 実装
+`IntroduceExplainingVariableTest.java`
+@import "../../src/test/java/refactoring/catalog/IntroduceExplainingVariableTest.java"
+`IntroduceExplainingVariable.java`
+@import "../../src/main/java/refactoring/catalog/IntroduceExplainingVariable.java"
+`Order.java`
+@import "../../src/main/java/refactoring/catalog/Order.java"
+
 
 ## オブジェクト間での特性の移動
 ## データの再編成
