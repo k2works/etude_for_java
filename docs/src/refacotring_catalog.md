@@ -121,6 +121,28 @@ IntroduceExplainingVariable <-- Order
 `Order.java`
 @import "../../src/main/java/refactoring/catalog/Order.java"
 
+### 一時変数の分離
+#### 設計
+##### クラス図
+```puml
+@startuml
+class SplitTemporaryVariable {
+  - primaryForce
+  - secondaryForce
+  - mass
+  - delay
+  + getDistanceTravelled(time :int) :double
+}
+
+@enduml
+```
+##### シーケンス図
+
+#### 実装
+`SplitTemporaryVariableTest.java`
+@import "../../src/test/java/refactoring/catalog/SplitTemporaryVariableTest.java"
+`SplitTemporaryVariable.java`
+@import "../../src/main/java/refactoring/catalog/SplitTemporaryVariable.java"
 
 ## オブジェクト間での特性の移動
 ## データの再編成

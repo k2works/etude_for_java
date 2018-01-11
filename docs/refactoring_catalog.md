@@ -12,11 +12,11 @@
 ##### クラス図
   
 
-![](./assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a0.png?0.06376198229075403)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a0.png?0.9640066979539443)  
 ##### シーケンス図
   
 
-![](./assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a1.png?0.12268637426174811)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a1.png?0.923981827299106)  
 #### 実装
   
 `ExtractMethodTest.java`
@@ -123,6 +123,8 @@ class ExtractMethod {
 ```java
 package refactoring.catalog;
   
+import javax.swing.plaf.metal.MetalTheme;
+  
 public class Order {
     private int _quantity;
     private int _itemPrice;
@@ -153,6 +155,13 @@ public class Order {
     private int basePrice() {
         return _quantity * _itemPrice;
     }
+  
+    public double price() {
+        // 価格(price)は、基本価格(base price) - 数量割引(quantity discount) + 送料(shipping)
+        return _quantity * _itemPrice -
+                Math.max(0, _quantity - 500) * _itemPrice * 0.05 +
+                Math.min(_quantity * _itemPrice * 0.1, 100.0);
+    }
 }
   
 ```  
@@ -165,11 +174,11 @@ public class Order {
 ##### クラス図
   
 
-![](./assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a2.png?0.6180157001961004)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a2.png?0.8793608491487248)  
 ##### シーケンス図
   
 
-![](./assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a3.png?0.2574227690617512)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a3.png?0.12641640659082154)  
   
 #### 実装
   
@@ -219,6 +228,8 @@ public class ReplaceTempWithQuery {
 ```java
 package refactoring.catalog;
   
+import javax.swing.plaf.metal.MetalTheme;
+  
 public class Order {
     private int _quantity;
     private int _itemPrice;
@@ -249,10 +260,196 @@ public class Order {
     private int basePrice() {
         return _quantity * _itemPrice;
     }
+  
+    public double price() {
+        // 価格(price)は、基本価格(base price) - 数量割引(quantity discount) + 送料(shipping)
+        return _quantity * _itemPrice -
+                Math.max(0, _quantity - 500) * _itemPrice * 0.05 +
+                Math.min(_quantity * _itemPrice * 0.1, 100.0);
+    }
 }
   
 ```  
   
+### 説明用変数の導入
+  
+#### 設計
+  
+##### クラス図
+  
+
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a4.png?0.5763193611242214)  
+##### シーケンス図
+  
+
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a5.png?0.1574717280107487)  
+  
+#### 実装
+  
+`IntroduceExplainingVariableTest.java`
+```java
+package refactoring.catalog;
+  
+import org.junit.jupiter.api.Test;
+  
+import static org.junit.Assert.assertEquals;
+  
+public class IntroduceExplainingVariableTest {
+    @Test
+    public void priceBasePricePlusShipping() {
+        Double expected = 110.0;
+        IntroduceExplainingVariable introduceExplainingVariable = new IntroduceExplainingVariable(1, 100);
+        Double result = introduceExplainingVariable.price();
+        assertEquals(expected, result);
+    }
+    @Test
+    public void priceBasePriceMinusDiscountPlusShipping() {
+        Double expected = 50195.0;
+        IntroduceExplainingVariable introduceExplainingVariable = new IntroduceExplainingVariable(501, 100);
+        Double result = introduceExplainingVariable.price();
+        assertEquals(expected, result);
+    }
+    @Test
+    public void priceBasePriceMinusDiscountPlusNotMinShipping() {
+        Double expected = 108.9;
+        IntroduceExplainingVariable introduceExplainingVariable = new IntroduceExplainingVariable(3, 33);
+        Double result = introduceExplainingVariable.price();
+        assertEquals(expected, result);
+    }
+}
+  
+```  
+`IntroduceExplainingVariable.java`
+```java
+package refactoring.catalog;
+  
+public class IntroduceExplainingVariable {
+    private final int _quantity;
+    private final int _itemPrice;
+  
+    IntroduceExplainingVariable(int quantity, int itemPrice) {
+        _quantity = quantity;
+        _itemPrice = itemPrice;
+    }
+    public Double price() {
+        Order order = new Order(_quantity,_itemPrice);
+        return order.price();
+    }
+}
+  
+```  
+`Order.java`
+```java
+package refactoring.catalog;
+  
+import javax.swing.plaf.metal.MetalTheme;
+  
+public class Order {
+    private int _quantity;
+    private int _itemPrice;
+  
+    Order() {
+    }
+  
+    Order(int quantity, int itemPrice) {
+        _quantity = quantity;
+        _itemPrice = itemPrice;
+    }
+  
+    public double getAmount() {
+        return 0;
+    }
+  
+    double getPrice() {
+        final double discountFactor;
+        discountFactor = discountFactor();
+        return basePrice() * discountFactor;
+    }
+  
+    private double discountFactor() {
+        if (basePrice() > 1000) return 0.95;
+        else return 0.98;
+    }
+  
+    private int basePrice() {
+        return _quantity * _itemPrice;
+    }
+  
+    public double price() {
+        // 価格(price)は、基本価格(base price) - 数量割引(quantity discount) + 送料(shipping)
+        return _quantity * _itemPrice -
+                Math.max(0, _quantity - 500) * _itemPrice * 0.05 +
+                Math.min(_quantity * _itemPrice * 0.1, 100.0);
+    }
+}
+  
+```  
+  
+### 一時変数の分離
+  
+#### 設計
+  
+##### クラス図
+  
+
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a6.png?0.09178574547908003)  
+##### シーケンス図
+  
+  
+#### 実装
+  
+`SplitTemporaryVariableTest.java`
+```java
+package refactoring.catalog;
+  
+import org.junit.jupiter.api.Test;
+  
+import static org.junit.Assert.assertEquals;
+  
+public class SplitTemporaryVariableTest {
+    @Test
+    public void testGetDistanceTravelled() {
+        Double expected = 0d;
+        SplitTemporaryVariable splitTemporaryVariable = new SplitTemporaryVariable(1, 1, 1, 1);
+        Double result = splitTemporaryVariable.getDistanceTravelled(0);
+        assertEquals(expected, result);
+    }
+}
+  
+```  
+`SplitTemporaryVariable.java`
+```java
+package refactoring.catalog;
+  
+public class SplitTemporaryVariable {
+    private double _primaryForce;
+    private double _secondaryForce;
+    private double _mass;
+    private int _delay;
+  
+    SplitTemporaryVariable(double primaryForce, double secondaryForce, double mass, int delay) {
+        _primaryForce = primaryForce;
+        _secondaryForce = secondaryForce;
+        _mass = mass;
+        _delay = delay;
+    }
+  
+    double getDistanceTravelled(int time) {
+        double result;
+        double acc = _primaryForce / _mass;
+        int primaryTime = Math.min(time, _delay);
+        result = 0.5 * acc * primaryTime * primaryTime;
+        int secondaryTime = time - _delay;
+        if (secondaryTime > 0) {
+            double primaryVel = acc * _delay;
+            acc = (_primaryForce + _secondaryForce) / _mass;
+            result += primaryVel * secondaryTime + 0.5 * acc * secondaryTime * secondaryTime;
+        }
+        return result;
+    }
+}
+  
+```  
   
 ## オブジェクト間での特性の移動
   
