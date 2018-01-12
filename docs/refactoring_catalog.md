@@ -12,11 +12,11 @@
 ##### クラス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a0.png?0.9640066979539443)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a0.png?0.7803500866526367)  
 ##### シーケンス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a1.png?0.923981827299106)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a1.png?0.24892911439854704)  
 #### 実装
   
 `ExtractMethodTest.java`
@@ -174,11 +174,11 @@ public class Order {
 ##### クラス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a2.png?0.8793608491487248)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a2.png?0.7512035381825082)  
 ##### シーケンス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a3.png?0.12641640659082154)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a3.png?0.09938886609599162)  
   
 #### 実装
   
@@ -278,11 +278,11 @@ public class Order {
 ##### クラス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a4.png?0.5763193611242214)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a4.png?0.04596432046514387)  
 ##### シーケンス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a5.png?0.1574717280107487)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a5.png?0.9816058720000507)  
   
 #### 実装
   
@@ -392,7 +392,7 @@ public class Order {
 ##### クラス図
   
 
-![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a6.png?0.09178574547908003)  
+![](../assets/refactoring_catalog/304c6a7221fb9ead610ce99af5b2958a6.png?0.855816143955189)  
 ##### シーケンス図
   
   
@@ -436,14 +436,14 @@ public class SplitTemporaryVariable {
   
     double getDistanceTravelled(int time) {
         double result;
-        double acc = _primaryForce / _mass;
+        final double primaryAcc = _primaryForce / _mass;
         int primaryTime = Math.min(time, _delay);
-        result = 0.5 * acc * primaryTime * primaryTime;
+        result = 0.5 * primaryAcc * primaryTime * primaryTime;
         int secondaryTime = time - _delay;
         if (secondaryTime > 0) {
-            double primaryVel = acc * _delay;
-            acc = (_primaryForce + _secondaryForce) / _mass;
-            result += primaryVel * secondaryTime + 0.5 * acc * secondaryTime * secondaryTime;
+            double primaryVel = primaryAcc * _delay;
+            final double secondaryAcc = (_primaryForce + _secondaryForce) / _mass;
+            result += primaryVel * secondaryTime + 0.5 * secondaryAcc * secondaryTime * secondaryTime;
         }
         return result;
     }
